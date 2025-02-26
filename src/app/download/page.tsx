@@ -110,7 +110,7 @@ export default function DownloadPage() {
         <div className="mt-12 text-center">
           <h2 className="text-2xl font-bold mb-4">Need Help?</h2>
           <p className="text-muted-foreground">
-            If you're having trouble downloading or installing the app,{" "}
+            If you&apos;re having trouble downloading or installing the app,{" "}
             <a href="/contact" className="text-primary hover:underline">
               contact our support team
             </a>

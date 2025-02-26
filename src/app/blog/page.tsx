@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from "framer-motion"
-import { CalendarIcon, Clock, User } from "lucide-react"
+import { Clock, User } from "lucide-react"
 
 const posts = [
   {
