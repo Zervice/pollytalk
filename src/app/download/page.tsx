@@ -1,36 +1,37 @@
 'use client'
 
 import { motion } from "framer-motion"
-import { Smartphone, Apple, ArrowRight } from "lucide-react"
+import { Smartphone, Apple, ArrowRight, QrCode, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import QRCode from "react-qr-code"
 
 const platforms = [
   {
     name: "iOS App",
     icon: Apple,
-    description: "Download PollyChat for iPhone and iPad",
+    description: "Download PollyTalk for iPhone and iPad",
     steps: [
       "Open the App Store on your iOS device",
-      "Search for 'PollyChat Language Learning'",
+      "Search for 'PollyTalk Language Learning'",
       "Tap 'Get' to install the app",
       "Open the app and start learning"
     ],
     buttonText: "Download on App Store",
-    href: "https://apps.apple.com/app/pollychat",
+    href: "https://apps.apple.com/app/pollytalk",
     systemRequirements: "Requires iOS 14.0 or later"
   },
   {
     name: "Android App",
     icon: Smartphone,
-    description: "Download PollyChat for Android devices",
+    description: "Download PollyTalk for Android devices",
     steps: [
       "Open the Google Play Store",
-      "Search for 'PollyChat Language Learning'",
+      "Search for 'PollyTalk Language Learning'",
       "Tap 'Install'",
       "Open the app and start learning"
     ],
     buttonText: "Get it on Google Play",
-    href: "https://play.google.com/store/apps/details?id=com.pollychat",
+    href: "https://play.google.com/store/apps/details?id=com.pollytalk",
     systemRequirements: "Requires Android 8.0 or later"
   }
 ]
@@ -46,7 +47,7 @@ export default function DownloadPage() {
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-12">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            Download PollyChat
+            Download PollyTalk
           </h1>
           <p className="mx-auto max-w-[700px] text-zinc-500 md:text-xl dark:text-zinc-400">
             Start your language learning journey on your mobile device
@@ -106,6 +107,65 @@ export default function DownloadPage() {
             )
           })}
         </div>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mt-16 p-8 bg-primary/5 border-2 border-primary/20 rounded-xl max-w-3xl mx-auto text-center"
+        >
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <QrCode className="h-6 w-6 text-primary" />
+            <h2 className="text-2xl font-bold">Direct APK Download</h2>
+          </div>
+          
+          <p className="text-muted-foreground mb-6">
+            Scan this QR code with your Android device to download our app directly
+          </p>
+          
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+            <div className="p-4 bg-white rounded-lg border border-primary/20">
+              <QRCode
+                value="https://pollytalk.promptai.cn/release/app-release.apk"
+                size={200}
+                level="H"
+              />
+            </div>
+            
+            <div className="space-y-4">
+              <h3 className="font-semibold text-lg">Download Instructions:</h3>
+              <ul className="space-y-2 text-left">
+                <li className="flex items-start gap-2">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-medium text-primary">1</span>
+                  <span className="text-muted-foreground">Scan the QR code with your phone's camera</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-medium text-primary">2</span>
+                  <span className="text-muted-foreground">Tap the link that appears</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-medium text-primary">3</span>
+                  <span className="text-muted-foreground">Allow installation from unknown sources if prompted</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-medium text-primary">4</span>
+                  <span className="text-muted-foreground">Install and enjoy PollyTalk!</span>
+                </li>
+              </ul>
+              
+              <Button className="w-full group" asChild>
+                <a href="https://pollytalk.promptai.cn/release/app-release.apk" target="_blank" rel="noopener noreferrer">
+                  <Download className="mr-2 h-5 w-5" />
+                  Download APK Directly
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </Button>
+              <p className="text-xs text-center text-muted-foreground">
+                APK file size: ~25MB • Android 8.0+ required
+              </p>
+            </div>
+          </div>
+        </motion.div>
 
         <div className="mt-12 text-center">
           <h2 className="text-2xl font-bold mb-4">Need Help?</h2>

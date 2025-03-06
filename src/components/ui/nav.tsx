@@ -26,7 +26,7 @@ export function Nav() {
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
             <Logo size={32} />
-            <span className="font-semibold text-xl">PollyChat</span>
+            <span className="font-semibold text-xl">PollyTalk</span>
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -56,18 +56,20 @@ export function Nav() {
           <div className="relative group">
             <button
               type="button"
-              className="flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
+              className="flex items-center justify-center gap-2 px-3 py-1.5 rounded-md border border-border bg-accent/30 text-foreground hover:bg-accent hover:text-primary transition-all"
               aria-label="Show QR code for app download"
             >
-              <QrCode className="h-5 w-5" />
+              <QrCode className="h-6 w-6" />
+              <span className="text-sm font-medium">Download App</span>
             </button>
-            <div className="absolute right-0 top-full mt-2 p-4 bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+            <div className="absolute right-0 top-full mt-2 p-4 bg-background border-2 border-primary/20 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible scale-95 group-hover:scale-100 transition-all duration-300 z-50">
               <div className="flex flex-col items-center gap-2">
-                <p className="text-sm font-medium mb-2">Scan to download PollyChat app</p>
-                <div className="p-2 bg-white rounded">
+                <p className="text-sm font-medium mb-2">Scan to download PollyTalk app</p>
+                <div className="p-3 bg-white rounded-md border border-primary/20">
                   <QRCode
                     value="https://pollytalk.promptai.cn/release/app-release.apk"
-                    size={150}
+                    size={180}
+                    level="H"
                   />
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">https://pollytalk.promptai.cn/release/app-release.apk</p>
@@ -97,7 +99,7 @@ export function Nav() {
                 <div className="flex items-center justify-between">
                   <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
                     <Logo size={32} />
-                    <span className="font-semibold text-xl">PollyChat</span>
+                    <span className="font-semibold text-xl">PollyTalk</span>
                   </Link>
                   <button
                     type="button"
@@ -124,11 +126,12 @@ export function Nav() {
                         </Link>
                       ))}
                       <div className="-mx-3 rounded-lg px-3 py-4 flex flex-col items-center">
-                        <p className="text-base font-semibold mb-3">Scan to download PollyChat app</p>
-                        <div className="p-2 bg-white rounded">
+                        <p className="text-base font-semibold mb-3">Scan to download PollyTalk app</p>
+                        <div className="p-3 bg-white rounded-md border border-primary/20">
                           <QRCode
                             value="https://pollytalk.promptai.cn/release/app-release.apk"
-                            size={150}
+                            size={180}
+                            level="H"
                           />
                         </div>
                         <p className="text-xs text-muted-foreground mt-2">https://pollytalk.promptai.cn/release/app-release.apk</p>

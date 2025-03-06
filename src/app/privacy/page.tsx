@@ -19,7 +19,7 @@ export default function PrivacyPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">1. Introduction</h2>
             <p>
-              At PollyChat, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our language learning platform. Please read this policy carefully to understand our practices.
+              At PollyTalk, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our language learning platform. Please read this policy carefully to understand our practices.
             </p>
           </section>
 
@@ -142,9 +142,9 @@ export default function PrivacyPage() {
               For privacy-related questions or concerns, please contact us at:
             </p>
             <ul className="list-none pl-6 mt-2">
-              <li>Email: privacy@pollychat.com</li>
+              <li>Email: privacy@zervice.us</li>
               <li>Address: [Your Business Address]</li>
-              <li>Data Protection Officer: dpo@pollychat.com</li>
+              <li>Data Protection Officer: dpo@zervice.us</li>
             </ul>
           </section>
 

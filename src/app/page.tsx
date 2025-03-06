@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Logo } from "@/components/ui/logo"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChatBubbleIcon, GlobeIcon, PersonIcon, RocketIcon } from "@radix-ui/react-icons"
+import { QrCode, Download } from "lucide-react"
+import Link from "next/link"
 
 const features = [
   {
@@ -44,7 +46,7 @@ export default function Home() {
               >
                 <Logo size={80} />
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-                  PollyChat
+                  PollyTalk
                 </h1>
               </motion.div>
               <motion.p
@@ -53,16 +55,27 @@ export default function Home() {
                 transition={{ delay: 0.2 }}
                 className="mx-auto max-w-[700px] text-zinc-500 md:text-xl dark:text-zinc-400"
               >
-                Chat like a local, learn like a parrot! Master languages through natural conversations.
+                Talk like a local, learn like a parrot! Master languages through natural conversations.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="space-x-4"
+                className="flex flex-wrap gap-4 justify-center"
               >
                 <Button size="lg">Start Learning</Button>
                 <Button size="lg" variant="outline">Try Demo</Button>
+                <Link href="/download">
+                  <Button 
+                    size="lg" 
+                    variant="secondary" 
+                    className="flex items-center gap-2 bg-primary/10 hover:bg-primary/20 border-2 border-primary/20"
+                  >
+                    <Download className="h-5 w-5" />
+                    <span>Download App</span>
+                    <QrCode className="h-5 w-5 ml-1" />
+                  </Button>
+                </Link>
               </motion.div>
             </div>
           </div>
@@ -77,7 +90,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="text-3xl font-bold tracking-tighter text-center mb-12"
             >
-              Why Choose PollyChat?
+              Why Choose PollyTalk?
             </motion.h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {features.map((feature, index) => {

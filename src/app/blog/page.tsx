@@ -47,7 +47,7 @@ export default function BlogPage() {
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-12">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            PollyChat Blog
+            PollyTalk Blog
           </h1>
           <p className="mx-auto max-w-[700px] text-zinc-500 md:text-xl dark:text-zinc-400">
             Insights and tips for better language learning
@@ -67,7 +67,7 @@ export default function BlogPage() {
               <div className="relative h-48 overflow-hidden rounded-lg">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5" />
                 <div className="absolute inset-0 flex items-center justify-center text-4xl text-primary/20">
-                  PollyChat
+                  PollyTalk
                 </div>
               </div>
               <div className="space-y-2">

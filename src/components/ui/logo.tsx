@@ -8,7 +8,7 @@ export function Logo({ className = "", size = 40 }: { className?: string; size?:
     <div className={`relative ${className}`} style={{ width: size, height }}>
       <Image
         src="/logo.png"
-        alt="PollyChat Logo"
+        alt="PollyTalk Logo"
         fill
         className="object-contain"
         sizes={`${size}px`}

@@ -19,14 +19,14 @@ export default function TermsPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">1. Introduction</h2>
             <p>
-              Welcome to PollyChat (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;). By accessing or using our language learning platform, you agree to be bound by these Terms of Service (&quot;Terms&quot;). Please read these Terms carefully before using our services.
+              Welcome to PollyTalk (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;). By accessing or using our language learning platform, you agree to be bound by these Terms of Service (&quot;Terms&quot;). Please read these Terms carefully before using our services.
             </p>
           </section>
 
           <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">2. Service Description</h2>
             <p>
-              PollyChat provides an AI-powered language learning platform that enables users to practice conversations and improve their language skills. Our services include but are not limited to:
+              PollyTalk provides an AI-powered language learning platform that enables users to practice conversations and improve their language skills. Our services include but are not limited to:
             </p>
             <ul className="list-disc pl-6 mt-2">
               <li>Interactive language learning sessions</li>
@@ -138,7 +138,7 @@ export default function TermsPage() {
               For questions about these Terms, please contact us at:
             </p>
             <ul className="list-none pl-6 mt-2">
-              <li>Email: support@pollychat.com</li>
+              <li>Email: support@zervice.us</li>
               <li>Address: [Your Business Address]</li>
             </ul>
           </section>

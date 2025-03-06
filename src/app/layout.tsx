@@ -7,7 +7,7 @@ import { Footer } from "@/components/ui/footer";
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'PollyChat - Your AI Conversation Companion',
+  title: 'PollyTalk - Your AI Conversation Companion',
   description: 'Practice languages through natural conversations with AI',
 }
 
