@@ -67,12 +67,12 @@ export function Nav() {
                 <p className="text-sm font-medium mb-2">Scan to download PollyTalk app</p>
                 <div className="p-3 bg-white rounded-md border border-primary/20">
                   <QRCode
-                    value="https://pollytalk.promptai.cn/release/app-release.apk"
+                    value="https://downloads.zervice.me/release/app-release.apk"
                     size={180}
                     level="H"
                   />
                 </div>
-                <p className="text-xs text-muted-foreground mt-1">https://pollytalk.promptai.cn/release/app-release.apk</p>
+                <p className="text-xs text-muted-foreground mt-1">https://downloads.zervice.me/release/app-release.apk</p>
               </div>
             </div>
           </div>
@@ -129,12 +129,12 @@ export function Nav() {
                         <p className="text-base font-semibold mb-3">Scan to download PollyTalk app</p>
                         <div className="p-3 bg-white rounded-md border border-primary/20">
                           <QRCode
-                            value="https://pollytalk.promptai.cn/release/app-release.apk"
+                            value="https://downloads.zervice.me/release/app-release.apk"
                             size={180}
                             level="H"
                           />
                         </div>
-                        <p className="text-xs text-muted-foreground mt-2">https://pollytalk.promptai.cn/release/app-release.apk</p>
+                        <p className="text-xs text-muted-foreground mt-2">https://downloads.zervice.me/release/app-release.apk</p>
                       </div>
                     </div>
                   </div>
