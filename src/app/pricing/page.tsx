@@ -10,7 +10,7 @@ const tiers = [
     price: "Free",
     description: "Perfect for getting started with language learning",
     features: [
-      "5 AI conversations per day",
+      "1 AI conversation per day",
       "Basic language assessment",
       "Core language exercises",
       "Community support",
@@ -20,7 +20,7 @@ const tiers = [
   },
   {
     name: "Pro",
-    price: "$12",
+    price: "$15",
     period: "per month",
     description: "Best for serious language learners",
     features: [

@@ -4,8 +4,9 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Logo } from './logo'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, QrCode } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import QRCode from 'react-qr-code'
 
 const navigation = [
   { name: 'Pricing', href: '/pricing' },
@@ -50,6 +51,29 @@ export function Nav() {
               {item.name}
             </Link>
           ))}
+        </div>
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          <div className="relative group">
+            <button
+              type="button"
+              className="flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
+              aria-label="Show QR code for app download"
+            >
+              <QrCode className="h-5 w-5" />
+            </button>
+            <div className="absolute right-0 top-full mt-2 p-4 bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+              <div className="flex flex-col items-center gap-2">
+                <p className="text-sm font-medium mb-2">Scan to download PollyChat app</p>
+                <div className="p-2 bg-white rounded">
+                  <QRCode
+                    value="https://pollytalk.promptai.cn/release/app-release.apk"
+                    size={150}
+                  />
+                </div>
+                <p className="text-xs text-muted-foreground mt-1">https://pollytalk.promptai.cn/release/app-release.apk</p>
+              </div>
+            </div>
+          </div>
         </div>
       </nav>
 
@@ -99,6 +123,16 @@ export function Nav() {
                           {item.name}
                         </Link>
                       ))}
+                      <div className="-mx-3 rounded-lg px-3 py-4 flex flex-col items-center">
+                        <p className="text-base font-semibold mb-3">Scan to download PollyChat app</p>
+                        <div className="p-2 bg-white rounded">
+                          <QRCode
+                            value="https://pollytalk.promptai.cn/release/app-release.apk"
+                            size={150}
+                          />
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-2">https://pollytalk.promptai.cn/release/app-release.apk</p>
+                      </div>
                     </div>
                   </div>
                 </div>
