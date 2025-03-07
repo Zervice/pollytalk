@@ -1,10 +1,9 @@
 import './globals.css'
-import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { Nav } from '@/components/ui/nav'
-import { Footer } from "@/components/ui/footer";
+import { ClientLayout } from '@/components/client-layout'
+import type { Metadata } from 'next'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin', 'latin-ext'] })
 
 export const metadata: Metadata = {
   title: 'PollyTalk - Your AI Conversation Companion',
@@ -17,13 +16,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html suppressHydrationWarning>
       <body className={`${inter.className} antialiased min-h-screen flex flex-col`}>
-        <Nav />
-        <div className="flex-1 pt-[72px]">
+        <ClientLayout>
           {children}
-        </div>
-        <Footer />
+        </ClientLayout>
       </body>
     </html>
   )

@@ -3,56 +3,60 @@
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { Check } from "lucide-react"
+import { useI18n } from "@/i18n/i18n-context"
 
-const tiers = [
+export default function PricingPage() {
+  const { t } = useI18n()
+
+  const tiers = [
   {
-    name: "Basic",
-    price: "Free",
-    description: "Perfect for getting started with language learning",
+    name: t('pricing.tiers.basic.name'),
+    price: t('pricing.tiers.basic.price'),
+    description: t('pricing.tiers.basic.description'),
     features: [
-      "1 AI conversation per day",
-      "Basic language assessment",
-      "Core language exercises",
-      "Community support",
+      t('pricing.tiers.basic.features.feature1'),
+      t('pricing.tiers.basic.features.feature2'),
+      t('pricing.tiers.basic.features.feature3'),
+      t('pricing.tiers.basic.features.feature4'),
     ],
-    cta: "Start Free",
+    cta: t('pricing.tiers.basic.cta'),
     href: "/signup",
   },
   {
-    name: "Pro",
-    price: "$15",
-    period: "per month",
-    description: "Best for serious language learners",
+    name: t('pricing.tiers.pro.name'),
+    price: t('pricing.tiers.pro.price'),
+    period: t('pricing.tiers.pro.period'),
+    description: t('pricing.tiers.pro.description'),
     features: [
-      "Unlimited AI conversations",
-      "Advanced language assessment",
-      "Personalized learning path",
-      "Progress analytics",
-      "Priority support",
-      "Multiple language access",
+      t('pricing.tiers.pro.features.feature1'),
+      t('pricing.tiers.pro.features.feature2'),
+      t('pricing.tiers.pro.features.feature3'),
+      t('pricing.tiers.pro.features.feature4'),
+      t('pricing.tiers.pro.features.feature5'),
+      t('pricing.tiers.pro.features.feature6'),
     ],
-    cta: "Start Pro Trial",
+    cta: t('pricing.tiers.pro.cta'),
     href: "/signup?plan=pro",
     featured: true,
   },
   {
-    name: "Team",
-    price: "Custom",
-    description: "For organizations and language schools",
+    name: t('pricing.tiers.team.name'),
+    price: t('pricing.tiers.team.price'),
+    description: t('pricing.tiers.team.description'),
     features: [
-      "Everything in Pro",
-      "Team management dashboard",
-      "Bulk user management",
-      "Custom learning paths",
-      "API access",
-      "Dedicated support",
+      t('pricing.tiers.team.features.feature1'),
+      t('pricing.tiers.team.features.feature2'),
+      t('pricing.tiers.team.features.feature3'),
+      t('pricing.tiers.team.features.feature4'),
+      t('pricing.tiers.team.features.feature5'),
+      t('pricing.tiers.team.features.feature6'),
     ],
-    cta: "Contact Sales",
+    cta: t('pricing.tiers.team.cta'),
     href: "/contact",
   },
 ]
 
-export default function PricingPage() {
+  
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -63,10 +67,10 @@ export default function PricingPage() {
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-12">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            Simple, Transparent Pricing
+            {t('pricing.title')}
           </h1>
           <p className="mx-auto max-w-[700px] text-zinc-500 md:text-xl dark:text-zinc-400">
-            Choose the perfect plan for your language learning journey
+            {t('pricing.subtitle')}
           </p>
         </div>
 
@@ -87,7 +91,7 @@ export default function PricingPage() {
               {tier.featured && (
                 <div className="absolute -top-4 left-0 right-0 flex justify-center">
                   <span className="bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground rounded-full">
-                    Most Popular
+                    {t('pricing.mostPopular')}
                   </span>
                 </div>
               )}
@@ -125,24 +129,24 @@ export default function PricingPage() {
         </div>
 
         <div className="mt-12 text-center">
-          <h2 className="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
+          <h2 className="text-2xl font-bold mb-4">{t('pricing.faqTitle')}</h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 text-left">
             <div className="space-y-2">
-              <h3 className="font-semibold">Can I switch plans later?</h3>
+              <h3 className="font-semibold">{t('pricing.faq.question1')}</h3>
               <p className="text-sm text-muted-foreground">
-                Yes, you can upgrade or downgrade your plan at any time.
+                {t('pricing.faq.answer1')}
               </p>
             </div>
             <div className="space-y-2">
-              <h3 className="font-semibold">What payment methods do you accept?</h3>
+              <h3 className="font-semibold">{t('pricing.faq.question2')}</h3>
               <p className="text-sm text-muted-foreground">
-                We accept all major credit cards and PayPal.
+                {t('pricing.faq.answer2')}
               </p>
             </div>
             <div className="space-y-2">
-              <h3 className="font-semibold">Is there a refund policy?</h3>
+              <h3 className="font-semibold">{t('pricing.faq.question3')}</h3>
               <p className="text-sm text-muted-foreground">
-                Yes, we offer a 30-day money-back guarantee.
+                {t('pricing.faq.answer3')}
               </p>
             </div>
           </div>

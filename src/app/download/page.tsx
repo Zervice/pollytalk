@@ -4,39 +4,43 @@ import { motion } from "framer-motion"
 import { Smartphone, Apple, ArrowRight, QrCode, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import QRCode from "react-qr-code"
-
-const platforms = [
-  {
-    name: "iOS App",
-    icon: Apple,
-    description: "Download PollyTalk for iPhone and iPad",
-    steps: [
-      "Open the App Store on your iOS device",
-      "Search for 'PollyTalk Language Learning'",
-      "Tap 'Get' to install the app",
-      "Open the app and start learning"
-    ],
-    buttonText: "Download on App Store",
-    href: "https://apps.apple.com/app/pollytalk",
-    systemRequirements: "Requires iOS 14.0 or later"
-  },
-  {
-    name: "Android App",
-    icon: Smartphone,
-    description: "Download PollyTalk for Android devices",
-    steps: [
-      "Open the Google Play Store",
-      "Search for 'PollyTalk Language Learning'",
-      "Tap 'Install'",
-      "Open the app and start learning"
-    ],
-    buttonText: "Get it on Google Play",
-    href: "https://play.google.com/store/apps/details?id=com.pollytalk",
-    systemRequirements: "Requires Android 8.0 or later"
-  }
-]
+import { useI18n } from "@/i18n/i18n-context"
 
 export default function DownloadPage() {
+  const { t } = useI18n()
+
+  const platforms = [
+    {
+      name: t('download.ios.name'),
+      icon: Apple,
+      description: t('download.ios.description'),
+      steps: [
+        t('download.ios.step1'),
+        t('download.ios.step2'),
+        t('download.ios.step3'),
+        t('download.ios.step4')
+      ],
+      buttonText: t('download.ios.buttonText'),
+      href: "https://apps.apple.com/app/pollytalk",
+      systemRequirements: t('download.ios.requirements')
+    },
+    {
+      name: t('download.android.name'),
+      icon: Smartphone,
+      description: t('download.android.description'),
+      steps: [
+        t('download.android.step1'),
+        t('download.android.step2'),
+        t('download.android.step3'),
+        t('download.android.step4')
+      ],
+      buttonText: t('download.android.buttonText'),
+      href: "https://play.google.com/store/apps/details?id=com.pollytalk",
+      systemRequirements: t('download.android.requirements')
+    }
+  ]
+
+  
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -47,10 +51,10 @@ export default function DownloadPage() {
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-12">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            Download PollyTalk
+            {t('download.title')}
           </h1>
           <p className="mx-auto max-w-[700px] text-zinc-500 md:text-xl dark:text-zinc-400">
-            Start your language learning journey on your mobile device
+            {t('download.subtitle')}
           </p>
         </div>
 
@@ -78,7 +82,7 @@ export default function DownloadPage() {
 
                 <div className="space-y-6 flex-1">
                   <div className="space-y-4">
-                    <h3 className="font-semibold">Installation Steps</h3>
+                    <h3 className="font-semibold">{t('download.installationSteps')}</h3>
                     <ul className="space-y-2">
                       {platform.steps.map((step, stepIndex) => (
                         <li key={stepIndex} className="flex items-start gap-2">
@@ -116,11 +120,11 @@ export default function DownloadPage() {
         >
           <div className="flex items-center justify-center gap-2 mb-4">
             <QrCode className="h-6 w-6 text-primary" />
-            <h2 className="text-2xl font-bold">Direct APK Download</h2>
+            <h2 className="text-2xl font-bold">{t('download.directDownload')}</h2>
           </div>
           
           <p className="text-muted-foreground mb-6">
-            Scan this QR code with your Android device to download our app directly
+            {t('download.scanQrCode')}
           </p>
           
           <div className="flex flex-col md:flex-row items-center justify-center gap-8">
@@ -133,69 +137,69 @@ export default function DownloadPage() {
             </div>
             
             <div className="space-y-4">
-              <h3 className="font-semibold text-lg">Download Instructions:</h3>
+              <h3 className="font-semibold text-lg">{t('download.downloadInstructions')}</h3>
               <ul className="space-y-2 text-left">
                 <li className="flex items-start gap-2">
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-medium text-primary">1</span>
-                  <span className="text-muted-foreground">Scan the QR code with your phone's camera</span>
+                  <span className="text-muted-foreground">{t('download.step1')}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-medium text-primary">2</span>
-                  <span className="text-muted-foreground">Tap the link that appears</span>
+                  <span className="text-muted-foreground">{t('download.step2')}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-medium text-primary">3</span>
-                  <span className="text-muted-foreground">Allow installation from unknown sources if prompted</span>
+                  <span className="text-muted-foreground">{t('download.step3')}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-medium text-primary">4</span>
-                  <span className="text-muted-foreground">Install and enjoy PollyTalk!</span>
+                  <span className="text-muted-foreground">{t('download.step4')}</span>
                 </li>
               </ul>
               
               <Button className="w-full group" asChild>
                 <a href="https://downloads.zervice.me/release/app-release.apk" target="_blank" rel="noopener noreferrer">
                   <Download className="mr-2 h-5 w-5" />
-                  Download APK Directly
+                  {t('download.downloadApk')}
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </a>
               </Button>
               <p className="text-xs text-center text-muted-foreground">
-                APK file size: ~25MB • Android 8.0+ required
+                {t('download.apkFileSize')}
               </p>
             </div>
           </div>
         </motion.div>
 
         <div className="mt-12 text-center">
-          <h2 className="text-2xl font-bold mb-4">Need Help?</h2>
+          <h2 className="text-2xl font-bold mb-4">{t('download.needHelp')}</h2>
           <p className="text-muted-foreground">
-            If you&apos;re having trouble downloading or installing the app,{" "}
+            {t('download.troubleDownloading')}{" "}
             <a href="/contact" className="text-primary hover:underline">
-              contact our support team
+              {t('download.contactSupport')}
             </a>
             .
           </p>
         </div>
 
         <div className="mt-12 p-6 bg-card text-card-foreground rounded-lg border border-border max-w-2xl mx-auto">
-          <h2 className="text-xl font-semibold mb-4">Why Choose the Mobile App?</h2>
+          <h2 className="text-xl font-semibold mb-4">{t('download.whyMobile')}</h2>
           <ul className="grid gap-4 sm:grid-cols-2">
             <li className="flex items-start gap-2">
               <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">✓</span>
-              <span>Learn anytime, anywhere</span>
+              <span>{t('download.benefit1')}</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">✓</span>
-              <span>Offline learning support</span>
+              <span>{t('download.benefit2')}</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">✓</span>
-              <span>Push notifications</span>
+              <span>{t('download.benefit3')}</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">✓</span>
-              <span>Better speech recognition</span>
+              <span>{t('download.benefit4')}</span>
             </li>
           </ul>
         </div>

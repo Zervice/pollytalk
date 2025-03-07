@@ -1,8 +1,10 @@
 'use client'
 
 import { motion } from "framer-motion"
+import { useI18n } from "@/i18n/i18n-context"
 
 export default function PrivacyPage() {
+  const { t } = useI18n()
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -12,145 +14,145 @@ export default function PrivacyPage() {
     >
       <div className="container px-4 md:px-6">
         <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-8">
-          Privacy Policy
+          {t('privacy.title')}
         </h1>
         
         <div className="prose dark:prose-invert max-w-none">
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">1. Introduction</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('privacy.introduction.title')}</h2>
             <p>
-              At PollyTalk, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our language learning platform. Please read this policy carefully to understand our practices.
+              {t('privacy.introduction.content')}
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">2. Information We Collect</h2>
-            <h3 className="text-xl font-medium mb-2">2.1 Personal Information</h3>
+            <h2 className="text-2xl font-semibold mb-4">{t('privacy.infoCollect.title')}</h2>
+            <h3 className="text-xl font-medium mb-2">{t('privacy.infoCollect.personalTitle')}</h3>
             <ul className="list-disc pl-6 mt-2">
-              <li>Name and contact information</li>
-              <li>Account credentials</li>
-              <li>Payment information</li>
-              <li>Profile information</li>
-              <li>Language preferences and learning history</li>
+              <li>{t('privacy.infoCollect.personal1')}</li>
+              <li>{t('privacy.infoCollect.personal2')}</li>
+              <li>{t('privacy.infoCollect.personal3')}</li>
+              <li>{t('privacy.infoCollect.personal4')}</li>
+              <li>{t('privacy.infoCollect.personal5')}</li>
             </ul>
 
-            <h3 className="text-xl font-medium mb-2 mt-4">2.2 Usage Data</h3>
+            <h3 className="text-xl font-medium mb-2 mt-4">{t('privacy.infoCollect.usageTitle')}</h3>
             <ul className="list-disc pl-6 mt-2">
-              <li>Learning activity and progress</li>
-              <li>Device and browser information</li>
-              <li>IP address and location data</li>
-              <li>Usage patterns and preferences</li>
-            </ul>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">3. How We Use Your Information</h2>
-            <p>We use your information to:</p>
-            <ul className="list-disc pl-6 mt-2">
-              <li>Provide and improve our language learning services</li>
-              <li>Personalize your learning experience</li>
-              <li>Process payments and maintain accounts</li>
-              <li>Send important updates and communications</li>
-              <li>Analyze and improve our platform</li>
-              <li>Ensure platform security and prevent fraud</li>
+              <li>{t('privacy.infoCollect.usage1')}</li>
+              <li>{t('privacy.infoCollect.usage2')}</li>
+              <li>{t('privacy.infoCollect.usage3')}</li>
+              <li>{t('privacy.infoCollect.usage4')}</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">4. Data Sharing and Disclosure</h2>
-            <p>We may share your information with:</p>
+            <h2 className="text-2xl font-semibold mb-4">{t('privacy.useInfo.title')}</h2>
+            <p>{t('privacy.useInfo.intro')}:</p>
             <ul className="list-disc pl-6 mt-2">
-              <li>Service providers and partners who assist in platform operation</li>
-              <li>Payment processors for transaction handling</li>
-              <li>Analytics providers to improve our services</li>
-              <li>Law enforcement when required by law</li>
+              <li>{t('privacy.useInfo.use1')}</li>
+              <li>{t('privacy.useInfo.use2')}</li>
+              <li>{t('privacy.useInfo.use3')}</li>
+              <li>{t('privacy.useInfo.use4')}</li>
+              <li>{t('privacy.useInfo.use5')}</li>
+              <li>{t('privacy.useInfo.use6')}</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">5. Data Security</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('privacy.dataSharing.title')}</h2>
+            <p>{t('privacy.dataSharing.intro')}:</p>
+            <ul className="list-disc pl-6 mt-2">
+              <li>{t('privacy.dataSharing.share1')}</li>
+              <li>{t('privacy.dataSharing.share2')}</li>
+              <li>{t('privacy.dataSharing.share3')}</li>
+              <li>{t('privacy.dataSharing.share4')}</li>
+            </ul>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">{t('privacy.security.title')}</h2>
             <p>
-              We implement appropriate security measures to protect your information, including:
+              {t('privacy.security.intro')}:
             </p>
             <ul className="list-disc pl-6 mt-2">
-              <li>Encryption of sensitive data</li>
-              <li>Regular security assessments</li>
-              <li>Access controls and authentication</li>
-              <li>Secure data storage and transmission</li>
+              <li>{t('privacy.security.measure1')}</li>
+              <li>{t('privacy.security.measure2')}</li>
+              <li>{t('privacy.security.measure3')}</li>
+              <li>{t('privacy.security.measure4')}</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">6. Your Privacy Rights</h2>
-            <p>You have the right to:</p>
+            <h2 className="text-2xl font-semibold mb-4">{t('privacy.rights.title')}</h2>
+            <p>{t('privacy.rights.intro')}:</p>
             <ul className="list-disc pl-6 mt-2">
-              <li>Access your personal information</li>
-              <li>Correct inaccurate data</li>
-              <li>Request data deletion</li>
-              <li>Opt-out of marketing communications</li>
-              <li>Data portability</li>
+              <li>{t('privacy.rights.right1')}</li>
+              <li>{t('privacy.rights.right2')}</li>
+              <li>{t('privacy.rights.right3')}</li>
+              <li>{t('privacy.rights.right4')}</li>
+              <li>{t('privacy.rights.right5')}</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">7. Cookies and Tracking</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('privacy.cookies.title')}</h2>
             <p>
-              We use cookies and similar technologies to:
+              {t('privacy.cookies.intro')}:
             </p>
             <ul className="list-disc pl-6 mt-2">
-              <li>Remember your preferences</li>
-              <li>Analyze usage patterns</li>
-              <li>Provide personalized content</li>
-              <li>Improve platform performance</li>
+              <li>{t('privacy.cookies.use1')}</li>
+              <li>{t('privacy.cookies.use2')}</li>
+              <li>{t('privacy.cookies.use3')}</li>
+              <li>{t('privacy.cookies.use4')}</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">8. Children&apos;s Privacy</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('privacy.children.title')}</h2>
             <p>
-              Our services are not intended for children under 13. We do not knowingly collect information from children under 13. If you believe we have collected information from a child under 13, please contact us immediately.
+              {t('privacy.children.content')}
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">9. International Data Transfers</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('privacy.international.title')}</h2>
             <p>
-              Your information may be transferred and processed in countries other than your own. We ensure appropriate safeguards are in place for such transfers, including:
-            </p>
-            <ul className="list-disc pl-6 mt-2">
-              <li>Standard contractual clauses</li>
-              <li>Data protection agreements</li>
-              <li>Compliance with international privacy laws</li>
-            </ul>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">10. Changes to Privacy Policy</h2>
-            <p>
-              We may update this Privacy Policy periodically. We will notify you of material changes through:
+              {t('privacy.international.content')}:
             </p>
             <ul className="list-disc pl-6 mt-2">
-              <li>Email notifications</li>
-              <li>Platform announcements</li>
-              <li>Website updates</li>
+              <li>{t('privacy.international.safeguard1')}</li>
+              <li>{t('privacy.international.safeguard2')}</li>
+              <li>{t('privacy.international.safeguard3')}</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">11. Contact Us</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('privacy.changes.title')}</h2>
             <p>
-              For privacy-related questions or concerns, please contact us at:
+              {t('privacy.changes.content')}:
+            </p>
+            <ul className="list-disc pl-6 mt-2">
+              <li>{t('privacy.changes.notification1')}</li>
+              <li>{t('privacy.changes.notification2')}</li>
+              <li>{t('privacy.changes.notification3')}</li>
+            </ul>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">{t('privacy.contact.title')}</h2>
+            <p>
+              {t('privacy.contact.content')}:
             </p>
             <ul className="list-none pl-6 mt-2">
-              <li>Email: privacy@zervice.us</li>
-              <li>Address: [Your Business Address]</li>
-              <li>Data Protection Officer: dpo@zervice.us</li>
+              <li>{t('privacy.contact.email')}</li>
+              <li>{t('privacy.contact.address')}</li>
+              <li>{t('privacy.contact.dpo')}</li>
             </ul>
           </section>
 
           <section className="mt-12">
             <p className="text-sm text-muted-foreground">
-              Last updated: February 25, 2025
+              {t('privacy.lastUpdated')}
             </p>
           </section>
         </div>

@@ -1,0 +1,432 @@
+{
+  "nav": {
+    "pricing": "Pricing",
+    "blog": "Blog",
+    "download": "Download",
+    "terms": "Terms & Service",
+    "privacy": "Privacy Policy",
+    "downloadApp": "Download App",
+    "scanToDownload": "Scan to download PollyTalk app"
+  },
+  "home": {
+    "hero": {
+      "tagline": "Talk like a local, learn like a parrot! Master languages through natural conversations."
+    },
+    "buttons": {
+      "startLearning": "Start Learning",
+      "tryDemo": "Try Demo",
+      "downloadApp": "Download App"
+    },
+    "features": {
+      "title": "Why Choose PollyTalk?",
+      "naturalConversations": {
+        "title": "Natural Conversations",
+        "description": "Practice real-world conversations with our AI language partners"
+      },
+      "multipleLanguages": {
+        "title": "Multiple Languages",
+        "description": "Learn any language with native-speaking AI tutors"
+      },
+      "personalizedLearning": {
+        "title": "Personalized Learning",
+        "description": "Adaptive learning path based on your progress and interests"
+      },
+      "rapidProgress": {
+        "title": "Rapid Progress",
+        "description": "Learn faster through interactive conversations and feedback"
+      }
+    },
+    "cta": {
+      "title": "Ready to Start Your Language Journey?",
+      "description": "Join thousands of learners who are already chatting their way to fluency.",
+      "button": "Get Started for Free"
+    }
+  },
+  "blog": {
+    "title": "PollyTalk Blog",
+    "subtitle": "Insights and tips for better language learning",
+    "contribute": "Want to contribute to our blog?",
+    "contactUs": "Contact us",
+    "readTime": "min read",
+    "viewArticle": "View article"
+  },
+  "download": {
+    "title": "Download PollyTalk",
+    "subtitle": "Start your language learning journey on your mobile device",
+    "installationSteps": "Installation Steps",
+    "directDownload": "Direct APK Download",
+    "scanQrCode": "Scan this QR code with your Android device to download our app directly",
+    "downloadInstructions": "Download Instructions:",
+    "step1": "Scan the QR code with your phone's camera",
+    "step2": "Tap the link that appears",
+    "step3": "Allow installation from unknown sources if prompted",
+    "step4": "Install and enjoy PollyTalk!",
+    "downloadApk": "Download APK Directly",
+    "apkFileSize": "APK file size: ~25MB • Android 8.0+ required",
+    "needHelp": "Need Help?",
+    "troubleDownloading": "If you're having trouble downloading or installing the app,",
+    "contactSupport": "contact our support team",
+    "whyMobile": "Why Choose the Mobile App?",
+    "benefit1": "Learn anytime, anywhere",
+    "benefit2": "Offline learning support",
+    "benefit3": "Push notifications",
+    "benefit4": "Better speech recognition",
+    "ios": {
+      "name": "iOS App",
+      "description": "Download PollyTalk for iPhone and iPad",
+      "step1": "Open the App Store on your iOS device",
+      "step2": "Search for 'PollyTalk Language Learning'",
+      "step3": "Tap 'Get' to install the app",
+      "step4": "Open the app and start learning",
+      "buttonText": "Download on App Store",
+      "requirements": "Requires iOS 14.0 or later"
+    },
+    "android": {
+      "name": "Android App",
+      "description": "Download PollyTalk for Android devices",
+      "step1": "Open the Google Play Store",
+      "step2": "Search for 'PollyTalk Language Learning'",
+      "step3": "Tap 'Install'",
+      "step4": "Open the app and start learning",
+      "buttonText": "Get it on Google Play",
+      "requirements": "Requires Android 8.0 or later"
+    }
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "introduction": {
+      "title": "1. Introduction",
+      "content": "Welcome to PollyTalk (\"we\", \"our\", or \"us\"). By accessing or using our language learning platform, you agree to be bound by these Terms of Service (\"Terms\"). Please read these Terms carefully before using our services."
+    },
+    "serviceDescription": {
+      "title": "2. Service Description",
+      "content": "PollyTalk provides an AI-powered language learning platform that enables users to practice conversations and improve their language skills. Our services include but are not limited to:",
+      "item1": "Interactive language learning sessions",
+      "item2": "AI conversation partners",
+      "item3": "Progress tracking and assessment",
+      "item4": "Educational content and resources"
+    },
+    "userAccounts": {
+      "title": "3. User Accounts",
+      "content": "To access certain features of our platform, you must create an account. You agree to:",
+      "item1": "Provide accurate and complete information",
+      "item2": "Maintain the security of your account credentials",
+      "item3": "Promptly update any changes to your information",
+      "item4": "Accept responsibility for all activities under your account"
+    },
+    "userConduct": {
+      "title": "4. User Conduct",
+      "content": "When using our services, you agree not to:",
+      "item1": "Violate any applicable laws or regulations",
+      "item2": "Infringe upon intellectual property rights",
+      "item3": "Share inappropriate or offensive content",
+      "item4": "Attempt to disrupt or compromise our systems",
+      "item5": "Use our services for unauthorized commercial purposes"
+    },
+    "intellectualProperty": {
+      "title": "5. Intellectual Property",
+      "content": "All content and materials available through our services are protected by intellectual property rights. You may not:",
+      "item1": "Copy or reproduce our content without permission",
+      "item2": "Modify or create derivative works",
+      "item3": "Distribute or publicly display our content",
+      "item4": "Remove any copyright or proprietary notices"
+    },
+    "paymentTerms": {
+      "title": "6. Payment Terms",
+      "content": "For premium features and subscriptions:",
+      "item1": "Payments are processed securely through our payment providers",
+      "item2": "Subscriptions auto-renew unless cancelled",
+      "item3": "Refunds are provided according to our refund policy",
+      "item4": "Prices may change with notice to users"
+    },
+    "termination": {
+      "title": "7. Termination",
+      "content": "We reserve the right to:",
+      "item1": "Suspend or terminate accounts for violations",
+      "item2": "Modify or discontinue services with notice",
+      "item3": "Remove content that violates these Terms"
+    },
+    "disclaimer": {
+      "title": "8. Disclaimer of Warranties",
+      "content": "Our services are provided \"as is\" without warranties of any kind, either express or implied. We do not guarantee that:",
+      "item1": "Services will be uninterrupted or error-free",
+      "item2": "Specific language learning outcomes will be achieved",
+      "item3": "Content will be accurate or complete"
+    },
+    "liability": {
+      "title": "9. Limitation of Liability",
+      "content": "To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our services."
+    },
+    "changes": {
+      "title": "10. Changes to Terms",
+      "content": "We may modify these Terms at any time. We will notify users of material changes through:",
+      "item1": "Email notifications",
+      "item2": "Platform announcements",
+      "item3": "Website updates"
+    },
+    "contact": {
+      "title": "11. Contact Information",
+      "content": "For questions about these Terms, please contact us at:",
+      "email": "Email: support@zervice.us",
+      "address": "Address: [Your Business Address]"
+    },
+    "lastUpdated": "Last updated: February 25, 2025"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "introduction": {
+      "title": "1. Introduction",
+      "content": "At PollyTalk, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our language learning platform. Please read this policy carefully to understand our practices."
+    },
+    "infoCollect": {
+      "title": "2. Information We Collect",
+      "personalInfo": "2.1 Personal Information",
+      "usageData": "2.2 Usage Data"
+    },
+    "howWeUse": {
+      "title": "3. How We Use Your Information",
+      "intro": "We use your information to:"
+    },
+    "dataSharing": {
+      "title": "4. Data Sharing and Disclosure",
+      "intro": "We may share your information with:"
+    },
+    "dataSecurity": {
+      "title": "5. Data Security",
+      "intro": "We implement appropriate security measures to protect your information, including:"
+    },
+    "privacyRights": {
+      "title": "6. Your Privacy Rights",
+      "intro": "You have the right to:"
+    },
+    "cookies": {
+      "title": "7. Cookies and Tracking",
+      "intro": "We use cookies and similar technologies to:"
+    },
+    "children": {
+      "title": "8. Children's Privacy",
+      "content": "Our services are not intended for children under 13. We do not knowingly collect information from children under 13. If you believe we have collected information from a child under 13, please contact us immediately."
+    },
+    "international": {
+      "title": "9. International Data Transfers",
+      "intro": "Your information may be transferred and processed in countries other than your own. We ensure appropriate safeguards are in place for such transfers, including:"
+    },
+    "changes": {
+      "title": "10. Changes to Privacy Policy",
+      "intro": "We may update this Privacy Policy periodically. We will notify you of material changes through:"
+    },
+    "contact": {
+      "title": "11. Contact Us",
+      "intro": "For privacy-related questions or concerns, please contact us at:"
+    },
+    "lastUpdated": "Last updated: February 25, 2025"
+  },
+  "blog": {
+    "title": "PollyTalk Blog",
+    "subtitle": "Insights and tips for better language learning",
+    "readTime": "min read",
+    "viewArticle": "View article",
+    "contribute": "Want to contribute to our blog?",
+    "contactUs": "Contact us"
+  },
+  
+  "download": {
+    "title": "Download PollyTalk",
+    "subtitle": "Start your language learning journey on your mobile device",
+    "installationSteps": "Installation Steps",
+    "directDownload": "Direct APK Download",
+    "scanQrCode": "Scan this QR code with your Android device to download our app directly",
+    "downloadInstructions": "Download Instructions:",
+    "step1": "Scan the QR code with your phone's camera",
+    "step2": "Tap the link that appears",
+    "step3": "Allow installation from unknown sources if prompted",
+    "step4": "Install and enjoy PollyTalk!",
+    "downloadApk": "Download APK Directly",
+    "apkFileSize": "APK file size: ~25MB • Android 8.0+ required",
+    "needHelp": "Need Help?",
+    "troubleDownloading": "If you're having trouble downloading or installing the app,",
+    "contactSupport": "contact our support team",
+    "whyMobile": "Why Choose the Mobile App?",
+    "benefit1": "Learn anytime, anywhere",
+    "benefit2": "Offline learning support",
+    "benefit3": "Push notifications",
+    "benefit4": "Better speech recognition",
+    "ios": {
+      "name": "iOS App",
+      "description": "Download PollyTalk for iPhone and iPad",
+      "step1": "Open the App Store on your iOS device",
+      "step2": "Search for 'PollyTalk Language Learning'",
+      "step3": "Tap 'Get' to install the app",
+      "step4": "Open the app and start learning",
+      "buttonText": "Download on App Store",
+      "requirements": "Requires iOS 14.0 or later"
+    },
+    "android": {
+      "name": "Android App",
+      "description": "Download PollyTalk for Android devices",
+      "step1": "Open the Google Play Store",
+      "step2": "Search for 'PollyTalk Language Learning'",
+      "step3": "Tap 'Install'",
+      "step4": "Open the app and start learning",
+      "buttonText": "Get it on Google Play",
+      "requirements": "Requires Android 8.0 or later"
+    }
+  },
+  
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: February 25, 2025",
+    "introduction": {
+      "title": "1. Introduction",
+      "content": "At PollyTalk, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our language learning platform. Please read this policy carefully to understand our practices."
+    },
+    "infoCollect": {
+      "title": "2. Information We Collect",
+      "personalTitle": "2.1 Personal Information",
+      "personal1": "Name and contact information",
+      "personal2": "Account credentials",
+      "personal3": "Payment information",
+      "personal4": "Profile information",
+      "personal5": "Language preferences and learning history",
+      "usageTitle": "2.2 Usage Data",
+      "usage1": "Learning activity and progress",
+      "usage2": "Device and browser information",
+      "usage3": "IP address and location data",
+      "usage4": "Usage patterns and preferences"
+    },
+    "useInfo": {
+      "title": "3. How We Use Your Information",
+      "intro": "We use your information to",
+      "use1": "Provide and improve our language learning services",
+      "use2": "Personalize your learning experience",
+      "use3": "Process payments and maintain accounts",
+      "use4": "Send important updates and communications",
+      "use5": "Analyze and improve our platform",
+      "use6": "Ensure platform security and prevent fraud"
+    },
+    "dataSharing": {
+      "title": "4. Data Sharing and Disclosure",
+      "intro": "We may share your information with",
+      "share1": "Service providers and partners who assist in platform operation",
+      "share2": "Payment processors for transaction handling",
+      "share3": "Analytics providers to improve our services",
+      "share4": "Law enforcement when required by law"
+    },
+    "security": {
+      "title": "5. Data Security",
+      "intro": "We implement appropriate security measures to protect your information, including",
+      "measure1": "Encryption of sensitive data",
+      "measure2": "Regular security assessments",
+      "measure3": "Access controls and authentication",
+      "measure4": "Secure data storage and transmission"
+    },
+    "rights": {
+      "title": "6. Your Privacy Rights",
+      "intro": "You have the right to",
+      "right1": "Access your personal information",
+      "right2": "Correct inaccurate data",
+      "right3": "Request data deletion",
+      "right4": "Opt-out of marketing communications",
+      "right5": "Data portability"
+    },
+    "cookies": {
+      "title": "7. Cookies and Tracking",
+      "intro": "We use cookies and similar technologies to",
+      "use1": "Remember your preferences",
+      "use2": "Analyze usage patterns",
+      "use3": "Provide personalized content",
+      "use4": "Improve platform performance"
+    },
+    "children": {
+      "title": "8. Children's Privacy",
+      "content": "Our services are not intended for children under 13. We do not knowingly collect information from children under 13. If you believe we have collected information from a child under 13, please contact us immediately."
+    },
+    "international": {
+      "title": "9. International Data Transfers",
+      "content": "Your information may be transferred and processed in countries other than your own. We ensure appropriate safeguards are in place for such transfers, including",
+      "safeguard1": "Standard contractual clauses",
+      "safeguard2": "Data protection agreements",
+      "safeguard3": "Compliance with international privacy laws"
+    },
+    "changes": {
+      "title": "10. Changes to Privacy Policy",
+      "content": "We may update this Privacy Policy periodically. We will notify you of material changes through",
+      "notification1": "Email notifications",
+      "notification2": "Platform announcements",
+      "notification3": "Website updates"
+    },
+    "contact": {
+      "title": "11. Contact Us",
+      "content": "For privacy-related questions or concerns, please contact us at",
+      "email": "Email: privacy@zervice.us",
+      "address": "Address: [Your Business Address]",
+      "dpo": "Data Protection Officer: dpo@zervice.us"
+    }
+  },
+
+  "pricing": {
+    "title": "Simple, Transparent Pricing",
+    "subtitle": "Choose the plan that's right for your language learning journey",
+    "mostPopular": "Most Popular",
+    "faqTitle": "Frequently Asked Questions",
+    "tiers": {
+      "basic": {
+        "name": "Basic",
+        "price": "Free",
+        "description": "Get started with essential language learning tools",
+        "features": {
+          "feature1": "5 AI conversation sessions per month",
+          "feature2": "Basic vocabulary exercises",
+          "feature3": "Progress tracking",
+          "feature4": "Access to community forums"
+        },
+        "cta": "Start Free"
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "$9.9",
+        "period": "/month",
+        "description": "Perfect for serious language learners",
+        "features": {
+          "feature1": "Unlimited AI conversation sessions",
+          "feature2": "Advanced vocabulary and grammar exercises",
+          "feature3": "Personalized learning path",
+          "feature4": "Pronunciation feedback",
+          "feature5": "Progress analytics and insights",
+          "feature6": "Priority support"
+        },
+        "cta": "Get Pro"
+      },
+      "team": {
+        "name": "Team",
+        "price": "Contact us",
+        "description": "Ideal for schools, businesses, and organizations",
+        "features": {
+          "feature1": "All Pro features included",
+          "feature2": "Centralized team management",
+          "feature3": "Custom learning materials",
+          "feature4": "Progress reports for administrators",
+          "feature5": "Dedicated account manager",
+          "feature6": "Volume discounts available"
+        },
+        "cta": "Contact Sales"
+      }
+    },
+    "faq": {
+      "question1": "Can I change plans later?",
+      "answer1": "Yes, you can upgrade or downgrade your plan at any time. Changes will take effect at the start of your next billing cycle.",
+      "question2": "Is there a free trial for Pro?",
+      "answer2": "Yes, we offer a 7-day free trial of our Pro plan. No credit card required until you decide to continue.",
+      "question3": "What payment methods do you accept?",
+      "answer3": "We accept all major credit cards, PayPal, and Apple Pay for subscription payments."
+    }
+  },
+  "footer": {
+    "tagline": "Built with ❤️ for language learners worldwide",
+    "about": "About",
+    "blog": "Blog",
+    "contact": "Contact",
+    "terms": "Terms",
+    "privacy": "Privacy"
+  }
+}

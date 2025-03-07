@@ -6,31 +6,35 @@ import { motion, AnimatePresence } from "framer-motion"
 import { ChatBubbleIcon, GlobeIcon, PersonIcon, RocketIcon } from "@radix-ui/react-icons"
 import { QrCode, Download } from "lucide-react"
 import Link from "next/link"
-
-const features = [
-  {
-    icon: ChatBubbleIcon,
-    title: "Natural Conversations",
-    description: "Practice real-world conversations with our AI language partners"
-  },
-  {
-    icon: GlobeIcon,
-    title: "Multiple Languages",
-    description: "Learn any language with native-speaking AI tutors"
-  },
-  {
-    icon: PersonIcon,
-    title: "Personalized Learning",
-    description: "Adaptive learning path based on your progress and interests"
-  },
-  {
-    icon: RocketIcon,
-    title: "Rapid Progress",
-    description: "Learn faster through interactive conversations and feedback"
-  }
-]
+import { useI18n } from "@/i18n/i18n-context"
 
 export default function Home() {
+  const { t } = useI18n()
+  
+  const features = [
+    {
+      icon: ChatBubbleIcon,
+      title: t('home.features.naturalConversations.title'),
+      description: t('home.features.naturalConversations.description')
+    },
+    {
+      icon: GlobeIcon,
+      title: t('home.features.multipleLanguages.title'),
+      description: t('home.features.multipleLanguages.description')
+    },
+    {
+      icon: PersonIcon,
+      title: t('home.features.personalizedLearning.title'),
+      description: t('home.features.personalizedLearning.description')
+    },
+    {
+      icon: RocketIcon,
+      title: t('home.features.rapidProgress.title'),
+      description: t('home.features.rapidProgress.description')
+    }
+  ]
+
+  
   return (
     <AnimatePresence>
       <main className="flex min-h-screen flex-col items-center">
@@ -55,7 +59,7 @@ export default function Home() {
                 transition={{ delay: 0.2 }}
                 className="mx-auto max-w-[700px] text-zinc-500 md:text-xl dark:text-zinc-400"
               >
-                Talk like a local, learn like a parrot! Master languages through natural conversations.
+                {t('home.hero.tagline')}
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -63,8 +67,8 @@ export default function Home() {
                 transition={{ delay: 0.4 }}
                 className="flex flex-wrap gap-4 justify-center"
               >
-                <Button size="lg">Start Learning</Button>
-                <Button size="lg" variant="outline">Try Demo</Button>
+                <Button size="lg">{t('home.buttons.startLearning')}</Button>
+                <Button size="lg" variant="outline">{t('home.buttons.tryDemo')}</Button>
                 <Link href="/download">
                   <Button 
                     size="lg" 
@@ -72,7 +76,7 @@ export default function Home() {
                     className="flex items-center gap-2 bg-primary/10 hover:bg-primary/20 border-2 border-primary/20"
                   >
                     <Download className="h-5 w-5" />
-                    <span>Download App</span>
+                    <span>{t('home.buttons.downloadApp')}</span>
                     <QrCode className="h-5 w-5 ml-1" />
                   </Button>
                 </Link>
@@ -90,7 +94,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="text-3xl font-bold tracking-tighter text-center mb-12"
             >
-              Why Choose PollyTalk?
+              {t('home.features.title')}
             </motion.h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {features.map((feature, index) => {
@@ -128,7 +132,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl"
               >
-                Ready to Start Your Language Journey?
+                {t('home.cta.title')}
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -137,7 +141,7 @@ export default function Home() {
                 transition={{ delay: 0.2 }}
                 className="mx-auto max-w-[600px] text-zinc-500 md:text-xl dark:text-zinc-400"
               >
-                Join thousands of learners who are already chatting their way to fluency.
+                {t('home.cta.description')}
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -146,7 +150,7 @@ export default function Home() {
                 transition={{ delay: 0.4 }}
               >
                 <Button size="lg" className="mt-4">
-                  Get Started for Free
+                  {t('home.cta.button')}
                 </Button>
               </motion.div>
             </div>

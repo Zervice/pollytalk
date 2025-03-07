@@ -1,8 +1,10 @@
 'use client'
 
 import { motion } from "framer-motion"
+import { useI18n } from "@/i18n/i18n-context"
 
 export default function TermsPage() {
+  const { t } = useI18n()
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -12,140 +14,140 @@ export default function TermsPage() {
     >
       <div className="container px-4 md:px-6">
         <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-8">
-          Terms of Service
+          {t('terms.title')}
         </h1>
         
         <div className="prose dark:prose-invert max-w-none">
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">1. Introduction</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('terms.introduction.title')}</h2>
             <p>
-              Welcome to PollyTalk (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;). By accessing or using our language learning platform, you agree to be bound by these Terms of Service (&quot;Terms&quot;). Please read these Terms carefully before using our services.
+              {t('terms.introduction.content')}
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">2. Service Description</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('terms.serviceDescription.title')}</h2>
             <p>
-              PollyTalk provides an AI-powered language learning platform that enables users to practice conversations and improve their language skills. Our services include but are not limited to:
+              {t('terms.serviceDescription.content')}
             </p>
             <ul className="list-disc pl-6 mt-2">
-              <li>Interactive language learning sessions</li>
-              <li>AI conversation partners</li>
-              <li>Progress tracking and assessment</li>
-              <li>Educational content and resources</li>
+              <li>{t('terms.serviceDescription.item1')}</li>
+              <li>{t('terms.serviceDescription.item2')}</li>
+              <li>{t('terms.serviceDescription.item3')}</li>
+              <li>{t('terms.serviceDescription.item4')}</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">3. User Accounts</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('terms.userAccounts.title')}</h2>
             <p>
-              To access certain features of our platform, you must create an account. You agree to:
+              {t('terms.userAccounts.content')}
             </p>
             <ul className="list-disc pl-6 mt-2">
-              <li>Provide accurate and complete information</li>
-              <li>Maintain the security of your account credentials</li>
-              <li>Promptly update any changes to your information</li>
-              <li>Accept responsibility for all activities under your account</li>
+              <li>{t('terms.userAccounts.item1')}</li>
+              <li>{t('terms.userAccounts.item2')}</li>
+              <li>{t('terms.userAccounts.item3')}</li>
+              <li>{t('terms.userAccounts.item4')}</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">4. User Conduct</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('terms.userConduct.title')}</h2>
             <p>
-              When using our services, you agree not to:
+              {t('terms.userConduct.content')}
             </p>
             <ul className="list-disc pl-6 mt-2">
-              <li>Violate any applicable laws or regulations</li>
-              <li>Infringe upon intellectual property rights</li>
-              <li>Share inappropriate or offensive content</li>
-              <li>Attempt to disrupt or compromise our systems</li>
-              <li>Use our services for unauthorized commercial purposes</li>
+              <li>{t('terms.userConduct.item1')}</li>
+              <li>{t('terms.userConduct.item2')}</li>
+              <li>{t('terms.userConduct.item3')}</li>
+              <li>{t('terms.userConduct.item4')}</li>
+              <li>{t('terms.userConduct.item5')}</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">5. Intellectual Property</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('terms.intellectualProperty.title')}</h2>
             <p>
-              All content and materials available through our services are protected by intellectual property rights. You may not:
+              {t('terms.intellectualProperty.content')}
             </p>
             <ul className="list-disc pl-6 mt-2">
-              <li>Copy or reproduce our content without permission</li>
-              <li>Modify or create derivative works</li>
-              <li>Distribute or publicly display our content</li>
-              <li>Remove any copyright or proprietary notices</li>
+              <li>{t('terms.intellectualProperty.item1')}</li>
+              <li>{t('terms.intellectualProperty.item2')}</li>
+              <li>{t('terms.intellectualProperty.item3')}</li>
+              <li>{t('terms.intellectualProperty.item4')}</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">6. Payment Terms</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('terms.paymentTerms.title')}</h2>
             <p>
-              For premium features and subscriptions:
+              {t('terms.paymentTerms.content')}
             </p>
             <ul className="list-disc pl-6 mt-2">
-              <li>Payments are processed securely through our payment providers</li>
-              <li>Subscriptions auto-renew unless cancelled</li>
-              <li>Refunds are provided according to our refund policy</li>
-              <li>Prices may change with notice to users</li>
+              <li>{t('terms.paymentTerms.item1')}</li>
+              <li>{t('terms.paymentTerms.item2')}</li>
+              <li>{t('terms.paymentTerms.item3')}</li>
+              <li>{t('terms.paymentTerms.item4')}</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">7. Termination</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('terms.termination.title')}</h2>
             <p>
-              We reserve the right to:
+              {t('terms.termination.content')}
             </p>
             <ul className="list-disc pl-6 mt-2">
-              <li>Suspend or terminate accounts for violations</li>
-              <li>Modify or discontinue services with notice</li>
-              <li>Remove content that violates these Terms</li>
+              <li>{t('terms.termination.item1')}</li>
+              <li>{t('terms.termination.item2')}</li>
+              <li>{t('terms.termination.item3')}</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">8. Disclaimer of Warranties</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('terms.disclaimer.title')}</h2>
             <p>
-              Our services are provided &quot;as is&quot; without warranties of any kind, either express or implied. We do not guarantee that:
+              {t('terms.disclaimer.content')}
             </p>
             <ul className="list-disc pl-6 mt-2">
-              <li>Services will be uninterrupted or error-free</li>
-              <li>Specific language learning outcomes will be achieved</li>
-              <li>Content will be accurate or complete</li>
+              <li>{t('terms.disclaimer.item1')}</li>
+              <li>{t('terms.disclaimer.item2')}</li>
+              <li>{t('terms.disclaimer.item3')}</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">9. Limitation of Liability</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('terms.liability.title')}</h2>
             <p>
-              To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our services.
+              {t('terms.liability.content')}
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">10. Changes to Terms</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('terms.changes.title')}</h2>
             <p>
-              We may modify these Terms at any time. We will notify users of material changes through:
+              {t('terms.changes.content')}
             </p>
             <ul className="list-disc pl-6 mt-2">
-              <li>Email notifications</li>
-              <li>Platform announcements</li>
-              <li>Website updates</li>
+              <li>{t('terms.changes.item1')}</li>
+              <li>{t('terms.changes.item2')}</li>
+              <li>{t('terms.changes.item3')}</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">11. Contact Information</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('terms.contact.title')}</h2>
             <p>
-              For questions about these Terms, please contact us at:
+              {t('terms.contact.content')}
             </p>
             <ul className="list-none pl-6 mt-2">
-              <li>Email: support@zervice.us</li>
-              <li>Address: [Your Business Address]</li>
+              <li>{t('terms.contact.email')}</li>
+              <li>{t('terms.contact.address')}</li>
             </ul>
           </section>
 
           <section className="mt-12">
             <p className="text-sm text-muted-foreground">
-              Last updated: February 25, 2025
+              {t('terms.lastUpdated')}
             </p>
           </section>
         </div>

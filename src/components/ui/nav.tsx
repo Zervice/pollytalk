@@ -7,18 +7,21 @@ import { Logo } from './logo'
 import { Menu, X, QrCode } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import QRCode from 'react-qr-code'
-
-const navigation = [
-  { name: 'Pricing', href: '/pricing' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'Download', href: '/download' },
-  { name: 'Terms & Service', href: '/terms' },
-  { name: 'Privacy Policy', href: '/privacy' },
-]
+import { useI18n } from '@/i18n/i18n-context'
+import { LanguageSwitcher } from './language-switcher'
 
 export function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
+  const { t } = useI18n()
+  
+  const navigation = [
+    { name: t('nav.pricing'), href: '/pricing' },
+    { name: t('nav.blog'), href: '/blog' },
+    { name: t('nav.download'), href: '/download' },
+    { name: t('nav.terms'), href: '/terms' },
+    { name: t('nav.privacy'), href: '/privacy' },
+  ]
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 backdrop-blur-sm bg-background/80 border-b border-border">
@@ -52,7 +55,8 @@ export function Nav() {
             </Link>
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-4 items-center">
+          <LanguageSwitcher />
           <div className="relative group">
             <button
               type="button"
@@ -60,11 +64,11 @@ export function Nav() {
               aria-label="Show QR code for app download"
             >
               <QrCode className="h-6 w-6" />
-              <span className="text-sm font-medium">Download App</span>
+              <span className="text-sm font-medium">{t('nav.downloadApp')}</span>
             </button>
             <div className="absolute right-0 top-full mt-2 p-4 bg-background border-2 border-primary/20 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible scale-95 group-hover:scale-100 transition-all duration-300 z-50">
               <div className="flex flex-col items-center gap-2">
-                <p className="text-sm font-medium mb-2">Scan to download PollyTalk app</p>
+                <p className="text-sm font-medium mb-2">{t('nav.scanToDownload')}</p>
                 <div className="p-3 bg-white rounded-md border border-primary/20">
                   <QRCode
                     value="https://downloads.zervice.me/release/app-release.apk"
@@ -126,7 +130,7 @@ export function Nav() {
                         </Link>
                       ))}
                       <div className="-mx-3 rounded-lg px-3 py-4 flex flex-col items-center">
-                        <p className="text-base font-semibold mb-3">Scan to download PollyTalk app</p>
+                        <p className="text-base font-semibold mb-3">{t('nav.scanToDownload')}</p>
                         <div className="p-3 bg-white rounded-md border border-primary/20">
                           <QRCode
                             value="https://downloads.zervice.me/release/app-release.apk"

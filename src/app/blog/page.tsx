@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Clock, User } from "lucide-react"
+import { useI18n } from "@/i18n/i18n-context"
 
 const posts = [
   {
@@ -37,6 +38,7 @@ const posts = [
 ]
 
 export default function BlogPage() {
+  const { t } = useI18n()
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -47,10 +49,10 @@ export default function BlogPage() {
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-12">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            PollyTalk Blog
+            {t('blog.title')}
           </h1>
           <p className="mx-auto max-w-[700px] text-zinc-500 md:text-xl dark:text-zinc-400">
-            Insights and tips for better language learning
+            {t('blog.subtitle')}
           </p>
         </div>
 
@@ -90,12 +92,12 @@ export default function BlogPage() {
                   </div>
                   <div className="flex items-center gap-x-1">
                     <Clock className="h-4 w-4" />
-                    <span>{post.readTime}</span>
+                    <span>{post.readTime.replace('min read', t('blog.readTime'))}</span>
                   </div>
                 </div>
               </div>
               <a href={`/blog/${post.slug}`} className="absolute inset-0">
-                <span className="sr-only">View article</span>
+                <span className="sr-only">{t('blog.viewArticle')}</span>
               </a>
             </motion.article>
           ))}
@@ -103,9 +105,9 @@ export default function BlogPage() {
 
         <div className="mt-12 text-center">
           <p className="text-muted-foreground">
-            Want to contribute to our blog?{" "}
+            {t('blog.contribute')}{" "}
             <a href="/contact" className="text-primary hover:underline">
-              Contact us
+              {t('blog.contactUs')}
             </a>
           </p>
         </div>

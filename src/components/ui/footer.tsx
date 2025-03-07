@@ -1,13 +1,15 @@
 import { Logo } from "./logo"
+import { useI18n } from '@/i18n/i18n-context'
 
 export function Footer() {
+  const { t } = useI18n()
   return (
     <footer className="w-full border-t bg-background">
       <div className="container flex flex-col items-center justify-between gap-4 py-10 md:h-24 md:flex-row md:py-0">
         <div className="flex items-center gap-2">
           <Logo size={24} />
           <p className="text-sm leading-loose text-center md:text-left">
-            Built with ❤️ for language learners worldwide
+            {t('footer.tagline')}
           </p>
         </div>
         <nav className="flex items-center gap-4 text-sm">
@@ -15,31 +17,31 @@ export function Footer() {
             href="/about"
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
-            About
+            {t('footer.about')}
           </a>
           <a
             href="/blog"
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
-            Blog
+            {t('footer.blog')}
           </a>
           <a
             href="/contact"
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
-            Contact
+            {t('footer.contact')}
           </a>
           <a
             href="/terms"
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
-            Terms
+            {t('footer.terms')}
           </a>
           <a
             href="/privacy"
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
-            Privacy
+            {t('footer.privacy')}
           </a>
         </nav>
       </div>
