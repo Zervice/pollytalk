@@ -5,19 +5,14 @@ import { useEffect, useState } from 'react'
 type Locale = 'en' | 'zh'
 
 /**
- * Hook for detecting user's preferred language
- * Returns the detected language and loading state
+ * Hook for detecting user's preferred language based on browser settings
+ * Returns the detected language immediately without any async operations
  */
-export function useLanguageDetection(): { 
-  detectedLocale: Locale | null, 
-  isDetecting: boolean 
-} {
-  const [detectedLocale, setDetectedLocale] = useState<Locale | null>(null)
-  const [isDetecting, setIsDetecting] = useState(true)
-
-  useEffect(() => {
-    async function detectLanguage() {
-      // 1. Check browser language settings
+export function useLanguageDetection(): Locale {
+  // Detect language synchronously
+  const detectLanguage = (): Locale => {
+    // Check browser language settings
+    if (typeof navigator !== 'undefined') {
       const browserLanguages = [
         navigator.language,
         ...(navigator.languages || [])
@@ -29,34 +24,16 @@ export function useLanguageDetection(): {
       })
       
       if (preferredLanguage) {
-        setDetectedLocale('zh')
-        setIsDetecting(false)
-        return
+        return 'zh'
       }
-
-      // 2. Try to detect location based on IP (using a free geolocation API)
-      try {
-        const response = await fetch('https://ipapi.co/json/')
-        if (response.ok) {
-          const data = await response.json()
-          // Check if user is in a Chinese-speaking region
-          if (['CN', 'HK', 'TW', 'MO', 'SG'].includes(data.country_code)) {
-            setDetectedLocale('zh')
-            setIsDetecting(false)
-            return
-          }
-        }
-      } catch (error) {
-        console.warn('Error detecting location:', error)
-      }
-
-      // Default to English if no Chinese preference detected
-      setDetectedLocale('en')
-      setIsDetecting(false)
     }
-
-    detectLanguage()
-  }, [])
-
-  return { detectedLocale, isDetecting }
+    
+    // Default to English
+    return 'en'
+  }
+  
+  // We can use this in SSR-safe way
+  const [detectedLocale] = useState<Locale>(() => detectLanguage())
+  
+  return detectedLocale
 }

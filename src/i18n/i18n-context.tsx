@@ -28,7 +28,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   const [isInitialized, setIsInitialized] = useState(false)
   
   useEffect(() => {
-    async function detectUserLanguage() {
+    function detectUserLanguage() {
       // 1. Check if user has a saved preference in localStorage
       const savedLocale = localStorage.getItem('locale') as Locale
       if (savedLocale && (savedLocale === 'en' || savedLocale === 'zh')) {
@@ -43,6 +43,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
         ...(navigator.languages || [])
       ]
       
+      // Check if any browser language starts with 'zh'
       const preferredLanguage = browserLanguages.find(lang => {
         const langCode = lang.toLowerCase().split('-')[0]
         return langCode === 'zh'
@@ -50,32 +51,16 @@ export function I18nProvider({ children }: { children: ReactNode }) {
       
       if (preferredLanguage) {
         setLocale('zh')
-        setIsInitialized(true)
-        return
+      } else {
+        // Default to English if no Chinese preference detected
+        setLocale('en')
       }
-
-      // 3. Try to detect location based on IP (using a free geolocation API)
-      try {
-        const response = await fetch('https://ipapi.co/json/')
-        if (response.ok) {
-          const data = await response.json()
-          // Check if user is in a Chinese-speaking region
-          if (['CN', 'HK', 'TW', 'MO', 'SG'].includes(data.country_code)) {
-            setLocale('zh')
-            setIsInitialized(true)
-            return
-          }
-        }
-      } catch (error) {
-        console.warn('Error detecting location:', error)
-        // Fall back to English if geolocation fails
-      }
-
-      // Default to English if no Chinese preference detected
-      setLocale('en')
+      
       setIsInitialized(true)
     }
 
+    // Execute language detection immediately
+    // This avoids any async operations that could delay initialization
     detectUserLanguage()
   }, [])
 
