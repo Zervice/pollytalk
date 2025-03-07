@@ -9,7 +9,7 @@ import Link from "next/link"
 import { useI18n } from "@/i18n/i18n-context"
 
 export default function Home() {
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
   
   const features = [
     {
@@ -50,7 +50,13 @@ export default function Home() {
               >
                 <Logo size={80} />
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-                  PollyTalk
+                  {locale === 'zh' ? (
+                    <>
+                      博语通 <span className="text-2xl font-normal text-muted-foreground">(PollyTalk)</span>
+                    </>
+                  ) : (
+                    'PollyTalk'
+                  )}
                 </h1>
               </motion.div>
               <motion.p

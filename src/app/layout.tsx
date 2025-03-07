@@ -8,6 +8,12 @@ const inter = Inter({ subsets: ['latin', 'latin-ext'] })
 export const metadata: Metadata = {
   title: 'PollyTalk - Your AI Conversation Companion',
   description: 'Practice languages through natural conversations with AI',
+  alternates: {
+    languages: {
+      'en': '/en',
+      'zh': '/zh',
+    },
+  },
 }
 
 export default function RootLayout({

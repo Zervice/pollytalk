@@ -6,7 +6,7 @@
     "terms": "服务条款",
     "privacy": "隐私政策",
     "downloadApp": "下载应用",
-    "scanToDownload": "扫码下载 PollyTalk 应用"
+    "scanToDownload": "扫码下载博语通 (PollyTalk) 应用"
   },
   "home": {
     "hero": {
@@ -18,7 +18,7 @@
       "downloadApp": "下载应用"
     },
     "features": {
-      "title": "为什么选择 PollyTalk？",
+      "title": "为什么选择博语通 (PollyTalk)？",
       "naturalConversations": {
         "title": "自然对话",
         "description": "与我们的 AI 语言伙伴练习真实世界的对话"
@@ -43,7 +43,7 @@
     }
   },
   "blog": {
-    "title": "PollyTalk 博客",
+    "title": "博语通 (PollyTalk) 博客",
     "subtitle": "语言学习的见解和技巧",
     "contribute": "想为我们的博客做贡献？",
     "contactUs": "联系我们",
@@ -51,7 +51,7 @@
     "viewArticle": "查看文章"
   },
   "download": {
-    "title": "下载 PollyTalk",
+    "title": "下载博语通 (PollyTalk)",
     "subtitle": "在您的移动设备上开始您的语言学习之旅",
     "installationSteps": "安装步骤",
     "directDownload": "直接下载 APK",
@@ -60,7 +60,7 @@
     "step1": "用手机相机扫描二维码",
     "step2": "点击出现的链接",
     "step3": "如果提示，允许从未知来源安装",
-    "step4": "安装并享受 PollyTalk！",
+    "step4": "安装并享受博语通 (PollyTalk)！",
     "downloadApk": "直接下载 APK",
     "apkFileSize": "APK 文件大小：约 25MB • 需要 Android 8.0 以上",
     "needHelp": "需要帮助？",
@@ -73,9 +73,9 @@
     "benefit4": "更好的语音识别",
     "ios": {
       "name": "iOS 应用",
-      "description": "为 iPhone 和 iPad 下载 PollyTalk",
+      "description": "为 iPhone 和 iPad 下载博语通 (PollyTalk)",
       "step1": "在您的 iOS 设备上打开 App Store",
-      "step2": "搜索 'PollyTalk 语言学习'",
+      "step2": "搜索 '博语通语言学习'",
       "step3": "点击 '获取' 安装应用",
       "step4": "打开应用并开始学习",
       "buttonText": "在 App Store 上下载",
@@ -83,9 +83,9 @@
     },
     "android": {
       "name": "Android 应用",
-      "description": "为 Android 设备下载 PollyTalk",
+      "description": "为 Android 设备下载博语通 (PollyTalk)",
       "step1": "打开 Google Play 商店",
-      "step2": "搜索 'PollyTalk 语言学习'",
+      "step2": "搜索 '博语通语言学习'",
       "step3": "点击 '安装'",
       "step4": "打开应用并开始学习",
       "buttonText": "在 Google Play 上获取",
@@ -96,11 +96,11 @@
   "title": "服务条款",
   "introduction": {
     "title": "1. 引言",
-    "content": "欢迎使用 PollyTalk（以下简称\"我们\"）。通过访问或使用我们的语言学习平台，您同意受这些服务条款的约束。请在使用我们的服务之前仔细阅读这些条款。"
+    "content": "欢迎使用博语通 (PollyTalk)（以下简称\"我们\"）。通过访问或使用我们的语言学习平台，您同意受这些服务条款的约束。请在使用我们的服务之前仔细阅读这些条款。"
   },
   "serviceDescription": {
     "title": "2. 服务描述",
-    "content": "PollyTalk 提供一个人工智能驱动的语言学习平台，使用户能够练习对话并提高他们的语言技能。我们的服务包括但不限于：",
+    "content": "博语通 (PollyTalk) 提供一个人工智能驱动的语言学习平台，使用户能够练习对话并提高他们的语言技能。我们的服务包括但不限于：",
     "item1": "互动语言学习课程",
     "item2": "AI 对话伙伴",
     "item3": "进度跟踪和评估",
@@ -176,7 +176,7 @@
     "title": "隐私政策",
     "introduction": {
       "title": "1. 引言",
-      "content": "在 PollyTalk，我们非常重视您的隐私。本隐私政策解释了我们在您使用我们的语言学习平台时如何收集、使用、披露和保护您的信息。请仔细阅读本政策以了解我们的做法。"
+      "content": "在博语通 (PollyTalk)，我们非常重视您的隐私。本隐私政策解释了我们在您使用我们的语言学习平台时如何收集、使用、披露和保护您的信息。请仔细阅读本政策以了解我们的做法。"
     },
     "infoCollect": {
       "title": "2. 我们收集的信息",
@@ -222,7 +222,7 @@
     "lastUpdated": "最后更新：2025年2月25日"
   },
   "blog": {
-    "title": "PollyTalk 博客",
+    "title": "博语通 (PollyTalk) 博客",
     "subtitle": "语言学习的见解和技巧",
     "readTime": "分钟阅读",
     "viewArticle": "查看文章",
@@ -231,7 +231,7 @@
   },
   
   "download": {
-    "title": "下载 PollyTalk",
+    "title": "下载博语通 (PollyTalk)",
     "subtitle": "在您的移动设备上开始语言学习之旅",
     "installationSteps": "安装步骤",
     "directDownload": "直接下载 APK",
@@ -240,7 +240,7 @@
     "step1": "用手机相机扫描二维码",
     "step2": "点击出现的链接",
     "step3": "如果提示，允许从未知来源安装",
-    "step4": "安装并享受 PollyTalk！",
+    "step4": "安装并享受博语通 (PollyTalk)！",
     "downloadApk": "直接下载 APK",
     "apkFileSize": "APK 文件大小：约 25MB • 需要 Android 8.0 或更高版本",
     "needHelp": "需要帮助？",
@@ -253,9 +253,9 @@
     "benefit4": "更好的语音识别",
     "ios": {
       "name": "iOS 应用",
-      "description": "为 iPhone 和 iPad 下载 PollyTalk",
+      "description": "为 iPhone 和 iPad 下载博语通 (PollyTalk)",
       "step1": "在您的 iOS 设备上打开 App Store",
-      "step2": "搜索 'PollyTalk 语言学习'",
+      "step2": "搜索 '博语通语言学习'",
       "step3": "点击 '获取' 安装应用",
       "step4": "打开应用并开始学习",
       "buttonText": "在 App Store 上下载",
@@ -263,9 +263,9 @@
     },
     "android": {
       "name": "Android 应用",
-      "description": "为 Android 设备下载 PollyTalk",
+      "description": "为 Android 设备下载博语通 (PollyTalk)",
       "step1": "打开 Google Play 商店",
-      "step2": "搜索 'PollyTalk 语言学习'",
+      "step2": "搜索 '博语通语言学习'",
       "step3": "点击 '安装'",
       "step4": "打开应用并开始学习",
       "buttonText": "在 Google Play 上获取",
@@ -278,7 +278,7 @@
     "lastUpdated": "最后更新：2025年2月25日",
     "introduction": {
       "title": "1. 简介",
-      "content": "在 PollyTalk，我们非常重视您的隐私。本隐私政策解释了我们如何在您使用我们的语言学习平台时收集、使用、披露和保护您的信息。请仔细阅读本政策以了解我们的做法。"
+      "content": "在博语通 (PollyTalk)，我们非常重视您的隐私。本隐私政策解释了我们如何在您使用我们的语言学习平台时收集、使用、披露和保护您的信息。请仔细阅读本政策以了解我们的做法。"
     },
     "infoCollect": {
       "title": "2. 我们收集的信息",

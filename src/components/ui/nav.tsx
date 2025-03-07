@@ -13,7 +13,7 @@ import { LanguageSwitcher } from './language-switcher'
 export function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
   
   const navigation = [
     { name: t('nav.pricing'), href: '/pricing' },
@@ -29,10 +29,14 @@ export function Nav() {
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
             <Logo size={32} />
-            <span className="font-semibold text-xl">PollyTalk</span>
+            <span className="font-semibold text-xl">
+              {locale === 'zh' ? '博语通' : 'PollyTalk'}
+              {locale === 'zh' && <span className="text-xs ml-1 text-muted-foreground">(PollyTalk)</span>}
+            </span>
           </Link>
         </div>
-        <div className="flex lg:hidden">
+        <div className="flex lg:hidden items-center gap-2">
+          <LanguageSwitcher compact={true} />
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5"
@@ -103,7 +107,10 @@ export function Nav() {
                 <div className="flex items-center justify-between">
                   <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
                     <Logo size={32} />
-                    <span className="font-semibold text-xl">PollyTalk</span>
+                    <span className="font-semibold text-xl">
+                      {locale === 'zh' ? '博语通' : 'PollyTalk'}
+                      {locale === 'zh' && <span className="text-xs ml-1 text-muted-foreground">(PollyTalk)</span>}
+                    </span>
                   </Link>
                   <button
                     type="button"
@@ -129,6 +136,9 @@ export function Nav() {
                           {item.name}
                         </Link>
                       ))}
+                      <div className="-mx-3 rounded-lg px-3 py-2 flex justify-center">
+                        <LanguageSwitcher compact={true} />
+                      </div>
                       <div className="-mx-3 rounded-lg px-3 py-4 flex flex-col items-center">
                         <p className="text-base font-semibold mb-3">{t('nav.scanToDownload')}</p>
                         <div className="p-3 bg-white rounded-md border border-primary/20">
