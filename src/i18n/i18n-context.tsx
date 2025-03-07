@@ -5,7 +5,10 @@ import enTranslations from './translations/en.json'
 import zhTranslations from './translations/zh.json'
 
 type Locale = 'en' | 'zh'
-type Translations = typeof enTranslations
+
+// Define a type that can represent nested translation objects
+type TranslationValue = string | { [key: string]: TranslationValue }
+type Translations = Record<string, TranslationValue>
 
 interface I18nContextType {
   locale: Locale
@@ -79,10 +82,11 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   // Function to get a translation by key (supports nested keys like "nav.home")
   const t = (key: string): string => {
     const keys = key.split('.')
-    let result: any = translations[locale]
+    // We start with the top-level translations object for the current locale
+    let result: TranslationValue = translations[locale]
     
     for (const k of keys) {
-      if (result && result[k]) {
+      if (result && typeof result === 'object' && k in result) {
         result = result[k]
       } else {
         console.warn(`Translation key not found: ${key}`)
@@ -90,7 +94,8 @@ export function I18nProvider({ children }: { children: ReactNode }) {
       }
     }
     
-    return result
+    // Ensure we only return strings
+    return typeof result === 'string' ? result : key
   }
 
   return (
