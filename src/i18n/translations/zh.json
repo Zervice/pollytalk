@@ -6,26 +6,68 @@
     "terms": "服务条款",
     "privacy": "隐私政策",
     "downloadApp": "下载应用",
-    "scanToDownload": "扫码下载博语通 (PollyTalk) 应用"
+    "scanToDownload": "扫码下载博语通（PollyTalk）应用"
   },
   "home": {
     "hero": {
-      "tagline": "与博语一起学习，像当地人一样交谈！语言学习重新想象：自然对话，真实场景，为你量身定制。"
+      "tagline": "使用博语通（PollyTalk）学习外语，像使用母语一样交谈！重构语言学习新方式：自然对话，真实场景，为你量身定制。"
     },
     "buttons": {
       "startLearning": "开始学习",
       "tryDemo": "试用演示",
       "downloadApp": "下载应用"
     },
+    "testimonials": {
+      "title": "用户评价",
+      "subtitle": "加入全球数千名满意的语言学习者",
+      "items": [
+        {
+          "name": "李明",
+          "location": "北京，中国",
+          "image": "/testimonials/user1.jpg",
+          "text": "博语通（PollyTalk）完全改变了我学习英语的方式。AI对话非常自然，我在3个月内的进步比传统课堂2年的学习还要多！"
+        },
+        {
+          "name": "张伟",
+          "location": "上海，中国",
+          "image": "/testimonials/user2.jpg",
+          "text": "作为一个有语言学习焦虑的人，博语通（PollyTalk）对我来说是一个改变游戏规则的工具。我可以练习英语而不用担心被评判，个性化的反馈帮助我纠正了我甚至不知道自己有的发音问题。"
+        },
+        {
+          "name": "王芳",
+          "location": "广州，中国",
+          "image": "/testimonials/user3.jpg",
+          "text": "性价比令人难以置信！我曾经每小时花¥400请家教，但现在我每天都能以更低的价格练习日语。无限版计划中的专业词汇主题非常适合我的商务需求。"
+        },
+        {
+          "name": "刘强",
+          "location": "成都，中国",
+          "image": "/testimonials/user4.jpg",
+          "text": "我尝试过市面上所有的语言学习应用，博语通（PollyTalk）是迄今为止最有效的。AI能适应我的学习风格，并在恰到好处的水平上挑战我。我的德语在短短几周内就有了显著提高！"
+        },
+        {
+          "name": "陈静",
+          "location": "深圳，中国",
+          "image": "/testimonials/user5.jpg",
+          "text": "全天候支持非常棒！每当我对学习路径或技术问题有疑问时，团队都会迅速回应。无限版计划中的专属顾问帮助我创建了完美的学习计划。"
+        },
+        {
+          "name": "赵阳",
+          "location": "杭州，中国",
+          "image": "/testimonials/user6.jpg",
+          "text": "作为一名语言老师，我对博语通（PollyTalk）的教学方法印象深刻。它将语法自然地融入对话的方式非常出色。我现在向我所有的学生推荐它！"
+        }
+      ]
+    },
     "features": {
-      "title": "为什么选择博语通 (PollyTalk)？",
+      "title": "为什么选择博语通（PollyTalk）？",
       "naturalConversations": {
         "title": "自然对话",
         "description": "与我们的AI语言伙伴练习真实世界对话"
       },
       "multipleLanguages": {
         "title": "多种语言",
-        "description": "通过母语AI导师学习任何语言"
+        "description": "通过母语AI老师学习任何语言"
       },
       "personalizedLearning": {
         "title": "个性化学习",
@@ -51,7 +93,7 @@
     "viewArticle": "查看文章"
   },
   "download": {
-    "title": "下载博语通 (PollyTalk)",
+    "title": "下载博语通（PollyTalk）",
     "subtitle": "在您的移动设备上开始语言学习之旅",
     "installationSteps": "安装步骤",
     "directDownload": "直接下载APK",
@@ -60,7 +102,7 @@
     "step1": "用手机相机扫描二维码",
     "step2": "点击出现的链接",
     "step3": "如果提示，允许从未知来源安装",
-    "step4": "安装并享受博语通 (PollyTalk)！",
+    "step4": "安装并享受博语通（PollyTalk）！",
     "downloadApk": "直接下载APK",
     "apkFileSize": "APK文件大小：约50MB • 需要Android 8.0或更高版本",
     "needHelp": "需要帮助？",
@@ -73,9 +115,9 @@
     "benefit4": "更好的语音识别",
     "ios": {
       "name": "iOS应用",
-      "description": "为iPhone和iPad下载博语通 (PollyTalk)",
+      "description": "为iPhone和iPad下载博语通（PollyTalk）",
       "step1": "在您的iOS设备上打开App Store",
-      "step2": "搜索'博语通语言学习'",
+      "step2": "搜索'博语通（PollyTalk）'",
       "step3": "点击'获取'安装应用",
       "step4": "打开应用并开始学习",
       "buttonText": "在App Store上下载",
@@ -83,9 +125,9 @@
     },
     "android": {
       "name": "Android应用",
-      "description": "为Android设备下载博语通 (PollyTalk)",
+      "description": "为Android设备下载博语通（PollyTalk）",
       "step1": "打开Google Play商店",
-      "step2": "搜索'博语通语言学习'",
+      "step2": "搜索'博语通（PollyTalk）'",
       "step3": "点击'安装'",
       "step4": "打开应用并开始学习",
       "buttonText": "在Google Play上获取",
@@ -96,11 +138,11 @@
     "title": "服务条款",
     "introduction": {
       "title": "1. 引言",
-      "content": "欢迎使用博语通 (PollyTalk)（以下简称\"我们\"）。通过访问或使用我们的语言学习平台，您同意受这些服务条款的约束。请在使用我们的服务之前仔细阅读这些条款。"
+      "content": "欢迎使用博语通（PollyTalk）（以下简称\"我们\"）。通过访问或使用我们的语言学习平台，您同意受这些服务条款的约束。请在使用我们的服务之前仔细阅读这些条款。"
     },
     "serviceDescription": {
       "title": "2. 服务描述",
-      "content": "博语通 (PollyTalk) 提供一个人工智能驱动的语言学习平台，使用户能够练习对话并提高他们的语言技能。我们的服务包括但不限于：",
+      "content": "博语通（PollyTalk）提供一个人工智能驱动的语言学习平台，使用户能够练习对话并提高他们的语言技能。我们的服务包括但不限于：",
       "item1": "互动语言学习课程",
       "item2": "AI对话伙伴",
       "item3": "进度跟踪和评估",
@@ -176,7 +218,7 @@
     "title": "隐私政策",
     "introduction": {
       "title": "1. 引言",
-      "content": "在博语通，我们非常重视您的隐私。本隐私政策解释了我们在您使用我们的语言学习平台时如何收集、使用、披露和保护您的信息。请仔细阅读本政策以了解我们的做法。"
+      "content": "在博语通（PollyTalk），我们非常重视您的隐私。本隐私政策解释了我们在您使用我们的语言学习平台时如何收集、使用、披露和保护您的信息。请仔细阅读本政策以了解我们的做法。"
     },
     "infoCollect": {
       "title": "2. 我们收集的信息",
@@ -222,7 +264,7 @@
     "lastUpdated": "最后更新：2025年2月25日"
   },
   "blogContent": {
-    "title": "博语通博客",
+    "title": "博语通（PollyTalk）博客",
     "subtitle": "语言学习的见解和技巧",
     "readTime": "分钟阅读",
     "viewArticle": "查看文章",
@@ -234,7 +276,7 @@
     "lastUpdated": "最后更新：2025年2月25日",
     "introduction": {
       "title": "1. 简介",
-      "content": "在博语通，我们非常重视您的隐私。本隐私政策解释了我们如何在您使用我们的语言学习平台时收集、使用、披露和保护您的信息。请仔细阅读本政策以了解我们的做法。"
+      "content": "在博语通（PollyTalk），我们非常重视您的隐私。本隐私政策解释了我们如何在您使用我们的语言学习平台时收集、使用、披露和保护您的信息。请仔细阅读本政策以了解我们的做法。"
     },
     "infoCollect": {
       "title": "2. 我们收集的信息",
@@ -319,17 +361,9 @@
       "address": "地址：[您的业务地址]"
     }
   },
-  "footer": {
-    "tagline": "为全球语言学习者用❤️打造",
-    "about": "关于我们",
-    "blog": "博客",
-    "contact": "联系我们",
-    "terms": "条款",
-    "privacy": "隐私"
-  },
   "pricing": {
-    "title": "经济实惠的语言练习",
-    "subtitle": "以人类导师成本的一小部分与博语通练习",
+    "title": "经济实惠的语言学习与练习",
+    "subtitle": "以人类老师成本的一小部分与博语通（PollyTalk）练习",
     "mostPopular": "最受欢迎",
     "earlyAdopter": "早期用户价格（7折优惠）",
     "freeTrialBadge": "7天免费试用",
@@ -343,18 +377,18 @@
         "description": "适合日常练习课程",
         "features": {
           "feature1": "每天30分钟练习时间",
-          "feature2": "仅需¥20/小时（相比人类导师¥140-350/小时）",
+          "feature2": "仅需¥20/小时（相比人类老师¥150-500/小时）",
           "feature3": "个性化学习路径",
           "feature4": "发音反馈",
           "feature5": "进度分析",
-          "feature6": "7天免费试用（3.5小时练习）"
+          "feature6": "7天免费试用"
         },
         "cta": "开始免费试用"
       },
       "aggressive": {
         "name": "强化版",
-        "price": "¥699",
-        "earlyPrice": "¥499",
+        "price": "¥899",
+        "earlyPrice": "¥629",
         "period": "/月",
         "description": "适合密集型语言学习者",
         "features": {
@@ -369,8 +403,8 @@
       },
       "unlimited": {
         "name": "无限版",
-        "price": "¥1399",
-        "earlyPrice": "¥999",
+        "price": "¥1599",
+        "earlyPrice": "¥1119",
         "period": "/月",
         "description": "为最专注的语言爱好者设计",
         "features": {
@@ -400,13 +434,21 @@
     },
     "faq": {
       "question1": "7天免费试用如何运作？",
-      "answer1": "您可以完全免费试用标准版计划7天，获得3.5小时的语言练习时间。开始试用无需信用卡。",
-      "question2": "您的价格与人类导师相比如何？",
-      "answer2": "人类语言导师通常收费¥140-350每小时。博语通以仅¥11-20每小时的价格提供相同的练习效果，使语言学习更加经济实惠。",
+      "answer1": "无需信用卡，您可以完全免费试用标准版计划7天，开启语言学习新体验。",
+      "question2": "您的价格与人类老师相比如何？",
+      "answer2": "人类语言老师通常收费¥150-500每小时。博语通（PollyTalk）以仅¥15-20每小时的价格提供相同的练习效果，使语言学习更加经济实惠。",
       "question3": "我可以稍后更改计划吗？",
       "answer3": "是的，您可以随时升级或降级您的计划。更改将在下一个计费周期开始时生效。",
       "question4": "您接受哪些支付方式？",
       "answer4": "我们接受所有主要信用卡、支付宝、微信支付和Apple Pay进行订阅付款。"
     }
+  },
+  "footer": {
+    "tagline": "为全球语言学习者用❤️打造",
+    "about": "关于我们",
+    "blog": "博客",
+    "contact": "联系我们",
+    "terms": "条款",
+    "privacy": "隐私"
   }
 }

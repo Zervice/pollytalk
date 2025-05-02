@@ -125,55 +125,56 @@ export default function PricingPage() {
                   </span>
                 )}
               </div>
-              <div className="mb-5">
-                <h3 className="text-lg font-semibold">{tier.name}</h3>
-                <div className="mt-2 flex flex-col">
+              <div className="mb-2">
+                <h3 className="text-xl md:text-2xl font-bold text-center">{tier.name}</h3>
+                <div className="mt-4 mb-2 flex flex-col">
                   <div className="flex flex-col items-center">
                     {tier.earlyPrice ? (
                       <>
-                        <div className="flex items-baseline">
-                          <span className="text-3xl font-bold">{tier.earlyPrice}</span>
+                        <div className="flex flex-col items-center gap-1">
+                          <span className="text-3xl md:text-4xl font-bold text-red-700 line-through opacity-80">
+                            {tier.price}
+                          </span>
+                          <span className="text-4xl md:text-5xl font-extrabold text-green-600">{tier.earlyPrice}</span>
                           {tier.period && (
-                            <span className="ml-1 text-sm text-muted-foreground">
+                            <span className="text-sm md:text-base text-muted-foreground">
                               {tier.period}
                             </span>
                           )}
                         </div>
-                        <div className="flex flex-col items-center mt-1 text-center">
-                          <span className="text-xs text-muted-foreground line-through">
-                            {tier.price}{tier.period}
-                          </span>
-                          <span className="text-sm text-green-600 font-medium">
+                        <div className="mt-2 py-1 px-3 bg-green-100 dark:bg-green-900/30 rounded-full text-center">
+                          <span className="text-sm md:text-base text-green-600 dark:text-green-400 font-medium">
                             {t('pricing.earlyAdopter')}
                           </span>
                         </div>
                       </>
                     ) : (
                       <>
-                        <span className="text-3xl font-bold">{tier.price}</span>
+                        <span className="text-4xl md:text-5xl font-extrabold">{tier.price}</span>
                         {tier.period && (
-                          <span className="ml-1 text-sm text-muted-foreground">
+                          <span className="mt-1 text-sm md:text-base text-muted-foreground">
                             {tier.period}
                           </span>
                         )}
-                      </>
+                      </>                      
                     )}
                   </div>
                 </div>
-                <p className="mt-2 text-xs md:text-sm text-muted-foreground text-center">
+                <p className="mt-3 text-sm md:text-base text-muted-foreground text-center">
                   {tier.description}
                 </p>
               </div>
-              <ul className="mb-4 space-y-1 flex-1 text-xs md:text-sm">
+              <ul className="my-6 space-y-3 flex-1 text-sm md:text-base border-t border-b py-4 border-border/30">
                 {tier.features.map((feature) => (
                   <li key={feature} className="flex items-start">
-                    <Check className="h-3 w-3 text-primary mr-1 flex-shrink-0 mt-1" />
-                    <span className="text-xs md:text-sm">{feature}</span>
+                    <Check className="h-4 w-4 text-primary mr-2 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm md:text-base">{feature}</span>
                   </li>
                 ))}
               </ul>
               <Button
-                className="w-full"
+                className="w-full mt-4 py-6 text-base font-semibold"
+                size="lg"
                 variant={tier.featured ? "default" : "outline"}
                 asChild
               >

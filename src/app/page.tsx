@@ -7,7 +7,8 @@ import { ChatBubbleIcon, GlobeIcon, PersonIcon, RocketIcon } from "@radix-ui/rea
 import { QrCode, Download } from "lucide-react"
 import Link from "next/link"
 import { useI18n } from "@/i18n/i18n-context"
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useMemo } from 'react'
+import { Testimonials } from "@/components/testimonials"
 
 export default function Home() {
   const { t, locale } = useI18n()
@@ -17,8 +18,8 @@ export default function Home() {
   const [userInputValue, setUserInputValue] = useState("")
   
   // Define dialog messages based on current locale
-  const dialogMessages = locale === 'zh' ? [
-    { type: 'bot', text: "你好，我是博语，你的中文导师。想了解更多关于我如何帮助你学习语言的信息吗？" },
+  const dialogMessages = useMemo(() => locale === 'zh' ? [
+    { type: 'bot', text: "你好，我是Polly，你的中文老师。想了解更多关于我如何帮助你学习语言的信息吗？" },
     { type: 'user', text: "当然！博语通到底是什么？" },
     { type: 'bot', text: "博语通是一款由人工智能驱动的语言学习应用，通过自然对话帮助你掌握语言。与专注于重复练习的传统应用不同，我的设计目的是像真实语言伙伴一样与你交流！" },
     { type: 'user', text: "这与多邻国等其他应用有什么不同？" },
@@ -45,7 +46,7 @@ export default function Home() {
     { type: 'bot', text: "Fluency comes from regular practice and real-world application. PollyTalk provides the conversation practice that's often missing from traditional learning. I'll help you build confidence, develop natural speech patterns, and prepare you for real-world conversations. Many of our users report breakthrough moments when traveling abroad!" },
     { type: 'user', text: "How much does it cost?" },
     { type: 'bot', text: "PollyTalk offers a free plan with limited daily conversations, and premium plans starting at just $9.99/month for unlimited chats, specialized vocabulary topics, and pronunciation analysis. Why not start with our free plan and see how you like it?" }
-  ]
+  ], [locale])
 
   // Reference to the chat container for auto-scrolling
   const chatContainerRef = useRef<HTMLDivElement>(null)
@@ -92,7 +93,7 @@ export default function Home() {
           
           // Store the interval in our timer reference for cleanup
           timer = typingInterval as unknown as NodeJS.Timeout;
-        }, 1000);
+        }, 2000);
       } else if (currentMessage.type === 'user' && nextMessage.type === 'bot') {
         // After user message, show bot typing indicator
         timer = setTimeout(() => {
@@ -111,7 +112,7 @@ export default function Home() {
           }, typingDelay);
           
           timer = botTypingTimer;
-        }, 800);
+        }, 1800);
       }
     } else {
       // When conversation is complete, restart after a delay
@@ -120,14 +121,14 @@ export default function Home() {
         setUserInputValue("");
         setUserTyping(false);
         setIsTyping(false);
-      }, 8000); // Wait 8 seconds before restarting
+      }, 15000); // Wait 8 seconds before restarting
     }
     
     // Cleanup function to clear any timers
     return () => {
       if (timer) clearTimeout(timer);
     }
-  }, [currentDialogIndex, dialogMessages.length])
+  }, [currentDialogIndex, dialogMessages])
   
   const features = [
     {
@@ -232,8 +233,8 @@ export default function Home() {
                       <Logo size={32} />
                     </div>
                     <div>
-                      <h3 className="font-bold">{locale === 'zh' ? '博语' : 'Polly'}</h3>
-                      <p className="text-sm text-muted-foreground">{locale === 'zh' ? '您的AI语言导师' : 'Your AI Language Tutor'}</p>
+                      <h3 className="font-bold">Polly</h3>
+                      <p className="text-sm text-muted-foreground">{locale === 'zh' ? '您的AI语言老师' : 'Your AI Language Tutor'}</p>
                     </div>
                   </div>
                   
@@ -318,7 +319,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Features Section */}
+        {/* Features Section with Testimonials */}
         <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
           <div className="container px-4 md:px-6">
             <motion.h2
@@ -329,7 +330,7 @@ export default function Home() {
             >
               {t('home.features.title')}
             </motion.h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
               {features.map((feature, index) => {
                 const Icon = feature.icon
                 return (
@@ -352,10 +353,24 @@ export default function Home() {
                 )
               })}
             </div>
+            
+            {/* Testimonials integrated within the features section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mt-16"
+            >
+              <h3 className="text-2xl font-bold tracking-tighter text-center mb-2">
+                {locale === 'zh' ? '用户评价' : 'What Our Users Say'}
+              </h3>
+              <p className="text-muted-foreground max-w-[700px] mx-auto text-center mb-8">
+                {locale === 'zh' ? '听听我们的学习者如何评价博语通（PollyTalk）' : 'Hear from our community of language learners'}
+              </p>
+              <Testimonials />
+            </motion.div>
           </div>
         </section>
-
-
         
         {/* CTA Section */}
         <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">

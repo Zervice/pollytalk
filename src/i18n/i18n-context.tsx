@@ -6,8 +6,9 @@ import zhTranslations from './translations/zh.json'
 
 type Locale = 'en' | 'zh'
 
-// Define a type that can represent nested translation objects
-type TranslationValue = string | { [key: string]: TranslationValue }
+// Define a type that can represent nested translation objects including arrays
+type TestimonialItem = { name: string; location: string; image: string; text: string }
+type TranslationValue = string | { [key: string]: TranslationValue } | Array<TestimonialItem> | Array<TranslationValue>
 type Translations = Record<string, TranslationValue>
 
 interface I18nContextType {
@@ -86,7 +87,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     let result: TranslationValue = translations[locale]
     
     for (const k of keys) {
-      if (result && typeof result === 'object' && k in result) {
+      if (result && typeof result === 'object' && !Array.isArray(result) && k in result) {
         result = result[k]
       } else {
         console.warn(`Translation key not found: ${key}`)

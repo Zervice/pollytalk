@@ -10,14 +10,55 @@
   },
   "home": {
     "hero": {
-      "tagline": "Talk like a local, learn like a parrot! Language learning reimagined: Natural conversations, real-world scenarios, personalized to you."
+      "tagline": "Learn with PollyTalk, Talk like a native! Language learning reimagined: Natural conversations, real-world scenarios, personalized to you."
     },
     "buttons": {
       "startLearning": "Start Learning",
       "tryDemo": "Try Demo",
       "downloadApp": "Download App"
     },
-
+    "testimonials": {
+      "title": "What Our Users Say",
+      "subtitle": "Join thousands of satisfied language learners worldwide",
+      "items": [
+        {
+          "name": "Sarah Johnson",
+          "location": "New York, USA",
+          "image": "/testimonials/user1.jpg",
+          "text": "PollyTalk has completely transformed my Spanish learning journey. The AI conversations feel incredibly natural, and I've made more progress in 3 months than I did in 2 years of traditional classes!"
+        },
+        {
+          "name": "Michael Chen",
+          "location": "Toronto, Canada",
+          "image": "/testimonials/user2.jpg",
+          "text": "As someone who struggled with language learning anxiety, PollyTalk has been a game-changer. I can practice French without the fear of judgment, and the personalized feedback has helped me correct pronunciation issues I didn't even know I had."
+        },
+        {
+          "name": "Emma Rodriguez",
+          "location": "London, UK",
+          "image": "/testimonials/user3.jpg",
+          "text": "The value for money is incredible! I was spending $60 per hour with a tutor, but now I practice Japanese daily for a fraction of the cost. The specialized vocabulary topics in the Unlimited plan are perfect for my business needs."
+        },
+        {
+          "name": "David Kim",
+          "location": "Sydney, Australia",
+          "image": "/testimonials/user4.jpg",
+          "text": "I've tried every language app out there, and PollyTalk is by far the most effective. The AI adapts to my learning style and challenges me at just the right level. My German has improved dramatically in just weeks!"
+        },
+        {
+          "name": "Sophia Patel",
+          "location": "Berlin, Germany",
+          "image": "/testimonials/user5.jpg",
+          "text": "The 24/7 support is fantastic! Whenever I have questions about my learning path or technical issues, the team responds quickly. The dedicated consultant in the Unlimited plan has helped me create a perfect study schedule."
+        },
+        {
+          "name": "Lucas Moreau",
+          "location": "Paris, France",
+          "image": "/testimonials/user6.jpg",
+          "text": "As a language teacher myself, I'm impressed by the pedagogical approach of PollyTalk. The way it integrates grammar naturally into conversations is brilliant. I now recommend it to all my students!"
+        }
+      ]
+    },
     "features": {
       "title": "Why Choose PollyTalk?",
       "naturalConversations": {
@@ -230,50 +271,6 @@
     "contribute": "Want to contribute to our blog?",
     "contactUs": "Contact us"
   },
-  
-  "download": {
-    "title": "Download PollyTalk",
-    "subtitle": "Start your language learning journey on your mobile device",
-    "installationSteps": "Installation Steps",
-    "directDownload": "Direct APK Download",
-    "scanQrCode": "Scan this QR code with your Android device to download our app directly",
-    "downloadInstructions": "Download Instructions:",
-    "step1": "Scan the QR code with your phone's camera",
-    "step2": "Tap the link that appears",
-    "step3": "Allow installation from unknown sources if prompted",
-    "step4": "Install and enjoy PollyTalk!",
-    "downloadApk": "Download APK Directly",
-    "apkFileSize": "APK file size: ~25MB • Android 8.0+ required",
-    "needHelp": "Need Help?",
-    "troubleDownloading": "If you're having trouble downloading or installing the app,",
-    "contactSupport": "contact our support team",
-    "whyMobile": "Why Choose the Mobile App?",
-    "benefit1": "Learn anytime, anywhere",
-    "benefit2": "Offline learning support",
-    "benefit3": "Push notifications",
-    "benefit4": "Better speech recognition",
-    "ios": {
-      "name": "iOS App",
-      "description": "Download PollyTalk for iPhone and iPad",
-      "step1": "Open the App Store on your iOS device",
-      "step2": "Search for 'PollyTalk Language Learning'",
-      "step3": "Tap 'Get' to install the app",
-      "step4": "Open the app and start learning",
-      "buttonText": "Download on App Store",
-      "requirements": "Requires iOS 14.0 or later"
-    },
-    "android": {
-      "name": "Android App",
-      "description": "Download PollyTalk for Android devices",
-      "step1": "Open the Google Play Store",
-      "step2": "Search for 'PollyTalk Language Learning'",
-      "step3": "Tap 'Install'",
-      "step4": "Open the app and start learning",
-      "buttonText": "Get it on Google Play",
-      "requirements": "Requires Android 8.0 or later"
-    }
-  },
-  
   "privacyPage": {
     "title": "Privacy Policy",
     "lastUpdated": "Last updated: February 25, 2025",
@@ -364,9 +361,8 @@
       "dpo": "Data Protection Officer: dpo@zervice.us"
     }
   },
-
   "pricing": {
-    "title": "Affordable Language Practice",
+    "title": "Affordable Language Learning & Practicing",
     "subtitle": "Practice with PollyTalk at a fraction of human tutor costs",
     "mostPopular": "Most Popular",
     "earlyAdopter": "for early adopters (30% off)",
@@ -381,18 +377,18 @@
         "description": "Perfect for daily practice sessions",
         "features": {
           "feature1": "30 minutes of practice daily",
-          "feature2": "Only $3 per hour (compared to $20-50 for human tutors)",
+          "feature2": "Only $3 per hour (compared to $25-70 for human tutors)",
           "feature3": "Personalized learning path",
           "feature4": "Pronunciation feedback",
           "feature5": "Progress analytics",
-          "feature6": "7-day free trial (3.5 hours of practice)"
+          "feature6": "7-day free trial"
         },
         "cta": "Get Started"
       },
       "aggressive": {
         "name": "Aggressive",
-        "price": "$99",
-        "earlyPrice": "$69",
+        "price": "$129",
+        "earlyPrice": "$89",
         "period": "/month",
         "description": "Ideal for intensive language learners",
         "features": {
@@ -407,8 +403,8 @@
       },
       "unlimited": {
         "name": "Unlimited",
-        "price": "$199",
-        "earlyPrice": "$139",
+        "price": "$229",
+        "earlyPrice": "$159",
         "period": "/month",
         "description": "For the most dedicated language enthusiasts",
         "features": {
@@ -438,9 +434,9 @@
     },
     "faq": {
       "question1": "How does the 7-day free trial work?",
-      "answer1": "You can try the Regular plan for 7 days completely free, giving you access to 3.5 hours of language practice. No credit card required to start.",
+      "answer1": "You can try the Regular plan for 7 days completely free. No credit card required to start your language learning journey!",
       "question2": "How do your prices compare to human tutors?",
-      "answer2": "Human language tutors typically charge $20-50 per hour. PollyTalk provides the same practice benefits at just $2-3 per hour, making language learning more accessible.",
+      "answer2": "Human language tutors typically charge $25-70 per hour. PollyTalk provides the same practice benefits at just $2-3 per hour, making language learning more accessible.",
       "question3": "Can I change plans later?",
       "answer3": "Yes, you can upgrade or downgrade your plan at any time. Changes will take effect at the start of your next billing cycle.",
       "question4": "What payment methods do you accept?",
