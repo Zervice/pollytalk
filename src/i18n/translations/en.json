@@ -10,13 +10,14 @@
   },
   "home": {
     "hero": {
-      "tagline": "Talk like a local, learn like a parrot! Master languages through natural conversations."
+      "tagline": "Talk like a local, learn like a parrot! Language learning reimagined: Natural conversations, real-world scenarios, personalized to you."
     },
     "buttons": {
       "startLearning": "Start Learning",
       "tryDemo": "Try Demo",
       "downloadApp": "Download App"
     },
+
     "features": {
       "title": "Why Choose PollyTalk?",
       "naturalConversations": {
@@ -42,7 +43,7 @@
       "button": "Get Started for Free"
     }
   },
-  "blog": {
+  "blogPage": {
     "title": "PollyTalk Blog",
     "subtitle": "Insights and tips for better language learning",
     "contribute": "Want to contribute to our blog?",
@@ -92,7 +93,7 @@
       "requirements": "Requires Android 8.0 or later"
     }
   },
-  "terms": {
+  "termsContent": {
     "title": "Terms of Service",
     "introduction": {
       "title": "1. Introduction",
@@ -172,7 +173,7 @@
     },
     "lastUpdated": "Last updated: February 25, 2025"
   },
-  "privacy": {
+  "privacyContent": {
     "title": "Privacy Policy",
     "introduction": {
       "title": "1. Introduction",
@@ -221,7 +222,7 @@
     },
     "lastUpdated": "Last updated: February 25, 2025"
   },
-  "blog": {
+  "blogContent": {
     "title": "PollyTalk Blog",
     "subtitle": "Insights and tips for better language learning",
     "readTime": "min read",
@@ -273,7 +274,7 @@
     }
   },
   
-  "privacy": {
+  "privacyPage": {
     "title": "Privacy Policy",
     "lastUpdated": "Last updated: February 25, 2025",
     "introduction": {
@@ -365,47 +366,70 @@
   },
 
   "pricing": {
-    "title": "Simple, Transparent Pricing",
-    "subtitle": "Choose the plan that's right for your language learning journey",
+    "title": "Affordable Language Practice",
+    "subtitle": "Practice with PollyTalk at a fraction of human tutor costs",
     "mostPopular": "Most Popular",
+    "earlyAdopter": "for early adopters (30% off)",
+    "freeTrialBadge": "7-Day Free Trial",
     "faqTitle": "Frequently Asked Questions",
     "tiers": {
-      "basic": {
-        "name": "Basic",
-        "price": "Free",
-        "description": "Get started with essential language learning tools",
-        "features": {
-          "feature1": "5 AI conversation sessions per month",
-          "feature2": "Basic vocabulary exercises",
-          "feature3": "Progress tracking",
-          "feature4": "Access to community forums"
-        },
-        "cta": "Start Free"
-      },
-      "pro": {
-        "name": "Pro",
-        "price": "$9.9",
+      "regular": {
+        "name": "Regular",
+        "price": "$45",
+        "earlyPrice": "$30",
         "period": "/month",
-        "description": "Perfect for serious language learners",
+        "description": "Perfect for daily practice sessions",
         "features": {
-          "feature1": "Unlimited AI conversation sessions",
-          "feature2": "Advanced vocabulary and grammar exercises",
+          "feature1": "30 minutes of practice daily",
+          "feature2": "Only $3 per hour (compared to $20-50 for human tutors)",
           "feature3": "Personalized learning path",
           "feature4": "Pronunciation feedback",
-          "feature5": "Progress analytics and insights",
-          "feature6": "Priority support"
+          "feature5": "Progress analytics",
+          "feature6": "7-day free trial (3.5 hours of practice)"
         },
-        "cta": "Get Pro"
+        "cta": "Get Started"
       },
-      "team": {
-        "name": "Team",
-        "price": "Contact us",
-        "description": "Ideal for schools, businesses, and organizations",
+      "aggressive": {
+        "name": "Aggressive",
+        "price": "$99",
+        "earlyPrice": "$69",
+        "period": "/month",
+        "description": "Ideal for intensive language learners",
         "features": {
-          "feature1": "All Pro features included",
-          "feature2": "Centralized team management",
+          "feature1": "2 hours of practice daily",
+          "feature2": "Less than $2 per hour",
+          "feature3": "All Regular features included",
+          "feature4": "Advanced vocabulary and grammar exercises",
+          "feature5": "Priority support",
+          "feature6": "24/7 customer support"
+        },
+        "cta": "Get Started"
+      },
+      "unlimited": {
+        "name": "Unlimited",
+        "price": "$199",
+        "earlyPrice": "$139",
+        "period": "/month",
+        "description": "For the most dedicated language enthusiasts",
+        "features": {
+          "feature1": "Unlimited practice time",
+          "feature2": "All Aggressive features included",
+          "feature3": "Specialized vocabulary topics",
+          "feature4": "Advanced pronunciation analysis",
+          "feature5": "VIP support",
+          "feature6": "Dedicated learning consultant"
+        },
+        "cta": "Get Started"
+      },
+      "school": {
+        "name": "School/Organization",
+        "price": "Contact us",
+        "description": "Custom solutions for educational institutions and businesses",
+        "features": {
+          "feature1": "Custom pricing based on usage needs",
+          "feature2": "Centralized management dashboard",
           "feature3": "Custom learning materials",
-          "feature4": "Progress reports for administrators",
+          "feature4": "Detailed progress reports",
           "feature5": "Dedicated account manager",
           "feature6": "Volume discounts available"
         },
@@ -413,12 +437,14 @@
       }
     },
     "faq": {
-      "question1": "Can I change plans later?",
-      "answer1": "Yes, you can upgrade or downgrade your plan at any time. Changes will take effect at the start of your next billing cycle.",
-      "question2": "Is there a free trial for Pro?",
-      "answer2": "Yes, we offer a 7-day free trial of our Pro plan. No credit card required until you decide to continue.",
-      "question3": "What payment methods do you accept?",
-      "answer3": "We accept all major credit cards, PayPal, and Apple Pay for subscription payments."
+      "question1": "How does the 7-day free trial work?",
+      "answer1": "You can try the Regular plan for 7 days completely free, giving you access to 3.5 hours of language practice. No credit card required to start.",
+      "question2": "How do your prices compare to human tutors?",
+      "answer2": "Human language tutors typically charge $20-50 per hour. PollyTalk provides the same practice benefits at just $2-3 per hour, making language learning more accessible.",
+      "question3": "Can I change plans later?",
+      "answer3": "Yes, you can upgrade or downgrade your plan at any time. Changes will take effect at the start of your next billing cycle.",
+      "question4": "What payment methods do you accept?",
+      "answer4": "We accept all major credit cards, PayPal, and Apple Pay for subscription payments."
     }
   },
   "footer": {

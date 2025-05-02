@@ -10,7 +10,7 @@
   },
   "home": {
     "hero": {
-      "tagline": "像当地人一样交谈，像鹦鹉一样学习！通过自然对话掌握语言。"
+      "tagline": "与博语一起学习，像当地人一样交谈！语言学习重新想象：自然对话，真实场景，为你量身定制。"
     },
     "buttons": {
       "startLearning": "开始学习",
@@ -21,11 +21,11 @@
       "title": "为什么选择博语通 (PollyTalk)？",
       "naturalConversations": {
         "title": "自然对话",
-        "description": "与我们的 AI 语言伙伴练习真实世界的对话"
+        "description": "与我们的AI语言伙伴练习真实世界对话"
       },
       "multipleLanguages": {
         "title": "多种语言",
-        "description": "与母语为 AI 的导师学习任何语言"
+        "description": "通过母语AI导师学习任何语言"
       },
       "personalizedLearning": {
         "title": "个性化学习",
@@ -37,13 +37,13 @@
       }
     },
     "cta": {
-      "title": "准备开始您的语言之旅？",
-      "description": "加入已经通过聊天方式流利掌握语言的数千名学习者。",
+      "title": "准备好开始您的语言之旅了吗？",
+      "description": "加入已经通过聊天达到流利程度的数千名学习者。",
       "button": "免费开始"
     }
   },
-  "blog": {
-    "title": "博语通 (PollyTalk) 博客",
+  "blogPage": {
+    "title": "博语通博客",
     "subtitle": "语言学习的见解和技巧",
     "contribute": "想为我们的博客做贡献？",
     "contactUs": "联系我们",
@@ -52,17 +52,17 @@
   },
   "download": {
     "title": "下载博语通 (PollyTalk)",
-    "subtitle": "在您的移动设备上开始您的语言学习之旅",
+    "subtitle": "在您的移动设备上开始语言学习之旅",
     "installationSteps": "安装步骤",
-    "directDownload": "直接下载 APK",
+    "directDownload": "直接下载APK",
     "scanQrCode": "用您的安卓设备扫描此二维码直接下载我们的应用",
     "downloadInstructions": "下载说明：",
     "step1": "用手机相机扫描二维码",
     "step2": "点击出现的链接",
     "step3": "如果提示，允许从未知来源安装",
     "step4": "安装并享受博语通 (PollyTalk)！",
-    "downloadApk": "直接下载 APK",
-    "apkFileSize": "APK 文件大小：约 25MB • 需要 Android 8.0 以上",
+    "downloadApk": "直接下载APK",
+    "apkFileSize": "APK文件大小：约50MB • 需要Android 8.0或更高版本",
     "needHelp": "需要帮助？",
     "troubleDownloading": "如果您在下载或安装应用时遇到问题，",
     "contactSupport": "联系我们的支持团队",
@@ -72,111 +72,111 @@
     "benefit3": "推送通知",
     "benefit4": "更好的语音识别",
     "ios": {
-      "name": "iOS 应用",
-      "description": "为 iPhone 和 iPad 下载博语通 (PollyTalk)",
-      "step1": "在您的 iOS 设备上打开 App Store",
-      "step2": "搜索 '博语通语言学习'",
-      "step3": "点击 '获取' 安装应用",
+      "name": "iOS应用",
+      "description": "为iPhone和iPad下载博语通 (PollyTalk)",
+      "step1": "在您的iOS设备上打开App Store",
+      "step2": "搜索'博语通语言学习'",
+      "step3": "点击'获取'安装应用",
       "step4": "打开应用并开始学习",
-      "buttonText": "在 App Store 上下载",
-      "requirements": "需要 iOS 14.0 或更高版本"
+      "buttonText": "在App Store上下载",
+      "requirements": "需要iOS 14.0或更高版本"
     },
     "android": {
-      "name": "Android 应用",
-      "description": "为 Android 设备下载博语通 (PollyTalk)",
-      "step1": "打开 Google Play 商店",
-      "step2": "搜索 '博语通语言学习'",
-      "step3": "点击 '安装'",
+      "name": "Android应用",
+      "description": "为Android设备下载博语通 (PollyTalk)",
+      "step1": "打开Google Play商店",
+      "step2": "搜索'博语通语言学习'",
+      "step3": "点击'安装'",
       "step4": "打开应用并开始学习",
-      "buttonText": "在 Google Play 上获取",
-      "requirements": "需要 Android 8.0 或更高版本"
+      "buttonText": "在Google Play上获取",
+      "requirements": "需要Android 8.0或更高版本"
     }
   },
-"terms": {
-  "title": "服务条款",
-  "introduction": {
-    "title": "1. 引言",
-    "content": "欢迎使用博语通 (PollyTalk)（以下简称\"我们\"）。通过访问或使用我们的语言学习平台，您同意受这些服务条款的约束。请在使用我们的服务之前仔细阅读这些条款。"
+  "termsContent": {
+    "title": "服务条款",
+    "introduction": {
+      "title": "1. 引言",
+      "content": "欢迎使用博语通 (PollyTalk)（以下简称\"我们\"）。通过访问或使用我们的语言学习平台，您同意受这些服务条款的约束。请在使用我们的服务之前仔细阅读这些条款。"
+    },
+    "serviceDescription": {
+      "title": "2. 服务描述",
+      "content": "博语通 (PollyTalk) 提供一个人工智能驱动的语言学习平台，使用户能够练习对话并提高他们的语言技能。我们的服务包括但不限于：",
+      "item1": "互动语言学习课程",
+      "item2": "AI对话伙伴",
+      "item3": "进度跟踪和评估",
+      "item4": "教育内容和资源"
+    },
+    "userAccounts": {
+      "title": "3. 用户账户",
+      "content": "要访问我们平台的某些功能，您必须创建一个账户。您同意：",
+      "item1": "提供准确和完整的信息",
+      "item2": "维护您的账户凭证的安全性",
+      "item3": "及时更新您的信息变更",
+      "item4": "对您账户下的所有活动负责"
+    },
+    "userConduct": {
+      "title": "4. 用户行为",
+      "content": "使用我们的服务时，您同意不会：",
+      "item1": "违反任何适用的法律或法规",
+      "item2": "侵犯知识产权",
+      "item3": "分享不适当或冒犯性内容",
+      "item4": "尝试破坏或损害我们的系统",
+      "item5": "将我们的服务用于未经授权的商业目的"
+    },
+    "intellectualProperty": {
+      "title": "5. 知识产权",
+      "content": "通过我们的服务提供的所有内容和材料均受知识产权保护。您不得：",
+      "item1": "未经许可复制或复制我们的内容",
+      "item2": "修改或创建衍生作品",
+      "item3": "分发或公开展示我们的内容",
+      "item4": "移除任何版权或专有通知"
+    },
+    "paymentTerms": {
+      "title": "6. 支付条款",
+      "content": "对于高级功能和订阅：",
+      "item1": "付款通过我们的支付提供商安全处理",
+      "item2": "订阅自动续订，除非取消",
+      "item3": "退款根据我们的退款政策提供",
+      "item4": "价格可能会变更，并会通知用户"
+    },
+    "termination": {
+      "title": "7. 终止",
+      "content": "我们保留以下权利：",
+      "item1": "因违规行为暂停或终止账户",
+      "item2": "修改或停止服务并发出通知",
+      "item3": "删除违反这些条款的内容"
+    },
+    "disclaimer": {
+      "title": "8. 免责声明",
+      "content": "我们的服务按\"原样\"提供，不提供任何明示或暗示的保证。我们不保证：",
+      "item1": "服务将不间断或无错误",
+      "item2": "将达到特定的语言学习成果",
+      "item3": "内容将准确或完整"
+    },
+    "liability": {
+      "title": "9. 责任限制",
+      "content": "在法律允许的最大范围内，我们不对因您使用我们的服务而产生的任何间接、偶然、特殊、后果性或惩罚性损害负责。"
+    },
+    "changes": {
+      "title": "10. 条款变更",
+      "content": "我们可能随时修改这些条款。我们将通过以下方式通知用户重大变更：",
+      "item1": "电子邮件通知",
+      "item2": "平台公告",
+      "item3": "网站更新"
+    },
+    "contact": {
+      "title": "11. 联系信息",
+      "content": "如有关于这些条款的问题，请通过以下方式联系我们：",
+      "email": "电子邮件：support@zervice.us",
+      "address": "地址：[您的业务地址]"
+    },
+    "lastUpdated": "最后更新：2025年2月25日"
   },
-  "serviceDescription": {
-    "title": "2. 服务描述",
-    "content": "博语通 (PollyTalk) 提供一个人工智能驱动的语言学习平台，使用户能够练习对话并提高他们的语言技能。我们的服务包括但不限于：",
-    "item1": "互动语言学习课程",
-    "item2": "AI 对话伙伴",
-    "item3": "进度跟踪和评估",
-    "item4": "教育内容和资源"
-  },
-  "userAccounts": {
-    "title": "3. 用户账户",
-    "content": "要访问我们平台的某些功能，您必须创建一个账户。您同意：",
-    "item1": "提供准确和完整的信息",
-    "item2": "维护您的账户凭证的安全性",
-    "item3": "及时更新您的信息变更",
-    "item4": "对您账户下的所有活动负责"
-  },
-  "userConduct": {
-    "title": "4. 用户行为",
-    "content": "使用我们的服务时，您同意不会：",
-    "item1": "违反任何适用的法律或法规",
-    "item2": "侵犯知识产权",
-    "item3": "分享不适当或冒犯性内容",
-    "item4": "尝试破坏或损害我们的系统",
-    "item5": "将我们的服务用于未经授权的商业目的"
-  },
-  "intellectualProperty": {
-    "title": "5. 知识产权",
-    "content": "通过我们的服务提供的所有内容和材料均受知识产权保护。您不得：",
-    "item1": "未经许可复制或复制我们的内容",
-    "item2": "修改或创建衍生作品",
-    "item3": "分发或公开展示我们的内容",
-    "item4": "移除任何版权或专有通知"
-  },
-  "paymentTerms": {
-    "title": "6. 支付条款",
-    "content": "对于高级功能和订阅：",
-    "item1": "付款通过我们的支付提供商安全处理",
-    "item2": "订阅自动续订，除非取消",
-    "item3": "退款根据我们的退款政策提供",
-    "item4": "价格可能会变更，并会通知用户"
-  },
-  "termination": {
-    "title": "7. 终止",
-    "content": "我们保留以下权利：",
-    "item1": "因违规行为暂停或终止账户",
-    "item2": "修改或停止服务并发出通知",
-    "item3": "删除违反这些条款的内容"
-  },
-  "disclaimer": {
-    "title": "8. 免责声明",
-    "content": "我们的服务按\"原样\"提供，不提供任何明示或暗示的保证。我们不保证：",
-    "item1": "服务将不间断或无错误",
-    "item2": "将达到特定的语言学习成果",
-    "item3": "内容将准确或完整"
-  },
-  "liability": {
-    "title": "9. 责任限制",
-    "content": "在法律允许的最大范围内，我们不对因您使用我们的服务而产生的任何间接、偶然、特殊、后果性或惩罚性损害负责。"
-  },
-  "changes": {
-    "title": "10. 条款变更",
-    "content": "我们可能随时修改这些条款。我们将通过以下方式通知用户重大变更：",
-    "item1": "电子邮件通知",
-    "item2": "平台公告",
-    "item3": "网站更新"
-  },
-  "contact": {
-    "title": "11. 联系信息",
-    "content": "如有关于这些条款的问题，请通过以下方式联系我们：",
-    "email": "电子邮件：support@zervice.us",
-    "address": "地址：[您的业务地址]"
-  },
-  "lastUpdated": "最后更新：2025年2月25日"
-},
-  "privacy": {
+  "privacyContent": {
     "title": "隐私政策",
     "introduction": {
       "title": "1. 引言",
-      "content": "在博语通 (PollyTalk)，我们非常重视您的隐私。本隐私政策解释了我们在您使用我们的语言学习平台时如何收集、使用、披露和保护您的信息。请仔细阅读本政策以了解我们的做法。"
+      "content": "在博语通，我们非常重视您的隐私。本隐私政策解释了我们在您使用我们的语言学习平台时如何收集、使用、披露和保护您的信息。请仔细阅读本政策以了解我们的做法。"
     },
     "infoCollect": {
       "title": "2. 我们收集的信息",
@@ -200,12 +200,12 @@
       "intro": "您有权："
     },
     "cookies": {
-      "title": "7. Cookie 和跟踪",
-      "intro": "我们使用 cookie 和类似技术来："
+      "title": "7. Cookie和跟踪",
+      "intro": "我们使用cookie和类似技术来："
     },
     "children": {
       "title": "8. 儿童隐私",
-      "content": "我们的服务不适用于 13 岁以下的儿童。我们不会故意收集 13 岁以下儿童的信息。如果您认为我们收集了 13 岁以下儿童的信息，请立即联系我们。"
+      "content": "我们的服务不适用于13岁以下的儿童。我们不会故意收集13岁以下儿童的信息。如果您认为我们收集了13岁以下儿童的信息，请立即联系我们。"
     },
     "international": {
       "title": "9. 国际数据传输",
@@ -221,64 +221,20 @@
     },
     "lastUpdated": "最后更新：2025年2月25日"
   },
-  "blog": {
-    "title": "博语通 (PollyTalk) 博客",
+  "blogContent": {
+    "title": "博语通博客",
     "subtitle": "语言学习的见解和技巧",
     "readTime": "分钟阅读",
     "viewArticle": "查看文章",
     "contribute": "想为我们的博客做贡献？",
     "contactUs": "联系我们"
   },
-  
-  "download": {
-    "title": "下载博语通 (PollyTalk)",
-    "subtitle": "在您的移动设备上开始语言学习之旅",
-    "installationSteps": "安装步骤",
-    "directDownload": "直接下载 APK",
-    "scanQrCode": "用您的安卓设备扫描此二维码直接下载我们的应用",
-    "downloadInstructions": "下载说明：",
-    "step1": "用手机相机扫描二维码",
-    "step2": "点击出现的链接",
-    "step3": "如果提示，允许从未知来源安装",
-    "step4": "安装并享受博语通 (PollyTalk)！",
-    "downloadApk": "直接下载 APK",
-    "apkFileSize": "APK 文件大小：约 25MB • 需要 Android 8.0 或更高版本",
-    "needHelp": "需要帮助？",
-    "troubleDownloading": "如果您在下载或安装应用时遇到问题，",
-    "contactSupport": "联系我们的支持团队",
-    "whyMobile": "为什么选择移动应用？",
-    "benefit1": "随时随地学习",
-    "benefit2": "离线学习支持",
-    "benefit3": "推送通知",
-    "benefit4": "更好的语音识别",
-    "ios": {
-      "name": "iOS 应用",
-      "description": "为 iPhone 和 iPad 下载博语通 (PollyTalk)",
-      "step1": "在您的 iOS 设备上打开 App Store",
-      "step2": "搜索 '博语通语言学习'",
-      "step3": "点击 '获取' 安装应用",
-      "step4": "打开应用并开始学习",
-      "buttonText": "在 App Store 上下载",
-      "requirements": "需要 iOS 14.0 或更高版本"
-    },
-    "android": {
-      "name": "Android 应用",
-      "description": "为 Android 设备下载博语通 (PollyTalk)",
-      "step1": "打开 Google Play 商店",
-      "step2": "搜索 '博语通语言学习'",
-      "step3": "点击 '安装'",
-      "step4": "打开应用并开始学习",
-      "buttonText": "在 Google Play 上获取",
-      "requirements": "需要 Android 8.0 或更高版本"
-    }
-  },
-  
-  "privacy": {
+  "privacyPage": {
     "title": "隐私政策",
     "lastUpdated": "最后更新：2025年2月25日",
     "introduction": {
       "title": "1. 简介",
-      "content": "在博语通 (PollyTalk)，我们非常重视您的隐私。本隐私政策解释了我们如何在您使用我们的语言学习平台时收集、使用、披露和保护您的信息。请仔细阅读本政策以了解我们的做法。"
+      "content": "在博语通，我们非常重视您的隐私。本隐私政策解释了我们如何在您使用我们的语言学习平台时收集、使用、披露和保护您的信息。请仔细阅读本政策以了解我们的做法。"
     },
     "infoCollect": {
       "title": "2. 我们收集的信息",
@@ -291,7 +247,7 @@
       "usageTitle": "2.2 使用数据",
       "usage1": "学习活动和进度",
       "usage2": "设备和浏览器信息",
-      "usage3": "IP 地址和位置数据",
+      "usage3": "IP地址和位置数据",
       "usage4": "使用模式和偏好"
     },
     "useInfo": {
@@ -321,17 +277,17 @@
       "measure4": "安全的数据存储和传输"
     },
     "rights": {
-      "title": "6. 您的隐私权",
-      "intro": "您有权",
-      "right1": "访问您的个人信息",
+      "title": "6. 您的权利",
+      "intro": "根据适用的隐私法律，您可能有权",
+      "right1": "访问您的个人数据",
       "right2": "更正不准确的数据",
-      "right3": "请求删除数据",
-      "right4": "选择退出营销通信",
+      "right3": "删除您的数据",
+      "right4": "限制或反对处理",
       "right5": "数据可携带性"
     },
     "cookies": {
-      "title": "7. Cookie 和跟踪",
-      "intro": "我们使用 cookie 和类似技术来",
+      "title": "7. Cookie和跟踪技术",
+      "intro": "我们使用cookie和类似技术来",
       "use1": "记住您的偏好",
       "use2": "分析使用模式",
       "use3": "提供个性化内容",
@@ -339,86 +295,28 @@
     },
     "children": {
       "title": "8. 儿童隐私",
-      "content": "我们的服务不适用于 13 岁以下的儿童。我们不会故意收集 13 岁以下儿童的信息。如果您认为我们已收集了 13 岁以下儿童的信息，请立即联系我们。"
+      "content": "我们的服务不适用于13岁以下的儿童。我们不会故意收集13岁以下儿童的信息。如果您认为我们收集了13岁以下儿童的信息，请立即联系我们。"
     },
     "international": {
-      "title": "9. 国际数据传输",
-      "content": "您的信息可能会在您所在国家/地区以外的国家/地区传输和处理。我们确保为此类传输提供适当的保障措施，包括",
+      "title": "10. 国际数据传输",
+      "content": "您的信息可能会传输到您所在国家/地区以外的服务器。通过使用我们的服务，您同意此类传输。",
       "safeguard1": "标准合同条款",
       "safeguard2": "数据保护协议",
-      "safeguard3": "遵守国际隐私法"
+      "safeguard3": "遵守国际隐私法律"
     },
     "changes": {
-      "title": "10. 隐私政策变更",
-      "content": "我们可能会定期更新本隐私政策。我们将通过以下方式通知您重大变更",
+      "title": "11. 政策变更",
+      "content": "我们可能会更新本隐私政策。我们将在我们的网站上发布任何变更，并在重大变更时通知您。",
       "notification1": "电子邮件通知",
       "notification2": "平台公告",
       "notification3": "网站更新"
     },
     "contact": {
-      "title": "11. 联系我们",
-      "content": "如有隐私相关问题或疑虑，请通过以下方式联系我们",
-      "email": "电子邮件：privacy@zervice.us",
-      "address": "地址：[您的业务地址]",
-      "dpo": "数据保护官：dpo@zervice.us"
-    }
-  },
-
-  "pricing": {
-    "title": "简单透明的价格",
-    "subtitle": "选择适合您语言学习之旅的计划",
-    "mostPopular": "最受欢迎",
-    "faqTitle": "常见问题",
-    "tiers": {
-      "basic": {
-        "name": "基础版",
-        "price": "免费",
-        "description": "从基本语言学习工具开始",
-        "features": {
-          "feature1": "每月5次AI对话课程",
-          "feature2": "基础词汇练习",
-          "feature3": "进度跟踪",
-          "feature4": "社区论坛访问权限"
-        },
-        "cta": "免费开始"
-      },
-      "pro": {
-        "name": "专业版",
-        "price": "¥69",
-        "period": "/月",
-        "description": "适合认真的语言学习者",
-        "features": {
-          "feature1": "无限AI对话课程",
-          "feature2": "高级词汇和语法练习",
-          "feature3": "个性化学习路径",
-          "feature4": "发音反馈",
-          "feature5": "进度分析和洞察",
-          "feature6": "优先支持"
-        },
-        "cta": "获取专业版"
-      },
-      "team": {
-        "name": "团队版",
-        "price": "联系我们",
-        "description": "适合学校、企业和组织",
-        "features": {
-          "feature1": "包含所有专业版功能",
-          "feature2": "集中团队管理",
-          "feature3": "定制学习材料",
-          "feature4": "管理员进度报告",
-          "feature5": "专属客户经理",
-          "feature6": "提供批量折扣"
-        },
-        "cta": "联系销售"
-      }
-    },
-    "faq": {
-      "question1": "我可以稍后更改计划吗？",
-      "answer1": "是的，您可以随时升级或降级您的计划。更改将在下一个计费周期开始时生效。",
-      "question2": "专业版有免费试用吗？",
-      "answer2": "是的，我们提供7天的专业版免费试用。在您决定继续之前无需信用卡。",
-      "question3": "您接受哪些支付方式？",
-      "answer3": "我们接受所有主要信用卡、支付宝、微信支付和Apple Pay进行订阅付款。"
+      "title": "12. 联系我们",
+      "content": "如有关于我们隐私政策的问题或疑虑，请联系我们",
+      "email": "privacy@zervice.us",
+      "dpo": "数据保护官：dpo@zervice.us",
+      "address": "地址：[您的业务地址]"
     }
   },
   "footer": {
@@ -428,5 +326,87 @@
     "contact": "联系我们",
     "terms": "条款",
     "privacy": "隐私"
+  },
+  "pricing": {
+    "title": "经济实惠的语言练习",
+    "subtitle": "以人类导师成本的一小部分与博语通练习",
+    "mostPopular": "最受欢迎",
+    "earlyAdopter": "早期用户价格（7折优惠）",
+    "freeTrialBadge": "7天免费试用",
+    "faqTitle": "常见问题",
+    "tiers": {
+      "regular": {
+        "name": "标准版",
+        "price": "¥299",
+        "earlyPrice": "¥199",
+        "period": "/月",
+        "description": "适合日常练习课程",
+        "features": {
+          "feature1": "每天30分钟练习时间",
+          "feature2": "仅需¥20/小时（相比人类导师¥140-350/小时）",
+          "feature3": "个性化学习路径",
+          "feature4": "发音反馈",
+          "feature5": "进度分析",
+          "feature6": "7天免费试用（3.5小时练习）"
+        },
+        "cta": "开始免费试用"
+      },
+      "aggressive": {
+        "name": "强化版",
+        "price": "¥699",
+        "earlyPrice": "¥499",
+        "period": "/月",
+        "description": "适合密集型语言学习者",
+        "features": {
+          "feature1": "每天2小时练习时间",
+          "feature2": "低至¥11/小时",
+          "feature3": "包含所有标准版功能",
+          "feature4": "高级词汇和语法练习",
+          "feature5": "优先支持",
+          "feature6": "全天候客服支持"
+        },
+        "cta": "立即购买"
+      },
+      "unlimited": {
+        "name": "无限版",
+        "price": "¥1399",
+        "earlyPrice": "¥999",
+        "period": "/月",
+        "description": "为最专注的语言爱好者设计",
+        "features": {
+          "feature1": "无限制练习时间",
+          "feature2": "包含所有强化版功能",
+          "feature3": "专业词汇主题",
+          "feature4": "高级发音分析",
+          "feature5": "VIP支持",
+          "feature6": "专属学习顾问"
+        },
+        "cta": "立即购买"
+      },
+      "school": {
+        "name": "学校/机构版",
+        "price": "联系我们",
+        "description": "为教育机构和企业提供定制解决方案",
+        "features": {
+          "feature1": "根据使用需求定制价格",
+          "feature2": "集中管理控制面板",
+          "feature3": "定制学习材料",
+          "feature4": "详细进度报告",
+          "feature5": "专属客户经理",
+          "feature6": "提供批量折扣"
+        },
+        "cta": "联系销售"
+      }
+    },
+    "faq": {
+      "question1": "7天免费试用如何运作？",
+      "answer1": "您可以完全免费试用标准版计划7天，获得3.5小时的语言练习时间。开始试用无需信用卡。",
+      "question2": "您的价格与人类导师相比如何？",
+      "answer2": "人类语言导师通常收费¥140-350每小时。博语通以仅¥11-20每小时的价格提供相同的练习效果，使语言学习更加经济实惠。",
+      "question3": "我可以稍后更改计划吗？",
+      "answer3": "是的，您可以随时升级或降级您的计划。更改将在下一个计费周期开始时生效。",
+      "question4": "您接受哪些支付方式？",
+      "answer4": "我们接受所有主要信用卡、支付宝、微信支付和Apple Pay进行订阅付款。"
+    }
   }
 }
