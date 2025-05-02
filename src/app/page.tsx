@@ -121,7 +121,7 @@ export default function Home() {
         setUserInputValue("");
         setUserTyping(false);
         setIsTyping(false);
-      }, 15000); // Wait 8 seconds before restarting
+      }, 15000); // Wait 15 seconds before restarting
     }
     
     // Cleanup function to clear any timers
@@ -188,12 +188,12 @@ export default function Home() {
                 >
                   <p className="mb-4 text-2xl font-bold text-primary">
                     {locale === 'zh' ? 
-                      "与博语一起学习，像当地人一样交谈！" : 
-                      "Learn with Polly, Talk like a local!"}
+                      "使用博语通，像说母语一样流利使用新语言！" :
+                      "Learn with PollyTalk, speak like a native!"}
                   </p>
                   <p className="text-zinc-600 dark:text-zinc-300">
                     {locale === 'zh' ? 
-                      "语言学习重新想象：自然对话，真实场景，为你量身定制。" : 
+                      "语言学习新境界：自然对话，真实场景，为你量身定制。" :
                       "Language learning reimagined: Natural conversations, real-world scenarios, personalized to you."}
                   </p>
                 </motion.div>
