@@ -134,7 +134,16 @@
       "requirements": "Requires Android 8.0 or later"
     }
   },
-  "termsContent": {
+  "blog": {
+    "title": "PollyTalk Language Learning Blog",
+    "subtitle": "Insights, tips, and research to help you master languages faster",
+    "readMore": "Read More",
+    "category": "Category",
+    "author": "Author",
+    "date": "Date",
+    "readTime": "Read Time"
+  },
+  "termsPage": {
     "title": "Terms of Service",
     "introduction": {
       "title": "1. Introduction",

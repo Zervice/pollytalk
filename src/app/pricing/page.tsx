@@ -131,7 +131,7 @@ export default function PricingPage() {
                   <div className="flex flex-col items-center">
                     {tier.earlyPrice ? (
                       <>
-                        <div className="flex flex-col items-center gap-1">
+                        <div className="flex items-baseline gap-2">
                           <span className="text-3xl md:text-4xl font-bold text-red-700 line-through opacity-80">
                             {tier.price}
                           </span>

@@ -14,134 +14,146 @@ export default function TermsPage() {
     >
       <div className="container px-4 md:px-6">
         <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-8">
-          {t('terms.title')}
+          {t('termsPage.title')}
         </h1>
+        <p className="text-muted-foreground mb-8">
+          {t('termsPage.lastUpdated')}
+        </p>
         
         <div className="prose dark:prose-invert max-w-none">
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">{t('terms.introduction.title')}</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('termsPage.introduction.title')}</h2>
             <p>
-              {t('terms.introduction.content')}
+              {t('termsPage.introduction.content')}
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">{t('terms.serviceDescription.title')}</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('termsPage.serviceDescription.title')}</h2>
             <p>
-              {t('terms.serviceDescription.content')}
+              {t('termsPage.serviceDescription.content')}
             </p>
             <ul className="list-disc pl-6 mt-2">
-              <li>{t('terms.serviceDescription.item1')}</li>
-              <li>{t('terms.serviceDescription.item2')}</li>
-              <li>{t('terms.serviceDescription.item3')}</li>
-              <li>{t('terms.serviceDescription.item4')}</li>
+              <li>{t('termsPage.serviceDescription.item1')}</li>
+              <li>{t('termsPage.serviceDescription.item2')}</li>
+              <li>{t('termsPage.serviceDescription.item3')}</li>
+              <li>{t('termsPage.serviceDescription.item4')}</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">{t('terms.userAccounts.title')}</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('termsPage.userAccounts.title')}</h2>
             <p>
-              {t('terms.userAccounts.content')}
+              {t('termsPage.userAccounts.content')}
             </p>
             <ul className="list-disc pl-6 mt-2">
-              <li>{t('terms.userAccounts.item1')}</li>
-              <li>{t('terms.userAccounts.item2')}</li>
-              <li>{t('terms.userAccounts.item3')}</li>
-              <li>{t('terms.userAccounts.item4')}</li>
+              <li>{t('termsPage.userAccounts.item1')}</li>
+              <li>{t('termsPage.userAccounts.item2')}</li>
+              <li>{t('termsPage.userAccounts.item3')}</li>
+              <li>{t('termsPage.userAccounts.item4')}</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">{t('terms.userConduct.title')}</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('termsPage.userConduct.title')}</h2>
             <p>
-              {t('terms.userConduct.content')}
+              {t('termsPage.userConduct.content')}
             </p>
             <ul className="list-disc pl-6 mt-2">
-              <li>{t('terms.userConduct.item1')}</li>
-              <li>{t('terms.userConduct.item2')}</li>
-              <li>{t('terms.userConduct.item3')}</li>
-              <li>{t('terms.userConduct.item4')}</li>
-              <li>{t('terms.userConduct.item5')}</li>
+              <li>{t('termsPage.userConduct.item1')}</li>
+              <li>{t('termsPage.userConduct.item2')}</li>
+              <li>{t('termsPage.userConduct.item3')}</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">{t('terms.intellectualProperty.title')}</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('termsPage.payments.title')}</h2>
             <p>
-              {t('terms.intellectualProperty.content')}
+              {t('termsPage.payments.content')}
             </p>
             <ul className="list-disc pl-6 mt-2">
-              <li>{t('terms.intellectualProperty.item1')}</li>
-              <li>{t('terms.intellectualProperty.item2')}</li>
-              <li>{t('terms.intellectualProperty.item3')}</li>
-              <li>{t('terms.intellectualProperty.item4')}</li>
+              <li>{t('termsPage.payments.item1')}</li>
+              <li>{t('termsPage.payments.item2')}</li>
+              <li>{t('termsPage.payments.item3')}</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">{t('terms.paymentTerms.title')}</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('termsPage.intellectualProperty.title')}</h2>
             <p>
-              {t('terms.paymentTerms.content')}
+              {t('termsPage.intellectualProperty.content')}
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">{t('termsPage.userContent.title')}</h2>
+            <p>
+              {t('termsPage.userContent.content')}
             </p>
             <ul className="list-disc pl-6 mt-2">
-              <li>{t('terms.paymentTerms.item1')}</li>
-              <li>{t('terms.paymentTerms.item2')}</li>
-              <li>{t('terms.paymentTerms.item3')}</li>
-              <li>{t('terms.paymentTerms.item4')}</li>
+              <li>{t('termsPage.userContent.item1')}</li>
+              <li>{t('termsPage.userContent.item2')}</li>
+              <li>{t('termsPage.userContent.item3')}</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">{t('terms.termination.title')}</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('termsPage.prohibitedActivities.title')}</h2>
             <p>
-              {t('terms.termination.content')}
+              {t('termsPage.prohibitedActivities.content')}
             </p>
             <ul className="list-disc pl-6 mt-2">
-              <li>{t('terms.termination.item1')}</li>
-              <li>{t('terms.termination.item2')}</li>
-              <li>{t('terms.termination.item3')}</li>
+              <li>{t('termsPage.prohibitedActivities.item1')}</li>
+              <li>{t('termsPage.prohibitedActivities.item2')}</li>
+              <li>{t('termsPage.prohibitedActivities.item3')}</li>
+              <li>{t('termsPage.prohibitedActivities.item4')}</li>
+              <li>{t('termsPage.prohibitedActivities.item5')}</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">{t('terms.disclaimer.title')}</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('termsPage.termination.title')}</h2>
             <p>
-              {t('terms.disclaimer.content')}
-            </p>
-            <ul className="list-disc pl-6 mt-2">
-              <li>{t('terms.disclaimer.item1')}</li>
-              <li>{t('terms.disclaimer.item2')}</li>
-              <li>{t('terms.disclaimer.item3')}</li>
-            </ul>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">{t('terms.liability.title')}</h2>
-            <p>
-              {t('terms.liability.content')}
+              {t('termsPage.termination.content')}
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">{t('terms.changes.title')}</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('termsPage.disclaimer.title')}</h2>
             <p>
-              {t('terms.changes.content')}
+              {t('termsPage.disclaimer.content')}
             </p>
-            <ul className="list-disc pl-6 mt-2">
-              <li>{t('terms.changes.item1')}</li>
-              <li>{t('terms.changes.item2')}</li>
-              <li>{t('terms.changes.item3')}</li>
-            </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">{t('terms.contact.title')}</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t('termsPage.limitationOfLiability.title')}</h2>
             <p>
-              {t('terms.contact.content')}
+              {t('termsPage.limitationOfLiability.content')}
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">{t('termsPage.changes.title')}</h2>
+            <p>
+              {t('termsPage.changes.content')}
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">{t('termsPage.governingLaw.title')}</h2>
+            <p>
+              {t('termsPage.governingLaw.content')}
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">{t('termsPage.contact.title')}</h2>
+            <p>
+              {t('termsPage.contact.content')}
             </p>
             <ul className="list-none pl-6 mt-2">
-              <li>{t('terms.contact.email')}</li>
-              <li>{t('terms.contact.address')}</li>
+              <li>{t('termsPage.contact.email')}</li>
+              <li>{t('termsPage.contact.address')}</li>
             </ul>
           </section>
 

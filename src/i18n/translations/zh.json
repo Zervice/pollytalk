@@ -134,7 +134,16 @@
       "requirements": "需要Android 8.0或更高版本"
     }
   },
-  "termsContent": {
+  "blog": {
+    "title": "博语通（PollyTalk）语言学习博客",
+    "subtitle": "帮助您更快掌握语言的见解、技巧和研究",
+    "readMore": "阅读更多",
+    "category": "分类",
+    "author": "作者",
+    "date": "日期",
+    "readTime": "阅读时间"
+  },
+  "termsPage": {
     "title": "服务条款",
     "introduction": {
       "title": "1. 引言",
