@@ -159,7 +159,7 @@ export default function TermsPage() {
 
           <section className="mt-12">
             <p className="text-sm text-muted-foreground">
-              {t('terms.lastUpdated')}
+              {t('termsPage.lastUpdated')}
             </p>
           </section>
         </div>

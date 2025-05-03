@@ -145,6 +145,7 @@
   },
   "termsPage": {
     "title": "Terms of Service",
+    "lastUpdated": "Last updated: February 25, 2025",
     "introduction": {
       "title": "1. Introduction",
       "content": "Welcome to PollyTalk (\"we\", \"our\", or \"us\"). By accessing or using our language learning platform, you agree to be bound by these Terms of Service (\"Terms\"). Please read these Terms carefully before using our services."
@@ -174,21 +175,36 @@
       "item4": "Attempt to disrupt or compromise our systems",
       "item5": "Use our services for unauthorized commercial purposes"
     },
+    "userContent": {
+      "title": "7. User Content",
+      "content": "By submitting content to our platform, you grant us a non-exclusive, worldwide, royalty-free license to use, reproduce, modify, and display your content for the purpose of providing our services.",
+      "item1": "You retain all ownership rights to your content.",
+      "item2": "You are solely responsible for the content you submit.",
+      "item3": "We reserve the right to remove any content that violates these Terms or is otherwise objectionable."
+    },
+    "prohibitedActivities": {
+      "title": "8. Prohibited Activities",
+      "content": "When using our services, you agree not to engage in any of the following prohibited activities:",
+      "item1": "Violating any applicable laws or regulations.",
+      "item2": "Infringing upon the intellectual property rights of others.",
+      "item3": "Attempting to gain unauthorized access to our systems or user accounts.",
+      "item4": "Using our services to transmit malware or other harmful code.",
+      "item5": "Engaging in any activity that disrupts or interferes with our services."
+    },
     "intellectualProperty": {
-      "title": "5. Intellectual Property",
-      "content": "All content and materials available through our services are protected by intellectual property rights. You may not:",
+      "title": "6. Intellectual Property",
+      "content": "All content and materials available through our services, including but not limited to text, graphics, logos, icons, images, audio clips, and software, are the property of PollyTalk or its licensors and are protected by copyright, trademark, and other intellectual property laws.",
       "item1": "Copy or reproduce our content without permission",
       "item2": "Modify or create derivative works",
       "item3": "Distribute or publicly display our content",
       "item4": "Remove any copyright or proprietary notices"
     },
-    "paymentTerms": {
-      "title": "6. Payment Terms",
-      "content": "For premium features and subscriptions:",
-      "item1": "Payments are processed securely through our payment providers",
-      "item2": "Subscriptions auto-renew unless cancelled",
-      "item3": "Refunds are provided according to our refund policy",
-      "item4": "Prices may change with notice to users"
+    "payments": {
+      "title": "5. Payment Terms",
+      "content": "By subscribing to our premium services, you agree to the following payment terms:",
+      "item1": "Payment is due at the time of subscription and will be automatically renewed unless canceled.",
+      "item2": "We offer refunds within 7 days of subscription if you are not satisfied with our services.",
+      "item3": "Prices are subject to change, but we will notify you before applying any changes to your subscription."
     },
     "termination": {
       "title": "7. Termination",
@@ -198,15 +214,15 @@
       "item3": "Remove content that violates these Terms"
     },
     "disclaimer": {
-      "title": "8. Disclaimer of Warranties",
-      "content": "Our services are provided \"as is\" without warranties of any kind, either express or implied. We do not guarantee that:",
+      "title": "10. Disclaimer of Warranties",
+      "content": "Our services are provided 'as is' and 'as available' without warranties of any kind, either express or implied. We do not warrant that our services will be uninterrupted, error-free, or secure.",
       "item1": "Services will be uninterrupted or error-free",
       "item2": "Specific language learning outcomes will be achieved",
       "item3": "Content will be accurate or complete"
     },
-    "liability": {
-      "title": "9. Limitation of Liability",
-      "content": "To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our services."
+    "limitationOfLiability": {
+      "title": "11. Limitation of Liability",
+      "content": "To the maximum extent permitted by law, PollyTalk shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses."
     },
     "changes": {
       "title": "10. Changes to Terms",
@@ -216,12 +232,11 @@
       "item3": "Website updates"
     },
     "contact": {
-      "title": "11. Contact Information",
+      "title": "14. Contact Information",
       "content": "For questions about these Terms, please contact us at:",
       "email": "Email: support@zervice.us",
-      "address": "Address: [Your Business Address]"
-    },
-    "lastUpdated": "Last updated: February 25, 2025"
+      "address": "Address: 123 Language Lane, San Francisco, CA 94103, USA"
+    }
   },
   "privacyContent": {
     "title": "Privacy Policy",
