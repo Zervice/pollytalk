@@ -175,6 +175,21 @@
       "item4": "Attempt to disrupt or compromise our systems",
       "item5": "Use our services for unauthorized commercial purposes"
     },
+    "payments": {
+      "title": "5. Payment Terms",
+      "content": "By subscribing to our premium services, you agree to the following payment terms:",
+      "item1": "Payment is due at the time of subscription and will be automatically renewed unless canceled.",
+      "item2": "We offer refunds within 7 days of subscription if you are not satisfied with our services.",
+      "item3": "Prices are subject to change, but we will notify you before applying any changes to your subscription."
+    },
+    "intellectualProperty": {
+      "title": "6. Intellectual Property",
+      "content": "All content and materials available through our services, including but not limited to text, graphics, logos, icons, images, audio clips, and software, are the property of PollyTalk or its licensors and are protected by copyright, trademark, and other intellectual property laws.",
+      "item1": "Copy or reproduce our content without permission",
+      "item2": "Modify or create derivative works",
+      "item3": "Distribute or publicly display our content",
+      "item4": "Remove any copyright or proprietary notices"
+    },
     "userContent": {
       "title": "7. User Content",
       "content": "By submitting content to our platform, you grant us a non-exclusive, worldwide, royalty-free license to use, reproduce, modify, and display your content for the purpose of providing our services.",
@@ -191,23 +206,8 @@
       "item4": "Using our services to transmit malware or other harmful code.",
       "item5": "Engaging in any activity that disrupts or interferes with our services."
     },
-    "intellectualProperty": {
-      "title": "6. Intellectual Property",
-      "content": "All content and materials available through our services, including but not limited to text, graphics, logos, icons, images, audio clips, and software, are the property of PollyTalk or its licensors and are protected by copyright, trademark, and other intellectual property laws.",
-      "item1": "Copy or reproduce our content without permission",
-      "item2": "Modify or create derivative works",
-      "item3": "Distribute or publicly display our content",
-      "item4": "Remove any copyright or proprietary notices"
-    },
-    "payments": {
-      "title": "5. Payment Terms",
-      "content": "By subscribing to our premium services, you agree to the following payment terms:",
-      "item1": "Payment is due at the time of subscription and will be automatically renewed unless canceled.",
-      "item2": "We offer refunds within 7 days of subscription if you are not satisfied with our services.",
-      "item3": "Prices are subject to change, but we will notify you before applying any changes to your subscription."
-    },
     "termination": {
-      "title": "7. Termination",
+      "title": "9. Termination",
       "content": "We reserve the right to:",
       "item1": "Suspend or terminate accounts for violations",
       "item2": "Modify or discontinue services with notice",
@@ -225,11 +225,15 @@
       "content": "To the maximum extent permitted by law, PollyTalk shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses."
     },
     "changes": {
-      "title": "10. Changes to Terms",
+      "title": "12. Changes to Terms",
       "content": "We may modify these Terms at any time. We will notify users of material changes through:",
       "item1": "Email notifications",
       "item2": "Platform announcements",
       "item3": "Website updates"
+    },
+    "governingLaw": {
+      "title": "13. Governing Law",
+      "content": "These Terms shall be governed by and construed in accordance with the laws of the State of California, without regard to its conflict of law principles. Any disputes arising under or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts located in San Francisco County, California."
     },
     "contact": {
       "title": "14. Contact Information",

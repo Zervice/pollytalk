@@ -116,6 +116,11 @@ export default function TermsPage() {
             <p>
               {t('termsPage.termination.content')}
             </p>
+            <ul className="list-disc pl-6 mt-2">
+              <li>{t('termsPage.termination.item1')}</li>
+              <li>{t('termsPage.termination.item2')}</li>
+              <li>{t('termsPage.termination.item3')}</li>
+            </ul>
           </section>
 
           <section className="mb-8">
@@ -123,6 +128,11 @@ export default function TermsPage() {
             <p>
               {t('termsPage.disclaimer.content')}
             </p>
+            <ul className="list-disc pl-6 mt-2">
+              <li>{t('termsPage.disclaimer.item1')}</li>
+              <li>{t('termsPage.disclaimer.item2')}</li>
+              <li>{t('termsPage.disclaimer.item3')}</li>
+            </ul>
           </section>
 
           <section className="mb-8">
@@ -137,6 +147,11 @@ export default function TermsPage() {
             <p>
               {t('termsPage.changes.content')}
             </p>
+            <ul className="list-disc pl-6 mt-2">
+              <li>{t('termsPage.changes.item1')}</li>
+              <li>{t('termsPage.changes.item2')}</li>
+              <li>{t('termsPage.changes.item3')}</li>
+            </ul>
           </section>
 
           <section className="mb-8">
