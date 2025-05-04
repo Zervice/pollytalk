@@ -135,13 +135,16 @@
     }
   },
   "blog": {
-    "title": "PollyTalk Language Learning Blog",
-    "subtitle": "Insights, tips, and research to help you master languages faster",
+    "title": "Blog",
+    "subtitle": "Insights and tips for language learning",
     "readMore": "Read More",
-    "category": "Category",
-    "author": "Author",
-    "date": "Date",
-    "readTime": "Read Time"
+    "recentPosts": "Recent Posts",
+    "allPosts": "All Posts",
+    "backToBlog": "Back to Blog",
+    "shareThisPost": "Share this post",
+    "readTime": "min read",
+    "imageAlt": "Image placeholder",
+    "imagePlaceholder": "Image not available"
   },
   "termsPage": {
     "title": "Terms of Service",

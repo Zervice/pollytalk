@@ -2,16 +2,12 @@
 
 import { useParams } from 'next/navigation'
 import { motion } from "framer-motion"
-import { ArrowLeft, Calendar, Clock, User } from "lucide-react"
+import { ArrowLeft, Calendar, Clock, User, Image as ImageIcon } from "lucide-react"
 import { useI18n } from "@/i18n/i18n-context"
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
 import { BlogPost } from '@/lib/blog'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import rehypeRaw from 'rehype-raw'
-import rehypeSanitize from 'rehype-sanitize'
 
 // Custom CSS for blog content
 const blogContentStyles = `
@@ -91,6 +87,7 @@ const blogContentStyles = `
     height: auto;
     margin: 1.5rem auto;
     border-radius: 0.5rem;
+    display: block;
   }
   
   .blog-content strong {
@@ -100,7 +97,273 @@ const blogContentStyles = `
   .blog-content em {
     font-style: italic;
   }
+  
+  .image-placeholder {
+    background-color: #f3f4f6;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    margin: 1.5rem auto;
+    width: 100%;
+    max-width: 600px;
+    height: 300px;
+    color: #6b7280;
+  }
+  
+  .dark .image-placeholder {
+    background-color: #1e293b;
+    color: #9ca3af;
+  }
 `;
+
+// Custom Markdown Renderer
+const CustomMarkdownRenderer = ({ content }: { content: string }) => {
+  const { t } = useI18n();
+  
+  if (!content) return null;
+  
+  // Remove frontmatter if present
+  let processedContent = content;
+  if (processedContent.startsWith('---')) {
+    const endOfFrontmatter = processedContent.indexOf('---', 3);
+    if (endOfFrontmatter !== -1) {
+      processedContent = processedContent.substring(endOfFrontmatter + 3).trim();
+    }
+  }
+  
+  // Process the content line by line for better control
+  const lines = processedContent.split('\n');
+  const elements: JSX.Element[] = [];
+  
+  let currentParagraph: string[] = [];
+  let currentList: string[] = [];
+  let inList = false;
+  
+  // Process each line
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const trimmedLine = line.trim();
+    
+    // Skip empty lines
+    if (trimmedLine === '') {
+      // If we were building a paragraph, finish it
+      if (currentParagraph.length > 0) {
+        elements.push(
+          <p key={`p-${elements.length}`}>
+            {formatInlineMarkdown(currentParagraph.join(' '))}
+          </p>
+        );
+        currentParagraph = [];
+      }
+      
+      // If we were in a list, finish it
+      if (inList && currentList.length > 0) {
+        elements.push(
+          <ul key={`ul-${elements.length}`} className="list-disc pl-5 my-3">
+            {currentList.map((item, idx) => (
+              <li key={`li-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
+            ))}
+          </ul>
+        );
+        currentList = [];
+        inList = false;
+      }
+      
+      continue;
+    }
+    
+    // Handle headers
+    if (trimmedLine.startsWith('# ')) {
+      // Finish any open paragraph
+      if (currentParagraph.length > 0) {
+        elements.push(
+          <p key={`p-${elements.length}`}>
+            {formatInlineMarkdown(currentParagraph.join(' '))}
+          </p>
+        );
+        currentParagraph = [];
+      }
+      
+      elements.push(
+        <h1 key={`h1-${elements.length}`} className="text-3xl font-bold my-6">
+          {trimmedLine.substring(2)}
+        </h1>
+      );
+      continue;
+    }
+    
+    if (trimmedLine.startsWith('## ')) {
+      // Finish any open paragraph
+      if (currentParagraph.length > 0) {
+        elements.push(
+          <p key={`p-${elements.length}`}>
+            {formatInlineMarkdown(currentParagraph.join(' '))}
+          </p>
+        );
+        currentParagraph = [];
+      }
+      
+      elements.push(
+        <h2 key={`h2-${elements.length}`} className="text-2xl font-bold my-5">
+          {trimmedLine.substring(3)}
+        </h2>
+      );
+      continue;
+    }
+    
+    if (trimmedLine.startsWith('### ')) {
+      // Finish any open paragraph
+      if (currentParagraph.length > 0) {
+        elements.push(
+          <p key={`p-${elements.length}`}>
+            {formatInlineMarkdown(currentParagraph.join(' '))}
+          </p>
+        );
+        currentParagraph = [];
+      }
+      
+      elements.push(
+        <h3 key={`h3-${elements.length}`} className="text-xl font-bold my-4">
+          {trimmedLine.substring(4)}
+        </h3>
+      );
+      continue;
+    }
+    
+    // Handle list items
+    if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('* ')) {
+      // If we were building a paragraph, finish it
+      if (currentParagraph.length > 0) {
+        elements.push(
+          <p key={`p-${elements.length}`}>
+            {formatInlineMarkdown(currentParagraph.join(' '))}
+          </p>
+        );
+        currentParagraph = [];
+      }
+      
+      inList = true;
+      currentList.push(trimmedLine.substring(2));
+      continue;
+    }
+    
+    // Handle images
+    if (trimmedLine.startsWith('![')) {
+      // If we were building a paragraph, finish it
+      if (currentParagraph.length > 0) {
+        elements.push(
+          <p key={`p-${elements.length}`}>
+            {formatInlineMarkdown(currentParagraph.join(' '))}
+          </p>
+        );
+        currentParagraph = [];
+      }
+      
+      const match = trimmedLine.match(/!\[(.*?)\]\((.*?)\)/);
+      if (match) {
+        const [_, alt, src] = match;
+        elements.push(
+          <div key={`img-${elements.length}`} className="my-6">
+            <ImagePlaceholder src={src} alt={alt} t={t} />
+          </div>
+        );
+      }
+      continue;
+    }
+    
+    // Handle horizontal rules
+    if (trimmedLine === '---' || trimmedLine === '***' || trimmedLine === '___') {
+      // If we were building a paragraph, finish it
+      if (currentParagraph.length > 0) {
+        elements.push(
+          <p key={`p-${elements.length}`}>
+            {formatInlineMarkdown(currentParagraph.join(' '))}
+          </p>
+        );
+        currentParagraph = [];
+      }
+      
+      elements.push(<hr key={`hr-${elements.length}`} className="my-6" />);
+      continue;
+    }
+    
+    // Regular paragraph text
+    currentParagraph.push(trimmedLine);
+  }
+  
+  // Handle any remaining paragraph text
+  if (currentParagraph.length > 0) {
+    elements.push(
+      <p key={`p-${elements.length}`}>
+        {formatInlineMarkdown(currentParagraph.join(' '))}
+      </p>
+    );
+  }
+  
+  // Handle any remaining list items
+  if (inList && currentList.length > 0) {
+    elements.push(
+      <ul key={`ul-${elements.length}`} className="list-disc pl-5 my-3">
+        {currentList.map((item, idx) => (
+          <li key={`li-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
+        ))}
+      </ul>
+    );
+  }
+  
+  return <div className="blog-content">{elements}</div>;
+};
+
+// Image component with placeholder
+const ImagePlaceholder = ({ src, alt, t }: { src: string, alt: string, t: any }) => {
+  const [imgError, setImgError] = useState(false);
+  
+  if (!src || imgError) {
+    return (
+      <div className="image-placeholder">
+        <ImageIcon size={48} strokeWidth={1.5} />
+        <span className="mt-4 text-center block">{t('blog.imagePlaceholder')}</span>
+        {alt && <span className="mt-2 text-sm opacity-70 block">{alt}</span>}
+      </div>
+    );
+  }
+  
+  return (
+    <img 
+      src={src} 
+      alt={alt || t('blog.imageAlt')} 
+      onError={() => setImgError(true)}
+      className="mx-auto rounded-lg"
+    />
+  );
+};
+
+// Format inline markdown (bold, italic, links)
+const formatInlineMarkdown = (text: string) => {
+  if (!text) return '';
+  
+  // Process the text for inline formatting
+  let formattedText = text;
+  
+  // Replace bold text
+  formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  formattedText = formattedText.replace(/__(.*?)__/g, '<strong>$1</strong>');
+  
+  // Replace italic text
+  formattedText = formattedText.replace(/\*(.*?)\*/g, '<em>$1</em>');
+  formattedText = formattedText.replace(/_(.*?)_/g, '<em>$1</em>');
+  
+  // Replace links
+  formattedText = formattedText.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>');
+  
+  // Replace inline code
+  formattedText = formattedText.replace(/`(.*?)`/g, '<code class="bg-muted px-1 py-0.5 rounded text-sm">$1</code>');
+  
+  return <span dangerouslySetInnerHTML={{ __html: formattedText }} />;
+};
 
 export default function BlogPostPage() {
   const { t } = useI18n()
@@ -111,12 +374,10 @@ export default function BlogPostPage() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    // Fetch the blog post data
     const fetchPost = async () => {
       try {
         const response = await fetch(`/api/blog-posts/${slug}`)
           .catch(() => {
-            // Fallback if API route isn't set up yet
             throw new Error('API route not available');
           });
           
@@ -155,7 +416,7 @@ export default function BlogPostPage() {
         <Button asChild>
           <Link href="/blog">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Blog
+            {t('blog.backToBlog')}
           </Link>
         </Button>
       </div>
@@ -176,7 +437,7 @@ export default function BlogPostPage() {
           <Button variant="ghost" size="sm" asChild>
             <Link href="/blog">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              {t('blog.backToBlog') || 'Back to Blog'}
+              {t('blog.backToBlog')}
             </Link>
           </Button>
         </div>
@@ -213,23 +474,28 @@ export default function BlogPostPage() {
               <div 
                 className="absolute inset-0 bg-cover bg-center" 
                 style={{ backgroundImage: `url(${post.image})` }}
+                onError={(e) => {
+                  e.currentTarget.classList.add('image-error');
+                  e.currentTarget.style.backgroundImage = 'none';
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80" />
+              <div className="absolute inset-0 flex items-center justify-center image-error hidden">
+                <div className="text-center">
+                  <ImageIcon size={48} strokeWidth={1.5} className="mx-auto text-muted-foreground" />
+                  <span className="mt-4 text-muted-foreground block">{t('blog.imagePlaceholder')}</span>
+                </div>
+              </div>
             </div>
           )}
 
-          <div className="prose prose-zinc dark:prose-invert max-w-none blog-content">
-            <ReactMarkdown 
-              remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeRaw, rehypeSanitize]}
-            >
-              {post.content}
-            </ReactMarkdown>
+          <div className="prose prose-zinc dark:prose-invert max-w-none">
+            <CustomMarkdownRenderer content={post.content} />
           </div>
         </div>
 
         <div className="mt-16 border-t pt-8">
-          <h2 className="text-2xl font-bold mb-4">{t('blog.shareThisPost') || 'Share this post'}</h2>
+          <h2 className="text-2xl font-bold mb-4">{t('blog.shareThisPost')}</h2>
           <div className="flex gap-2">
             <Button variant="outline" size="sm">Twitter</Button>
             <Button variant="outline" size="sm">Facebook</Button>

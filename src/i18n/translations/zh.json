@@ -92,6 +92,18 @@
     "readTime": "分钟阅读",
     "viewArticle": "查看文章"
   },
+  "blog": {
+    "title": "博客",
+    "subtitle": "语言学习的见解和技巧",
+    "readMore": "阅读更多",
+    "recentPosts": "最近的文章",
+    "allPosts": "所有文章",
+    "backToBlog": "返回博客",
+    "shareThisPost": "分享这篇文章",
+    "readTime": "分钟阅读",
+    "imageAlt": "图片占位符",
+    "imagePlaceholder": "图片不可用"
+  },
   "download": {
     "title": "下载博语通（PollyTalk）",
     "subtitle": "在您的移动设备上开始语言学习之旅",
@@ -133,15 +145,6 @@
       "buttonText": "在Google Play上获取",
       "requirements": "需要Android 8.0或更高版本"
     }
-  },
-  "blog": {
-    "title": "博语通（PollyTalk）语言学习博客",
-    "subtitle": "帮助您更快掌握语言的见解、技巧和研究",
-    "readMore": "阅读更多",
-    "category": "分类",
-    "author": "作者",
-    "date": "日期",
-    "readTime": "阅读时间"
   },
   "termsPage": {
     "title": "服务条款",
