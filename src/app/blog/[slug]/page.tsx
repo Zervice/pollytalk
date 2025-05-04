@@ -160,7 +160,19 @@ const MarkdownComponents = {
     return <ImagePlaceholder src={src} alt={alt} t={undefined} />;
   },
   // Remove h1 from the content since we already display it in the header
-  h1: () => null
+  h1: () => null,
+  // Override paragraph to handle images properly
+  p: ({ node, children, ...props }: any) => {
+    // Check if the only child is an img element
+    if (React.Children.count(children) === 1 && React.isValidElement(children) && 
+        (children.type === 'img' || children.props?.node?.tagName === 'img')) {
+      // Return just the children without wrapping in a p tag
+      return <>{children}</>;
+    }
+    
+    // Regular paragraph
+    return <p {...props}>{children}</p>;
+  }
 };
 
 export default function BlogPostPage() {
