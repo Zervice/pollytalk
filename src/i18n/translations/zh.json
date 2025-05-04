@@ -402,7 +402,7 @@
     "addOn": {
       "title": "需要更多练习时间？",
       "description": "添加更多的每日练习时间",
-      "pricePerUnit": "每日额外15分钟每月20美元",
+      "pricePerUnit": "每日额外15分钟",
       "totalTime": "每日总练习时间：{0}分钟",
       "totalMonthlyPrice": "每月总价：",
       "totalPrice": "${0}",

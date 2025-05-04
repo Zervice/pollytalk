@@ -7,15 +7,15 @@ import { useI18n } from "@/i18n/i18n-context"
 import { useState } from "react"
 
 export default function PricingPage() {
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
   const [addOns, setAddOns] = useState(0)
   
   // Calculate additional time and cost based on add-ons
   const baseTime = 30 // minutes
-  const basePrice = 45 // dollars
-  const earlyAdopterBasePrice = 30 // dollars (early adopter price)
+  const basePrice = locale === 'zh' ? 299 : 45 // CNY or USD
+  const earlyAdopterBasePrice = locale === 'zh' ? 199 : 30 // CNY or USD (early adopter price)
   const addOnTime = 15 // minutes per add-on
-  const addOnPrice = 20 // dollars per add-on
+  const addOnPrice = locale === 'zh' ? 125 : 20 // CNY or USD per add-on
   
   const totalTime = baseTime + (addOns * addOnTime)
   const totalPrice = basePrice + (addOns * addOnPrice)
@@ -226,7 +226,7 @@ export default function PricingPage() {
                 </p>
                 
                 <div className="flex items-center justify-between bg-muted/50 p-2 rounded-md mb-3">
-                  <span className="text-sm">{t('pricing.addOn.pricePerUnit')}</span>
+                  <span className="text-sm">{locale === 'zh' ? '¥' : '$'}{addOnPrice} {t('pricing.addOn.pricePerUnit')}</span>
                 </div>
                 
                 <div className="flex items-center justify-between mt-2">
@@ -270,10 +270,10 @@ export default function PricingPage() {
                   <div className="font-semibold">
                     <span>{t('pricing.addOn.totalMonthlyPrice')}</span>
                     <span className="text-red-700 line-through opacity-80 mr-2">
-                      {t('pricing.addOn.totalPrice').replace('{0}', totalPrice.toString())}
+                      {locale === 'zh' ? '¥' : '$'}{totalPrice.toString()}
                     </span>
                     <span className="text-green-600">
-                      {t('pricing.addOn.earlyAdopterTotalPrice').replace('{0}', earlyAdopterTotalPrice.toString())}
+                      {locale === 'zh' ? '¥' : '$'}{earlyAdopterTotalPrice.toString()}
                     </span>
                   </div>
                   {addOns >= 3 && (

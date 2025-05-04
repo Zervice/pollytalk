@@ -402,7 +402,7 @@
     "addOn": {
       "title": "Need more practice time?",
       "description": "Add more minutes to your daily practice time",
-      "pricePerUnit": "$20/month for extra 15 minutes per day",
+      "pricePerUnit": "for extra 15 minutes per day",
       "totalTime": "Total daily practice time: {0} minutes",
       "totalMonthlyPrice": "Total monthly price: ",
       "totalPrice": "${0}",
