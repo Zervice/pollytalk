@@ -136,11 +136,14 @@ const CustomMarkdownRenderer = ({ content }: { content: string }) => {
   
   // Process the content line by line for better control
   const lines = processedContent.split('\n');
-  const elements: JSX.Element[] = [];
+  const elements: React.ReactNode[] = [];
   
   let currentParagraph: string[] = [];
   let currentList: string[] = [];
+  let currentOrderedList: string[] = [];
   let inList = false;
+  let inOrderedList = false;
+  let foundFirstH1 = false;
   
   // Process each line
   for (let i = 0; i < lines.length; i++) {
@@ -172,11 +175,30 @@ const CustomMarkdownRenderer = ({ content }: { content: string }) => {
         inList = false;
       }
       
+      // If we were in an ordered list, finish it
+      if (inOrderedList && currentOrderedList.length > 0) {
+        elements.push(
+          <ol key={`ol-${elements.length}`} className="list-decimal pl-5 my-3">
+            {currentOrderedList.map((item, idx) => (
+              <li key={`oli-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
+            ))}
+          </ol>
+        );
+        currentOrderedList = [];
+        inOrderedList = false;
+      }
+      
       continue;
     }
     
     // Handle headers
     if (trimmedLine.startsWith('# ')) {
+      // Skip the first H1 heading since it's already displayed in the page header
+      if (!foundFirstH1) {
+        foundFirstH1 = true;
+        continue;
+      }
+      
       // Finish any open paragraph
       if (currentParagraph.length > 0) {
         elements.push(
@@ -187,14 +209,41 @@ const CustomMarkdownRenderer = ({ content }: { content: string }) => {
         currentParagraph = [];
       }
       
+      // Finish any open list
+      if (inList && currentList.length > 0) {
+        elements.push(
+          <ul key={`ul-${elements.length}`} className="list-disc pl-5 my-3">
+            {currentList.map((item, idx) => (
+              <li key={`li-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
+            ))}
+          </ul>
+        );
+        currentList = [];
+        inList = false;
+      }
+      
+      // Finish any open ordered list
+      if (inOrderedList && currentOrderedList.length > 0) {
+        elements.push(
+          <ol key={`ol-${elements.length}`} className="list-decimal pl-5 my-3">
+            {currentOrderedList.map((item, idx) => (
+              <li key={`oli-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
+            ))}
+          </ol>
+        );
+        currentOrderedList = [];
+        inOrderedList = false;
+      }
+      
       elements.push(
         <h1 key={`h1-${elements.length}`} className="text-3xl font-bold my-6">
-          {trimmedLine.substring(2)}
+          {formatInlineMarkdown(trimmedLine.substring(2))}
         </h1>
       );
       continue;
     }
     
+    // Handle h2
     if (trimmedLine.startsWith('## ')) {
       // Finish any open paragraph
       if (currentParagraph.length > 0) {
@@ -206,14 +255,41 @@ const CustomMarkdownRenderer = ({ content }: { content: string }) => {
         currentParagraph = [];
       }
       
+      // Finish any open list
+      if (inList && currentList.length > 0) {
+        elements.push(
+          <ul key={`ul-${elements.length}`} className="list-disc pl-5 my-3">
+            {currentList.map((item, idx) => (
+              <li key={`li-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
+            ))}
+          </ul>
+        );
+        currentList = [];
+        inList = false;
+      }
+      
+      // Finish any open ordered list
+      if (inOrderedList && currentOrderedList.length > 0) {
+        elements.push(
+          <ol key={`ol-${elements.length}`} className="list-decimal pl-5 my-3">
+            {currentOrderedList.map((item, idx) => (
+              <li key={`oli-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
+            ))}
+          </ol>
+        );
+        currentOrderedList = [];
+        inOrderedList = false;
+      }
+      
       elements.push(
-        <h2 key={`h2-${elements.length}`} className="text-2xl font-bold my-5">
-          {trimmedLine.substring(3)}
+        <h2 key={`h2-${elements.length}`} className="text-2xl font-bold my-4">
+          {formatInlineMarkdown(trimmedLine.substring(3))}
         </h2>
       );
       continue;
     }
     
+    // Handle h3
     if (trimmedLine.startsWith('### ')) {
       // Finish any open paragraph
       if (currentParagraph.length > 0) {
@@ -225,17 +301,43 @@ const CustomMarkdownRenderer = ({ content }: { content: string }) => {
         currentParagraph = [];
       }
       
+      // Finish any open list
+      if (inList && currentList.length > 0) {
+        elements.push(
+          <ul key={`ul-${elements.length}`} className="list-disc pl-5 my-3">
+            {currentList.map((item, idx) => (
+              <li key={`li-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
+            ))}
+          </ul>
+        );
+        currentList = [];
+        inList = false;
+      }
+      
+      // Finish any open ordered list
+      if (inOrderedList && currentOrderedList.length > 0) {
+        elements.push(
+          <ol key={`ol-${elements.length}`} className="list-decimal pl-5 my-3">
+            {currentOrderedList.map((item, idx) => (
+              <li key={`oli-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
+            ))}
+          </ol>
+        );
+        currentOrderedList = [];
+        inOrderedList = false;
+      }
+      
       elements.push(
-        <h3 key={`h3-${elements.length}`} className="text-xl font-bold my-4">
-          {trimmedLine.substring(4)}
+        <h3 key={`h3-${elements.length}`} className="text-xl font-semibold my-3">
+          {formatInlineMarkdown(trimmedLine.substring(4))}
         </h3>
       );
       continue;
     }
     
-    // Handle list items
+    // Handle unordered lists
     if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('* ')) {
-      // If we were building a paragraph, finish it
+      // Finish any open paragraph
       if (currentParagraph.length > 0) {
         elements.push(
           <p key={`p-${elements.length}`}>
@@ -243,16 +345,31 @@ const CustomMarkdownRenderer = ({ content }: { content: string }) => {
           </p>
         );
         currentParagraph = [];
+      }
+      
+      // Finish any open ordered list
+      if (inOrderedList && currentOrderedList.length > 0) {
+        elements.push(
+          <ol key={`ol-${elements.length}`} className="list-decimal pl-5 my-3">
+            {currentOrderedList.map((item, idx) => (
+              <li key={`oli-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
+            ))}
+          </ol>
+        );
+        currentOrderedList = [];
+        inOrderedList = false;
       }
       
       inList = true;
-      currentList.push(trimmedLine.substring(2));
+      const listItemContent = trimmedLine.substring(2);
+      currentList.push(listItemContent);
       continue;
     }
     
-    // Handle images
-    if (trimmedLine.startsWith('![')) {
-      // If we were building a paragraph, finish it
+    // Handle ordered lists (numbered lists)
+    const orderedListMatch = trimmedLine.match(/^(\d+)\.\s(.+)$/);
+    if (orderedListMatch) {
+      // Finish any open paragraph
       if (currentParagraph.length > 0) {
         elements.push(
           <p key={`p-${elements.length}`}>
@@ -262,21 +379,28 @@ const CustomMarkdownRenderer = ({ content }: { content: string }) => {
         currentParagraph = [];
       }
       
-      const match = trimmedLine.match(/!\[(.*?)\]\((.*?)\)/);
-      if (match) {
-        const [_, alt, src] = match;
+      // Finish any open unordered list
+      if (inList && currentList.length > 0) {
         elements.push(
-          <div key={`img-${elements.length}`} className="my-6">
-            <ImagePlaceholder src={src} alt={alt} t={t} />
-          </div>
+          <ul key={`ul-${elements.length}`} className="list-disc pl-5 my-3">
+            {currentList.map((item, idx) => (
+              <li key={`li-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
+            ))}
+          </ul>
         );
+        currentList = [];
+        inList = false;
       }
+      
+      inOrderedList = true;
+      const listItemContent = orderedListMatch[2];
+      currentOrderedList.push(listItemContent);
       continue;
     }
     
     // Handle horizontal rules
     if (trimmedLine === '---' || trimmedLine === '***' || trimmedLine === '___') {
-      // If we were building a paragraph, finish it
+      // Finish any open paragraph
       if (currentParagraph.length > 0) {
         elements.push(
           <p key={`p-${elements.length}`}>
@@ -286,7 +410,51 @@ const CustomMarkdownRenderer = ({ content }: { content: string }) => {
         currentParagraph = [];
       }
       
-      elements.push(<hr key={`hr-${elements.length}`} className="my-6" />);
+      elements.push(<hr key={`hr-${elements.length}`} className="my-6 border-t border-border" />);
+      continue;
+    }
+    
+    // Handle images
+    const imageMatch = trimmedLine.match(/^!\[(.*)\]\((.*)\)$/);
+    if (imageMatch) {
+      // Finish any open paragraph
+      if (currentParagraph.length > 0) {
+        elements.push(
+          <p key={`p-${elements.length}`}>
+            {formatInlineMarkdown(currentParagraph.join(' '))}
+          </p>
+        );
+        currentParagraph = [];
+      }
+      
+      const alt = imageMatch[1];
+      const src = imageMatch[2];
+      
+      elements.push(
+        <div key={`img-${elements.length}`} className="my-6">
+          <ImagePlaceholder src={src} alt={alt} t={t} />
+        </div>
+      );
+      continue;
+    }
+    
+    // Handle blockquotes
+    if (trimmedLine.startsWith('> ')) {
+      // Finish any open paragraph
+      if (currentParagraph.length > 0) {
+        elements.push(
+          <p key={`p-${elements.length}`}>
+            {formatInlineMarkdown(currentParagraph.join(' '))}
+          </p>
+        );
+        currentParagraph = [];
+      }
+      
+      elements.push(
+        <blockquote key={`quote-${elements.length}`} className="border-l-4 border-border pl-4 italic my-4">
+          {formatInlineMarkdown(trimmedLine.substring(2))}
+        </blockquote>
+      );
       continue;
     }
     
@@ -294,7 +462,7 @@ const CustomMarkdownRenderer = ({ content }: { content: string }) => {
     currentParagraph.push(trimmedLine);
   }
   
-  // Handle any remaining paragraph text
+  // Handle any remaining paragraph
   if (currentParagraph.length > 0) {
     elements.push(
       <p key={`p-${elements.length}`}>
@@ -303,7 +471,7 @@ const CustomMarkdownRenderer = ({ content }: { content: string }) => {
     );
   }
   
-  // Handle any remaining list items
+  // Handle any remaining list
   if (inList && currentList.length > 0) {
     elements.push(
       <ul key={`ul-${elements.length}`} className="list-disc pl-5 my-3">
@@ -311,6 +479,17 @@ const CustomMarkdownRenderer = ({ content }: { content: string }) => {
           <li key={`li-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
         ))}
       </ul>
+    );
+  }
+  
+  // Handle any remaining ordered list
+  if (inOrderedList && currentOrderedList.length > 0) {
+    elements.push(
+      <ol key={`ol-${elements.length}`} className="list-decimal pl-5 my-3">
+        {currentOrderedList.map((item, idx) => (
+          <li key={`oli-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
+        ))}
+      </ol>
     );
   }
   
@@ -326,7 +505,7 @@ const ImagePlaceholder = ({ src, alt, t }: { src: string, alt: string, t: any })
       <div className="image-placeholder">
         <ImageIcon size={48} strokeWidth={1.5} />
         <span className="mt-4 text-center block">{t('blog.imagePlaceholder')}</span>
-        {alt && <span className="mt-2 text-sm opacity-70 block">{alt}</span>}
+        {alt && <span className="mt-2 text-sm text-muted-foreground/70 block">{alt}</span>}
       </div>
     );
   }
@@ -372,6 +551,7 @@ export default function BlogPostPage() {
   const [post, setPost] = useState<BlogPost | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [mainImageError, setMainImageError] = useState(false)
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -399,6 +579,21 @@ export default function BlogPostPage() {
       fetchPost();
     }
   }, [slug]);
+
+  useEffect(() => {
+    if (post?.image) {
+      // Reset error state when post changes
+      setMainImageError(false);
+      
+      // Check if the image exists
+      const img = new Image();
+      img.onload = () => setMainImageError(false);
+      img.onerror = () => setMainImageError(true);
+      img.src = post.image;
+    } else {
+      setMainImageError(true);
+    }
+  }, [post]);
 
   if (isLoading) {
     return (
@@ -469,25 +664,25 @@ export default function BlogPostPage() {
             </div>
           </div>
 
-          {post.image && (
-            <div className="relative h-[300px] md:h-[400px] overflow-hidden rounded-lg">
-              <div 
-                className="absolute inset-0 bg-cover bg-center" 
-                style={{ backgroundImage: `url(${post.image})` }}
-                onError={(e) => {
-                  e.currentTarget.classList.add('image-error');
-                  e.currentTarget.style.backgroundImage = 'none';
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80" />
-              <div className="absolute inset-0 flex items-center justify-center image-error hidden">
-                <div className="text-center">
-                  <ImageIcon size={48} strokeWidth={1.5} className="mx-auto text-muted-foreground" />
-                  <span className="mt-4 text-muted-foreground block">{t('blog.imagePlaceholder')}</span>
+          <div className="relative h-[300px] md:h-[400px] overflow-hidden rounded-lg">
+            {!mainImageError && post.image ? (
+              <>
+                <div 
+                  className="absolute inset-0 bg-cover bg-center" 
+                  style={{ backgroundImage: `url(${post.image})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80" />
+              </>
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center bg-muted/50 border border-border rounded-lg">
+                <div className="text-center p-6">
+                  <ImageIcon size={64} strokeWidth={1.5} className="mx-auto text-muted-foreground mb-4" />
+                  <span className="text-lg font-medium block mb-2">{t('blog.imagePlaceholder')}</span>
+                  <span className="text-sm text-muted-foreground block max-w-md">{post.title}</span>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
 
           <div className="prose prose-zinc dark:prose-invert max-w-none">
             <CustomMarkdownRenderer content={post.content} />
