@@ -12,6 +12,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import rehypeSanitize from 'rehype-sanitize'
+import Image from 'next/image'
 
 // Custom CSS for blog content
 const blogContentStyles = `
@@ -124,13 +125,14 @@ const blogContentStyles = `
 `;
 
 // Image component with placeholder
-const ImagePlaceholder = ({ src, alt, t }: { src: string, alt: string, t: any }) => {
+const ImagePlaceholder = ({ src, alt, t }: { src: string, alt: string, t: unknown }) => {
   const [error, setError] = useState(false);
   const { t: translate } = useI18n();
 
   useEffect(() => {
     if (src) {
-      const img = new Image();
+      // Use the global Image constructor for checking if image exists
+      const img = new window.Image();
       img.onload = () => setError(false);
       img.onerror = () => setError(true);
       img.src = src;
@@ -149,25 +151,58 @@ const ImagePlaceholder = ({ src, alt, t }: { src: string, alt: string, t: any })
     );
   }
 
-  return <img src={src} alt={alt || ''} className="rounded-lg" />;
+  // Use Next.js Image component for better performance
+  return (
+    <div className="relative w-full h-auto min-h-[200px] rounded-lg overflow-hidden">
+      <Image 
+        src={src} 
+        alt={alt || ''} 
+        className="rounded-lg" 
+        fill 
+        style={{ objectFit: 'contain' }}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      />
+    </div>
+  );
 };
 
+// Types for ReactMarkdown components
+type ReactMarkdownComponentProps = {
+  node?: {
+    tagName?: string;
+    properties?: Record<string, unknown>;
+  };
+  children?: React.ReactNode;
+  src?: string;
+  alt?: string;
+  [key: string]: unknown;
+}
+
 // Custom components for ReactMarkdown
-const MarkdownComponents = {
+const MarkdownComponents: Record<string, React.ComponentType<ReactMarkdownComponentProps>> = {
   // Override img to use our custom ImagePlaceholder
-  img: ({ node, ...props }: any) => {
-    const { src, alt } = props;
+  img: ({ node, ...props }: ReactMarkdownComponentProps) => {
+    const src = props.src as string || '';
+    const alt = props.alt as string || '';
     return <ImagePlaceholder src={src} alt={alt} t={undefined} />;
   },
   // Remove h1 from the content since we already display it in the header
   h1: () => null,
   // Override paragraph to handle images properly
-  p: ({ node, children, ...props }: any) => {
+  p: ({ node, children, ...props }: ReactMarkdownComponentProps) => {
     // Check if the only child is an img element
-    if (React.Children.count(children) === 1 && React.isValidElement(children) && 
-        (children.type === 'img' || children.props?.node?.tagName === 'img')) {
-      // Return just the children without wrapping in a p tag
-      return <>{children}</>;
+    if (React.Children.count(children) === 1 && 
+        React.isValidElement(children)) {
+      // Check if it's an img element directly
+      if (children.type === 'img') {
+        return <>{children}</>;
+      }
+      
+      // Check if it has a node property that indicates it's an img
+      const childProps = children.props as { node?: { tagName?: string } };
+      if (childProps.node && childProps.node.tagName === 'img') {
+        return <>{children}</>;
+      }
     }
     
     // Regular paragraph
@@ -217,7 +252,7 @@ export default function BlogPostPage() {
       setMainImageError(false);
       
       // Check if the image exists
-      const img = new Image();
+      const img = new window.Image();
       img.onload = () => setMainImageError(false);
       img.onerror = () => setMainImageError(true);
       img.src = post.image;

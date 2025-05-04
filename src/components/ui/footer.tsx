@@ -1,5 +1,6 @@
 import { Logo } from "./logo"
 import { useI18n } from '@/i18n/i18n-context'
+import Link from 'next/link'
 
 export function Footer() {
   const { t } = useI18n()
@@ -13,36 +14,36 @@ export function Footer() {
           </p>
         </div>
         <nav className="flex items-center gap-4 text-sm">
-          <a
+          <Link
             href="/about"
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
             {t('footer.about')}
-          </a>
-          <a
+          </Link>
+          <Link
             href="/blog"
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
             {t('footer.blog')}
-          </a>
-          <a
+          </Link>
+          <Link
             href="/contact"
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
             {t('footer.contact')}
-          </a>
-          <a
+          </Link>
+          <Link
             href="/terms"
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
             {t('footer.terms')}
-          </a>
-          <a
+          </Link>
+          <Link
             href="/privacy"
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
             {t('footer.privacy')}
-          </a>
+          </Link>
         </nav>
       </div>
     </footer>

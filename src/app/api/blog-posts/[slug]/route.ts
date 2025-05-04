@@ -1,12 +1,19 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { getBlogPostBySlug } from '@/lib/blog';
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { slug: string } }
-) {
+// Define the context type for dynamic route parameters
+type Context = {
+  params: Promise<{
+    slug: string;
+  }>;
+};
+
+export async function GET(request: Request, context: Context) {
   try {
-    const slug = params.slug;
+    // Await the params Promise to get the slug
+    const params = await context.params;
+    const { slug } = params;
+    
     const post = getBlogPostBySlug(slug);
     
     if (!post) {
@@ -18,7 +25,7 @@ export async function GET(
     
     return NextResponse.json(post);
   } catch (error) {
-    console.error(`Error fetching blog post with slug: ${params.slug}`, error);
+    console.error('Error fetching blog post:', error);
     return NextResponse.json(
       { error: 'Failed to fetch blog post' },
       { status: 500 }
