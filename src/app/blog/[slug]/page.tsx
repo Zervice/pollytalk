@@ -8,6 +8,10 @@ import React, { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
 import { BlogPost } from '@/lib/blog'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
+import rehypeSanitize from 'rehype-sanitize'
 
 // Custom CSS for blog content
 const blogContentStyles = `
@@ -119,429 +123,44 @@ const blogContentStyles = `
   }
 `;
 
-// Custom Markdown Renderer
-const CustomMarkdownRenderer = ({ content }: { content: string }) => {
-  const { t } = useI18n();
-  
-  if (!content) return null;
-  
-  // Remove frontmatter if present
-  let processedContent = content;
-  if (processedContent.startsWith('---')) {
-    const endOfFrontmatter = processedContent.indexOf('---', 3);
-    if (endOfFrontmatter !== -1) {
-      processedContent = processedContent.substring(endOfFrontmatter + 3).trim();
-    }
-  }
-  
-  // Process the content line by line for better control
-  const lines = processedContent.split('\n');
-  const elements: React.ReactNode[] = [];
-  
-  let currentParagraph: string[] = [];
-  let currentList: string[] = [];
-  let currentOrderedList: string[] = [];
-  let inList = false;
-  let inOrderedList = false;
-  let foundFirstH1 = false;
-  
-  // Process each line
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    const trimmedLine = line.trim();
-    
-    // Skip empty lines
-    if (trimmedLine === '') {
-      // If we were building a paragraph, finish it
-      if (currentParagraph.length > 0) {
-        elements.push(
-          <p key={`p-${elements.length}`}>
-            {formatInlineMarkdown(currentParagraph.join(' '))}
-          </p>
-        );
-        currentParagraph = [];
-      }
-      
-      // If we were in a list, finish it
-      if (inList && currentList.length > 0) {
-        elements.push(
-          <ul key={`ul-${elements.length}`} className="list-disc pl-5 my-3">
-            {currentList.map((item, idx) => (
-              <li key={`li-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
-            ))}
-          </ul>
-        );
-        currentList = [];
-        inList = false;
-      }
-      
-      // If we were in an ordered list, finish it
-      if (inOrderedList && currentOrderedList.length > 0) {
-        elements.push(
-          <ol key={`ol-${elements.length}`} className="list-decimal pl-5 my-3">
-            {currentOrderedList.map((item, idx) => (
-              <li key={`oli-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
-            ))}
-          </ol>
-        );
-        currentOrderedList = [];
-        inOrderedList = false;
-      }
-      
-      continue;
-    }
-    
-    // Handle headers
-    if (trimmedLine.startsWith('# ')) {
-      // Skip the first H1 heading since it's already displayed in the page header
-      if (!foundFirstH1) {
-        foundFirstH1 = true;
-        continue;
-      }
-      
-      // Finish any open paragraph
-      if (currentParagraph.length > 0) {
-        elements.push(
-          <p key={`p-${elements.length}`}>
-            {formatInlineMarkdown(currentParagraph.join(' '))}
-          </p>
-        );
-        currentParagraph = [];
-      }
-      
-      // Finish any open list
-      if (inList && currentList.length > 0) {
-        elements.push(
-          <ul key={`ul-${elements.length}`} className="list-disc pl-5 my-3">
-            {currentList.map((item, idx) => (
-              <li key={`li-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
-            ))}
-          </ul>
-        );
-        currentList = [];
-        inList = false;
-      }
-      
-      // Finish any open ordered list
-      if (inOrderedList && currentOrderedList.length > 0) {
-        elements.push(
-          <ol key={`ol-${elements.length}`} className="list-decimal pl-5 my-3">
-            {currentOrderedList.map((item, idx) => (
-              <li key={`oli-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
-            ))}
-          </ol>
-        );
-        currentOrderedList = [];
-        inOrderedList = false;
-      }
-      
-      elements.push(
-        <h1 key={`h1-${elements.length}`} className="text-3xl font-bold my-6">
-          {formatInlineMarkdown(trimmedLine.substring(2))}
-        </h1>
-      );
-      continue;
-    }
-    
-    // Handle h2
-    if (trimmedLine.startsWith('## ')) {
-      // Finish any open paragraph
-      if (currentParagraph.length > 0) {
-        elements.push(
-          <p key={`p-${elements.length}`}>
-            {formatInlineMarkdown(currentParagraph.join(' '))}
-          </p>
-        );
-        currentParagraph = [];
-      }
-      
-      // Finish any open list
-      if (inList && currentList.length > 0) {
-        elements.push(
-          <ul key={`ul-${elements.length}`} className="list-disc pl-5 my-3">
-            {currentList.map((item, idx) => (
-              <li key={`li-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
-            ))}
-          </ul>
-        );
-        currentList = [];
-        inList = false;
-      }
-      
-      // Finish any open ordered list
-      if (inOrderedList && currentOrderedList.length > 0) {
-        elements.push(
-          <ol key={`ol-${elements.length}`} className="list-decimal pl-5 my-3">
-            {currentOrderedList.map((item, idx) => (
-              <li key={`oli-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
-            ))}
-          </ol>
-        );
-        currentOrderedList = [];
-        inOrderedList = false;
-      }
-      
-      elements.push(
-        <h2 key={`h2-${elements.length}`} className="text-2xl font-bold my-4">
-          {formatInlineMarkdown(trimmedLine.substring(3))}
-        </h2>
-      );
-      continue;
-    }
-    
-    // Handle h3
-    if (trimmedLine.startsWith('### ')) {
-      // Finish any open paragraph
-      if (currentParagraph.length > 0) {
-        elements.push(
-          <p key={`p-${elements.length}`}>
-            {formatInlineMarkdown(currentParagraph.join(' '))}
-          </p>
-        );
-        currentParagraph = [];
-      }
-      
-      // Finish any open list
-      if (inList && currentList.length > 0) {
-        elements.push(
-          <ul key={`ul-${elements.length}`} className="list-disc pl-5 my-3">
-            {currentList.map((item, idx) => (
-              <li key={`li-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
-            ))}
-          </ul>
-        );
-        currentList = [];
-        inList = false;
-      }
-      
-      // Finish any open ordered list
-      if (inOrderedList && currentOrderedList.length > 0) {
-        elements.push(
-          <ol key={`ol-${elements.length}`} className="list-decimal pl-5 my-3">
-            {currentOrderedList.map((item, idx) => (
-              <li key={`oli-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
-            ))}
-          </ol>
-        );
-        currentOrderedList = [];
-        inOrderedList = false;
-      }
-      
-      elements.push(
-        <h3 key={`h3-${elements.length}`} className="text-xl font-semibold my-3">
-          {formatInlineMarkdown(trimmedLine.substring(4))}
-        </h3>
-      );
-      continue;
-    }
-    
-    // Handle unordered lists
-    if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('* ')) {
-      // Finish any open paragraph
-      if (currentParagraph.length > 0) {
-        elements.push(
-          <p key={`p-${elements.length}`}>
-            {formatInlineMarkdown(currentParagraph.join(' '))}
-          </p>
-        );
-        currentParagraph = [];
-      }
-      
-      // Finish any open ordered list
-      if (inOrderedList && currentOrderedList.length > 0) {
-        elements.push(
-          <ol key={`ol-${elements.length}`} className="list-decimal pl-5 my-3">
-            {currentOrderedList.map((item, idx) => (
-              <li key={`oli-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
-            ))}
-          </ol>
-        );
-        currentOrderedList = [];
-        inOrderedList = false;
-      }
-      
-      inList = true;
-      const listItemContent = trimmedLine.substring(2);
-      currentList.push(listItemContent);
-      continue;
-    }
-    
-    // Handle ordered lists (numbered lists)
-    const orderedListMatch = trimmedLine.match(/^(\d+)\.\s(.+)$/);
-    if (orderedListMatch) {
-      // Finish any open paragraph
-      if (currentParagraph.length > 0) {
-        elements.push(
-          <p key={`p-${elements.length}`}>
-            {formatInlineMarkdown(currentParagraph.join(' '))}
-          </p>
-        );
-        currentParagraph = [];
-      }
-      
-      // Finish any open unordered list
-      if (inList && currentList.length > 0) {
-        elements.push(
-          <ul key={`ul-${elements.length}`} className="list-disc pl-5 my-3">
-            {currentList.map((item, idx) => (
-              <li key={`li-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
-            ))}
-          </ul>
-        );
-        currentList = [];
-        inList = false;
-      }
-      
-      inOrderedList = true;
-      const listItemContent = orderedListMatch[2];
-      currentOrderedList.push(listItemContent);
-      continue;
-    }
-    
-    // Handle horizontal rules
-    if (trimmedLine === '---' || trimmedLine === '***' || trimmedLine === '___') {
-      // Finish any open paragraph
-      if (currentParagraph.length > 0) {
-        elements.push(
-          <p key={`p-${elements.length}`}>
-            {formatInlineMarkdown(currentParagraph.join(' '))}
-          </p>
-        );
-        currentParagraph = [];
-      }
-      
-      elements.push(<hr key={`hr-${elements.length}`} className="my-6 border-t border-border" />);
-      continue;
-    }
-    
-    // Handle images
-    const imageMatch = trimmedLine.match(/^!\[(.*)\]\((.*)\)$/);
-    if (imageMatch) {
-      // Finish any open paragraph
-      if (currentParagraph.length > 0) {
-        elements.push(
-          <p key={`p-${elements.length}`}>
-            {formatInlineMarkdown(currentParagraph.join(' '))}
-          </p>
-        );
-        currentParagraph = [];
-      }
-      
-      const alt = imageMatch[1];
-      const src = imageMatch[2];
-      
-      elements.push(
-        <div key={`img-${elements.length}`} className="my-6">
-          <ImagePlaceholder src={src} alt={alt} t={t} />
-        </div>
-      );
-      continue;
-    }
-    
-    // Handle blockquotes
-    if (trimmedLine.startsWith('> ')) {
-      // Finish any open paragraph
-      if (currentParagraph.length > 0) {
-        elements.push(
-          <p key={`p-${elements.length}`}>
-            {formatInlineMarkdown(currentParagraph.join(' '))}
-          </p>
-        );
-        currentParagraph = [];
-      }
-      
-      elements.push(
-        <blockquote key={`quote-${elements.length}`} className="border-l-4 border-border pl-4 italic my-4">
-          {formatInlineMarkdown(trimmedLine.substring(2))}
-        </blockquote>
-      );
-      continue;
-    }
-    
-    // Regular paragraph text
-    currentParagraph.push(trimmedLine);
-  }
-  
-  // Handle any remaining paragraph
-  if (currentParagraph.length > 0) {
-    elements.push(
-      <p key={`p-${elements.length}`}>
-        {formatInlineMarkdown(currentParagraph.join(' '))}
-      </p>
-    );
-  }
-  
-  // Handle any remaining list
-  if (inList && currentList.length > 0) {
-    elements.push(
-      <ul key={`ul-${elements.length}`} className="list-disc pl-5 my-3">
-        {currentList.map((item, idx) => (
-          <li key={`li-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
-        ))}
-      </ul>
-    );
-  }
-  
-  // Handle any remaining ordered list
-  if (inOrderedList && currentOrderedList.length > 0) {
-    elements.push(
-      <ol key={`ol-${elements.length}`} className="list-decimal pl-5 my-3">
-        {currentOrderedList.map((item, idx) => (
-          <li key={`oli-${elements.length}-${idx}`}>{formatInlineMarkdown(item)}</li>
-        ))}
-      </ol>
-    );
-  }
-  
-  return <div className="blog-content">{elements}</div>;
-};
-
 // Image component with placeholder
 const ImagePlaceholder = ({ src, alt, t }: { src: string, alt: string, t: any }) => {
-  const [imgError, setImgError] = useState(false);
-  
-  if (!src || imgError) {
+  const [error, setError] = useState(false);
+  const { t: translate } = useI18n();
+
+  useEffect(() => {
+    if (src) {
+      const img = new Image();
+      img.onload = () => setError(false);
+      img.onerror = () => setError(true);
+      img.src = src;
+    } else {
+      setError(true);
+    }
+  }, [src]);
+
+  if (error) {
     return (
       <div className="image-placeholder">
         <ImageIcon size={48} strokeWidth={1.5} />
-        <span className="mt-4 text-center block">{t('blog.imagePlaceholder')}</span>
+        <span className="mt-4 text-center block">{translate('blog.imagePlaceholder')}</span>
         {alt && <span className="mt-2 text-sm text-muted-foreground/70 block">{alt}</span>}
       </div>
     );
   }
-  
-  return (
-    <img 
-      src={src} 
-      alt={alt || t('blog.imageAlt')} 
-      onError={() => setImgError(true)}
-      className="mx-auto rounded-lg"
-    />
-  );
+
+  return <img src={src} alt={alt || ''} className="rounded-lg" />;
 };
 
-// Format inline markdown (bold, italic, links)
-const formatInlineMarkdown = (text: string) => {
-  if (!text) return '';
-  
-  // Process the text for inline formatting
-  let formattedText = text;
-  
-  // Replace bold text
-  formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-  formattedText = formattedText.replace(/__(.*?)__/g, '<strong>$1</strong>');
-  
-  // Replace italic text
-  formattedText = formattedText.replace(/\*(.*?)\*/g, '<em>$1</em>');
-  formattedText = formattedText.replace(/_(.*?)_/g, '<em>$1</em>');
-  
-  // Replace links
-  formattedText = formattedText.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>');
-  
-  // Replace inline code
-  formattedText = formattedText.replace(/`(.*?)`/g, '<code class="bg-muted px-1 py-0.5 rounded text-sm">$1</code>');
-  
-  return <span dangerouslySetInnerHTML={{ __html: formattedText }} />;
+// Custom components for ReactMarkdown
+const MarkdownComponents = {
+  // Override img to use our custom ImagePlaceholder
+  img: ({ node, ...props }: any) => {
+    const { src, alt } = props;
+    return <ImagePlaceholder src={src} alt={alt} t={undefined} />;
+  },
+  // Remove h1 from the content since we already display it in the header
+  h1: () => null
 };
 
 export default function BlogPostPage() {
@@ -618,6 +237,15 @@ export default function BlogPostPage() {
     )
   }
 
+  // Remove frontmatter if present
+  let processedContent = post.content;
+  if (processedContent.startsWith('---')) {
+    const endOfFrontmatter = processedContent.indexOf('---', 3);
+    if (endOfFrontmatter !== -1) {
+      processedContent = processedContent.substring(endOfFrontmatter + 3).trim();
+    }
+  }
+
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -684,8 +312,14 @@ export default function BlogPostPage() {
             )}
           </div>
 
-          <div className="prose prose-zinc dark:prose-invert max-w-none">
-            <CustomMarkdownRenderer content={post.content} />
+          <div className="prose prose-zinc dark:prose-invert max-w-none blog-content">
+            <ReactMarkdown 
+              remarkPlugins={[remarkGfm]} 
+              rehypePlugins={[rehypeRaw, rehypeSanitize]}
+              components={MarkdownComponents}
+            >
+              {processedContent}
+            </ReactMarkdown>
           </div>
         </div>
 
