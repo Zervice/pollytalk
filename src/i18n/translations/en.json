@@ -396,6 +396,21 @@
     "earlyAdopter": "for early adopters (30% off)",
     "freeTrialBadge": "7-Day Free Trial",
     "faqTitle": "Frequently Asked Questions",
+    "addOn": {
+      "title": "Need more practice time?",
+      "description": "Add more minutes to your daily practice time",
+      "pricePerUnit": "$20/month for extra 15 minutes per day",
+      "totalTime": "Total daily practice time: {0} minutes",
+      "totalMonthlyPrice": "Total monthly price: ",
+      "totalPrice": "${0}",
+      "earlyAdopterTotalPrice": "${0} (For early adopters)",
+      "upgradeHint": "For more than 90 minutes daily, consider the Aggressive package for better value",
+      "faqQuestion": "I chose the Regular package, but I want more practice time. What can I do?",
+      "faqAnswer": "You have two options: purchase add-on time in 15-minute increments per day, or upgrade to our Aggressive package for more included time.",
+      "purchaseButton": "Purchase Regular + Add-ons",
+      "orText": "or",
+      "upgradeButton": "Upgrade to Aggressive Package"
+    },
     "tiers": {
       "regular": {
         "name": "Regular",

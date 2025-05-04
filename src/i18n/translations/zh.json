@@ -186,7 +186,7 @@
       "title": "6. 知识产权",
       "content": "通过我们的服务提供的所有内容和材料，包括但不限于文本、图形、标志、图标、图像、音频片段和软件，均为博语通（PollyTalk）或其许可方的财产，并受版权、商标和其他知识产权法的保护。",
       "item1": "未经许可复制或复制我们的内容",
-      "item2": "修改或创建衔生作品",
+      "item2": "修改或创建衍生作品",
       "item3": "分发或公开展示我们的内容",
       "item4": "移除任何版权或专有通知"
     },
@@ -396,6 +396,21 @@
     "earlyAdopter": "早期用户价格（7折优惠）",
     "freeTrialBadge": "7天免费试用",
     "faqTitle": "常见问题",
+    "addOn": {
+      "title": "需要更多练习时间？",
+      "description": "添加更多的每日练习时间",
+      "pricePerUnit": "每日额外15分钟每月20美元",
+      "totalTime": "每日总练习时间：{0}分钟",
+      "totalMonthlyPrice": "每月总价：",
+      "totalPrice": "${0}",
+      "earlyAdopterTotalPrice": "${0} (早期用户价格）",
+      "upgradeHint": "如果每天需要超过90分钟的练习时间，考虑选择更具价值的进阶套餐",
+      "faqQuestion": "我选择了标准版套餐，但我想要更多练习时间。我该怎么做？",
+      "faqAnswer": "您有两个选择：购买每日15分钟增量的额外时间，或升级到我们的强化版套餐以获得更多包含时间。",
+      "purchaseButton": "购买标准版+额外时间",
+      "orText": "或者",
+      "upgradeButton": "升级到强化版套餐"
+    },
     "tiers": {
       "regular": {
         "name": "标准版",
