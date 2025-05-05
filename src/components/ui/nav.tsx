@@ -102,7 +102,7 @@ export function Nav() {
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
                 transition={{ type: "spring", damping: 20 }}
-                className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-border"
+                className="fixed inset-y-0 right-0 z-50 w-full h-screen overflow-y-auto bg-background px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-border flex flex-col"
               >
                 <div className="flex items-center justify-between">
                   <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
@@ -121,35 +121,39 @@ export function Nav() {
                     <X className="h-6 w-6" aria-hidden="true" />
                   </button>
                 </div>
-                <div className="mt-6 flow-root">
-                  <div className="-my-6 divide-y divide-border">
-                    <div className="space-y-2 py-6">
-                      {navigation.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-accent ${
-                            pathname === item.href ? 'text-primary' : 'text-muted-foreground'
-                          }`}
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          {item.name}
-                        </Link>
-                      ))}
-                      <div className="-mx-3 rounded-lg px-3 py-2 flex justify-center">
-                        <LanguageSwitcher compact={true} />
-                      </div>
-                      <div className="-mx-3 rounded-lg px-3 py-4 flex flex-col items-center">
-                        <p className="text-base font-semibold mb-3">{t('nav.scanToDownload')}</p>
-                        <div className="p-3 bg-white rounded-md border border-primary/20">
-                          <QRCode
-                            value="https://downloads.zervice.me/release/app-release.apk"
-                            size={180}
-                            level="H"
-                          />
-                        </div>
-                        <p className="text-xs text-muted-foreground mt-2">https://downloads.zervice.me/release/app-release.apk</p>
-                      </div>
+                
+                {/* Main navigation - no scrolling needed */}
+                <div className="flex-1 flex flex-col justify-center">
+                  <div className="space-y-4 py-6">
+                    {navigation.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className={`block rounded-lg px-4 py-3 text-lg font-semibold text-center leading-7 hover:bg-accent ${
+                          pathname === item.href ? 'text-primary bg-accent/50' : 'text-foreground'
+                        }`}
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Bottom section with language and QR code */}
+                <div className="mt-auto pt-4 border-t border-border">
+                  <div className="flex flex-col items-center gap-4">
+                    <LanguageSwitcher />
+                    <div className="flex items-center gap-2 p-2">
+                      <QrCode className="h-5 w-5 text-primary" />
+                      <p className="text-sm font-medium">{t('nav.scanToDownload')}</p>
+                    </div>
+                    <div className="p-3 bg-white rounded-md border border-primary/20">
+                      <QRCode
+                        value="https://downloads.zervice.me/release/app-release.apk"
+                        size={120}
+                        level="H"
+                      />
                     </div>
                   </div>
                 </div>
