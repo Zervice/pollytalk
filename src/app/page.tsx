@@ -31,7 +31,7 @@ export default function Home() {
     { type: 'user', text: "使用这个应用我真的能流利吗？" },
     { type: 'bot', text: "流利来自于定期练习和实际应用。博语通提供了传统学习中常常缺失的对话练习。我会帮助你建立信心，培养自然的语言模式，为真实世界的对话做好准备。我们的许多用户在出国旅行时都有突破性的时刻！" },
     { type: 'user', text: "费用是多少？" },
-    { type: 'bot', text: "博语通提供有限日常对话的免费计划，以及起价仅为每月¥69.99的高级计划，包括无限聊天、专业词汇主题和发音分析。为什么不先尝试我们的免费计划，看看你是否喜欢呢？" }
+    { type: 'bot', text: "博语通提供有限日常对话的免费计划，以及收费低至不足两美元每小时的多种可选高级计划。为什么不先尝试我们的免费计划，看看你是否喜欢呢？" }
   ] : [
     { type: 'bot', text: "Hi, I'm Polly, your English tutor. Would you like to know more about how I can help you learn languages?" },
     { type: 'user', text: "Sure! What exactly is PollyTalk?" },
@@ -45,7 +45,7 @@ export default function Home() {
     { type: 'user', text: "Will I actually become fluent using this app?" },
     { type: 'bot', text: "Fluency comes from regular practice and real-world application. PollyTalk provides the conversation practice that's often missing from traditional learning. I'll help you build confidence, develop natural speech patterns, and prepare you for real-world conversations. Many of our users report breakthrough moments when traveling abroad!" },
     { type: 'user', text: "How much does it cost?" },
-    { type: 'bot', text: "PollyTalk offers a free plan with limited daily conversations, and premium plans starting at just $9.99/month for unlimited chats, specialized vocabulary topics, and pronunciation analysis. Why not start with our free plan and see how you like it?" }
+    { type: 'bot', text: "PollyTalk offers a free plan with limited daily conversations, and premium plans with hourly costs below 2 dollars! Why not just start with our free plan and see how you like it?" }
   ], [locale])
 
   // Reference to the chat container for auto-scrolling

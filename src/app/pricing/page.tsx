@@ -11,18 +11,18 @@ export default function PricingPage() {
   const [addOns, setAddOns] = useState(0)
   
   // Calculate additional time and cost based on add-ons
-  const baseTime = 30 // minutes
-  const basePrice = locale === 'zh' ? 299 : 45 // CNY or USD
-  const earlyAdopterBasePrice = locale === 'zh' ? 199 : 30 // CNY or USD (early adopter price)
-  const addOnTime = 15 // minutes per add-on
-  const addOnPrice = locale === 'zh' ? 125 : 20 // CNY or USD per add-on
+  const baseHours = 15 // hours per month
+  const basePrice = 45 // USD
+  const earlyAdopterBasePrice = 30 // USD (early adopter price)
+  const addOnHours = 8 // hours per add-on
+  const addOnPrice = 20 // USD per add-on
   
-  const totalTime = baseTime + (addOns * addOnTime)
+  const totalHours = baseHours + (addOns * addOnHours)
   const totalPrice = basePrice + (addOns * addOnPrice)
   const earlyAdopterTotalPrice = earlyAdopterBasePrice + (addOns * addOnPrice)
   
   const incrementAddOn = () => {
-    if (addOns < 4) { // Max 4 add-ons (90 minutes total)
+    if (addOns < 4) { // Max 4 add-ons (47 hours total)
       setAddOns(addOns + 1)
     }
   }
@@ -226,7 +226,7 @@ export default function PricingPage() {
                 </p>
                 
                 <div className="flex items-center justify-between bg-muted/50 p-2 rounded-md mb-3">
-                  <span className="text-sm">{locale === 'zh' ? '¥' : '$'}{addOnPrice} {t('pricing.addOn.pricePerUnit')}</span>
+                  <span className="text-sm">${addOnPrice} {t('pricing.addOn.pricePerUnit')}</span>
                 </div>
                 
                 <div className="flex items-center justify-between mt-2">
@@ -266,14 +266,14 @@ export default function PricingPage() {
                 </div>
                 
                 <div className="text-sm space-y-1 mt-3">
-                  <p>{t('pricing.addOn.totalTime').replace('{0}', totalTime.toString())}</p>
+                  <p>{t('pricing.addOn.totalTime').replace('{0}', totalHours.toString())}</p>
                   <div className="font-semibold">
                     <span>{t('pricing.addOn.totalMonthlyPrice')}</span>
                     <span className="text-red-700 line-through opacity-80 mr-2">
-                      {locale === 'zh' ? '¥' : '$'}{totalPrice.toString()}
+                      ${totalPrice.toString()}
                     </span>
                     <span className="text-green-600">
-                      {locale === 'zh' ? '¥' : '$'}{earlyAdopterTotalPrice.toString()}
+                      ${earlyAdopterTotalPrice.toString()}
                     </span>
                   </div>
                   {addOns >= 3 && (
@@ -290,7 +290,7 @@ export default function PricingPage() {
                     size="sm"
                     asChild
                   >
-                    <a href={`/signup?plan=regular&addOns=${addOns}&totalTime=${totalTime}&totalPrice=${earlyAdopterTotalPrice}`}>
+                    <a href={`/signup?plan=regular&addOns=${addOns}&totalHours=${totalHours}&totalPrice=${earlyAdopterTotalPrice}`}>
                       {t('pricing.addOn.purchaseButton')}
                     </a>
                   </Button>
