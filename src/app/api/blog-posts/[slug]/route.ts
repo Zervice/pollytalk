@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { getBlogPostBySlug } from '@/lib/blog';
 
+// Configure for static export
+export const dynamic = 'force-static';
+
 // Define the context type for dynamic route parameters
 type Context = {
   params: Promise<{
