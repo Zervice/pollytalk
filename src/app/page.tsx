@@ -21,9 +21,9 @@ export default function Home() {
   const dialogMessages = useMemo(() => locale === 'zh' ? [
     { type: 'bot', text: "你好，我是Polly，你的中文老师。想了解更多关于我如何帮助你学习语言的信息吗？" },
     { type: 'user', text: "当然！博语通到底是什么？" },
-    { type: 'bot', text: "博语通是一款由人工智能驱动的语言学习应用，通过自然对话帮助你掌握语言。与专注于重复练习的传统应用不同，我的设计目的是像真实语言伙伴一样与你交流！" },
+    { type: 'bot', text: "博语通是一款由人工智能驱动的语言学习应用，专注于帮助你快速提升会话和口语能力。与专注于重复练习的传统应用不同，我的设计目的是像真实语言伙伴一样与你交流，让你在实际对话中练习和掌握语言！" },
     { type: 'user', text: "这与多邻国等其他应用有什么不同？" },
-    { type: 'bot', text: "好问题！虽然多邻国专注于游戏化练习和翻译，但博语通强调真实对话。我会根据你的水平调整，提供个性化的口语反馈，并创建你在现实生活中会遇到的自然对话场景。" },
+    { type: 'bot', text: "好问题！虽然多邻国专注于游戏化练习和翻译，但博语通专门通过真实对话来提升你的口语流利度。我们的核心优势在于：针对你的发音和语调提供个性化反馈，根据你的熟练程度调整对话难度，以及创建你在实际生活中真正会用到的实用对话场景。我们的设计目标就是帮助你说出更自然更自信的语言！" },
     { type: 'user', text: "我是语言初学者，可以使用博语通学习吗？" },
     { type: 'bot', text: "非常感谢你的提问！博语通最适合已经掌握了基本语言知识的学习者。如果你是初学者，我们建议先使用多邻国等应用学习基础词汇和语法，然后再使用博语通来提升你的对话能力和流利度。我们的优势在于帮助你进阶，让你从“知道语言”到“自然使用语言”！" },
     { type: 'user', text: "听起来很有趣。我每天需要投入多少时间？" },
@@ -35,9 +35,9 @@ export default function Home() {
   ] : [
     { type: 'bot', text: "Hi, I'm Polly, your English tutor. Would you like to know more about how I can help you learn languages?" },
     { type: 'user', text: "Sure! What exactly is PollyTalk?" },
-    { type: 'bot', text: "PollyTalk is an AI-powered language learning app that helps you master languages through natural conversations. Unlike traditional apps that focus on repetitive exercises, I'm designed to chat with you like a real language partner!" },
+    { type: 'bot', text: "PollyTalk is an AI-powered language learning app that helps you quickly improve your conversational and spoken language skills. Unlike traditional apps that focus on repetitive exercises, I'm designed to chat with you like a real language partner, allowing you to practice and master languages through actual conversations!" },
     { type: 'user', text: "How is this different from other apps like Duolingo?" },
-    { type: 'bot', text: "Great question! While apps like Duolingo focus on gamified exercises and translation, PollyTalk emphasizes real conversations. I adapt to your level, provide personalized feedback on your speaking, and create natural dialog scenarios you'd encounter in real life." },
+    { type: 'bot', text: "Great question! While apps like Duolingo focus on gamified exercises and translation, PollyTalk specializes in developing your speaking fluency through real conversations. Our key strengths are: personalized feedback on your pronunciation and intonation, adaptive conversations that match your proficiency level, and practical dialog scenarios you'll actually use in real life. We're specifically designed to help you sound more natural and confident when you speak!" },
     { type: 'user', text: "I'm new to the language, can I use PollyTalk to learn it?" },
     { type: 'bot', text: "Thanks for asking! PollyTalk is best suited for learners who already have some basic knowledge of the language. If you're a complete beginner, we recommend starting with apps like Duolingo to learn fundamental vocabulary and grammar, then switching to PollyTalk to enhance your conversation skills and fluency. Our strength is helping you progress from 'knowing the language' to 'naturally using the language'!" },
     { type: 'user', text: "That sounds interesting. How much time would I need to commit each day?" },
