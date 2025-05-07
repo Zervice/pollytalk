@@ -1,8 +1,16 @@
 import { NextResponse } from 'next/server';
-import { getBlogPostBySlug } from '@/lib/blog';
+import { getBlogPostBySlug, getBlogPosts } from '@/lib/blog';
 
 // Configure for static export
 export const dynamic = 'force-static';
+
+// Generate all possible slug values at build time
+export function generateStaticParams() {
+  const posts = getBlogPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
 
 // Define the context type for dynamic route parameters
 type Context = {
