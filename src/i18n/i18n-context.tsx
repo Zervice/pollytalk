@@ -33,52 +33,34 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   
   useEffect(() => {
     function detectUserLanguage() {
-      try {
-        // 1. Check if user has a saved preference in localStorage
-        try {
-          const savedLocale = localStorage.getItem('locale') as Locale
-          if (savedLocale && (savedLocale === 'en' || savedLocale === 'zh')) {
-            console.log('Using saved language preference:', savedLocale)
-            setLocale(savedLocale)
-            setIsInitialized(true)
-            return
-          }
-        } catch (err) {
-          console.warn('Error accessing localStorage for language preference:', err)
-          // Continue to browser detection if localStorage fails
-        }
-
-        // 2. Check browser language settings
-        const browserLanguages = [
-          navigator.language,
-          ...(navigator.languages || [])
-        ]
-        
-        console.log('Detected browser languages:', browserLanguages)
-        
-        // Check if any browser language starts with 'zh'
-        const preferredLanguage = browserLanguages.find(lang => {
-          if (!lang) return false
-          const langCode = lang.toLowerCase().split('-')[0]
-          return langCode === 'zh'
-        })
-        
-        if (preferredLanguage) {
-          console.log('Setting language to Chinese based on browser preference')
-          setLocale('zh')
-        } else {
-          // Default to English if no Chinese preference detected
-          console.log('Setting language to English (default)')
-          setLocale('en')
-        }
-      } catch (err) {
-        // Failsafe - if anything goes wrong, default to English
-        console.error('Error during language detection:', err)
-        setLocale('en')
-      } finally {
-        // Always set initialized to true to avoid getting stuck
+      // 1. Check if user has a saved preference in localStorage
+      const savedLocale = localStorage.getItem('locale') as Locale
+      if (savedLocale && (savedLocale === 'en' || savedLocale === 'zh')) {
+        setLocale(savedLocale)
         setIsInitialized(true)
+        return
       }
+
+      // 2. Check browser language settings
+      const browserLanguages = [
+        navigator.language,
+        ...(navigator.languages || [])
+      ]
+      
+      // Check if any browser language starts with 'zh'
+      const preferredLanguage = browserLanguages.find(lang => {
+        const langCode = lang.toLowerCase().split('-')[0]
+        return langCode === 'zh'
+      })
+      
+      if (preferredLanguage) {
+        setLocale('zh')
+      } else {
+        // Default to English if no Chinese preference detected
+        setLocale('en')
+      }
+      
+      setIsInitialized(true)
     }
 
     // Execute language detection immediately
@@ -88,21 +70,13 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (isInitialized) {
-      try {
-        // Try to save the locale preference to localStorage
-        localStorage.setItem('locale', locale)
-      } catch (err) {
-        console.warn('Error saving language preference to localStorage:', err)
-        // Continue even if localStorage fails
-      }
-      
-      // Update document language attribute
+      localStorage.setItem('locale', locale)
       document.documentElement.lang = locale
       
       // Update document direction if needed (for RTL languages in the future)
       // document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr'
       
-      console.log('Language initialized successfully:', locale)
+      // You could also update other language-specific settings here
     }
   }, [locale, isInitialized])
 
