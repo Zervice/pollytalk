@@ -38,10 +38,22 @@ jobs:
         run: |
           echo "NEXT_PUBLIC_BASE_PATH=/$(echo ${{ github.repository }} | cut -d '/' -f 2)" >> $GITHUB_ENV
       
+      - name: Check for custom domain
+        id: check_domain
+        run: |
+          if [ -f "./public/CNAME" ]; then
+            echo "NEXT_PUBLIC_CUSTOM_DOMAIN=true" >> $GITHUB_ENV
+            echo "Custom domain found in CNAME file: $(cat ./public/CNAME)"
+          else
+            echo "NEXT_PUBLIC_CUSTOM_DOMAIN=false" >> $GITHUB_ENV
+            echo "No custom domain found, using GitHub Pages URL"
+          fi
+      
       - name: Build with Next.js
         run: npm run build
         env:
           NEXT_PUBLIC_BASE_PATH: ${{ env.NEXT_PUBLIC_BASE_PATH }}
+          NEXT_PUBLIC_CUSTOM_DOMAIN: ${{ env.NEXT_PUBLIC_CUSTOM_DOMAIN }}
       
       - name: Create .nojekyll file
         run: touch ./out/.nojekyll
