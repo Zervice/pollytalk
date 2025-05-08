@@ -8,9 +8,6 @@ const nextConfig = {
   assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH || '',
   trailingSlash: true,
   // This is important for GitHub Pages to handle client-side routing correctly
-  experimental: {
-    appDir: true,
-  },
   env: {
     // Expose environment variables to the browser
     NEXT_PUBLIC_BASE_PATH: process.env.NEXT_PUBLIC_BASE_PATH || '',

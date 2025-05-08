@@ -168,7 +168,6 @@ export default function TermsPage() {
             </p>
             <ul className="list-none pl-6 mt-2">
               <li>{t('termsPage.contact.email')}</li>
-              <li>{t('termsPage.contact.address')}</li>
             </ul>
           </section>
 

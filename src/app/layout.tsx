@@ -1,9 +1,9 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
 import { ClientLayout } from '@/components/client-layout'
 import type { Metadata } from 'next'
 
-const inter = Inter({ subsets: ['latin', 'latin-ext'] })
+// Using local font fallbacks instead of Google Fonts for more reliable static builds
+// This prevents build failures when Google Fonts can't be fetched
 
 export const metadata: Metadata = {
   title: 'PollyTalk - Your AI Conversation Companion',
@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning>
-      <body className={`${inter.className} antialiased min-h-screen flex flex-col`}>
+      <body className="antialiased min-h-screen flex flex-col font-sans">
         <ClientLayout>
           {children}
         </ClientLayout>

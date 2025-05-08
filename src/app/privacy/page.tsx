@@ -148,7 +148,6 @@ export default function PrivacyPage() {
             </p>
             <ul className="list-none pl-6 mt-2">
               <li>{t('privacyPage.contact.email')}</li>
-              <li>{t('privacyPage.contact.address')}</li>
               <li>{t('privacyPage.contact.dpo')}</li>
             </ul>
           </section>

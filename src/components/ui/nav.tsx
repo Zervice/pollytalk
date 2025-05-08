@@ -29,10 +29,10 @@ export function Nav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 backdrop-blur-sm bg-background/80 border-b border-border">
       <nav className="flex items-center justify-between p-6 lg:px-8 mx-auto max-w-7xl" aria-label="Global">
-        <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
-            <Logo size={32} />
-            <span className="font-semibold text-xl">
+        <div className="flex lg:w-1/5">
+          <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-1">
+            <Logo size={28} />
+            <span className="font-semibold text-lg">
               {locale === 'zh' ? '博语通' : 'PollyTalk'}
               {locale === 'zh' && <span className="text-xs ml-1 text-muted-foreground">(PollyTalk)</span>}
             </span>
@@ -62,7 +62,7 @@ export function Nav() {
             </Link>
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-4 items-center">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-5 items-center">
           <LanguageSwitcher />
           {user ? (
             <Button 
