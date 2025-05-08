@@ -3,6 +3,7 @@
 import { useI18n } from '@/i18n/i18n-context'
 import { GlobeIcon } from '@radix-ui/react-icons'
 import Image from 'next/image'
+import { getAssetPath } from '@/lib/utils'
 
 interface LanguageSwitcherProps {
   compact?: boolean;
@@ -18,8 +19,8 @@ export function LanguageSwitcher({ compact = false }: LanguageSwitcherProps) {
   }
 
   // Current flag and next flag to switch to
-  const currentFlag = locale === 'en' ? '/flags/us.svg' : '/flags/cn.svg'
-  const nextFlag = locale === 'en' ? '/flags/cn.svg' : '/flags/us.svg'
+  const currentFlag = locale === 'en' ? getAssetPath('/flags/us.svg') : getAssetPath('/flags/cn.svg')
+  const nextFlag = locale === 'en' ? getAssetPath('/flags/cn.svg') : getAssetPath('/flags/us.svg')
   const nextLanguage = locale === 'en' ? '中文' : 'English'
 
   if (compact) {
