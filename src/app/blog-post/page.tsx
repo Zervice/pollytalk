@@ -13,6 +13,7 @@ import rehypeRaw from 'rehype-raw'
 import rehypeSanitize from 'rehype-sanitize'
 import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
+import { getAssetPath } from '@/lib/utils'
 
 // Custom CSS for blog content
 const blogContentStyles = `
@@ -135,7 +136,7 @@ const ImagePlaceholder = ({ src, alt, t }: { src: string, alt: string, t: unknow
       const img = document.createElement('img');
       img.onload = () => setError(false);
       img.onerror = () => setError(true);
-      img.src = src;
+      img.src = getAssetPath(src);
     } else {
       setError(true);
     }
@@ -155,7 +156,7 @@ const ImagePlaceholder = ({ src, alt, t }: { src: string, alt: string, t: unknow
   return (
     <div className="relative w-full h-auto min-h-[200px] rounded-lg overflow-hidden">
       <Image 
-        src={src} 
+        src={getAssetPath(src)} 
         alt={alt || ''} 
         className="rounded-lg" 
         fill 
@@ -309,7 +310,7 @@ export default function BlogPostPage() {
       const img = document.createElement('img');
       img.onload = () => setMainImageError(false);
       img.onerror = () => setMainImageError(true);
-      img.src = post.image;
+      img.src = getAssetPath(post.image);
     }
   }, [post]);
   
@@ -414,7 +415,7 @@ export default function BlogPostPage() {
         ) : (
           <div className="relative w-full h-[300px] md:h-[400px] rounded-lg overflow-hidden">
             <Image 
-              src={post.image} 
+              src={getAssetPath(post.image)} 
               alt={post.title} 
               className="rounded-lg" 
               fill 

@@ -6,6 +6,7 @@ import { useI18n } from "@/i18n/i18n-context"
 import { useEffect, useState } from "react"
 import { BlogPost, getBlogPosts } from "@/lib/blog"
 import Link from "next/link"
+import { getAssetPath } from "@/lib/utils"
 
 export default function BlogPage() {
   const { t } = useI18n()
@@ -129,7 +130,7 @@ export default function BlogPage() {
                 <div 
                   className="absolute inset-0 bg-cover bg-center"
                   style={{ 
-                    backgroundImage: `url(${post.image})`,
+                    backgroundImage: `url(${getAssetPath(post.image)})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                   }} 

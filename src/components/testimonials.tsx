@@ -6,6 +6,7 @@ import { useI18n } from '@/i18n/i18n-context'
 import Image from 'next/image'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Quote as QuoteIcon } from 'lucide-react'
+import { getAssetPath } from '@/lib/utils'
 
 export function Testimonials() {
   const { t, locale } = useI18n()
@@ -133,7 +134,7 @@ export function Testimonials() {
                 <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
                   <div className="flex-shrink-0">
                     <Avatar className="h-20 w-20 border-2 border-primary">
-                      <AvatarImage src={testimonial.image} alt={testimonial.name} />
+                      <AvatarImage src={getAssetPath(testimonial.image)} alt={testimonial.name} />
                       <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
                     </Avatar>
                   </div>

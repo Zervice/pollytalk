@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useI18n } from '@/i18n/i18n-context'
+import { getAssetPath } from '@/lib/utils'
 
 export function Logo({ className = "", size = 40 }: { className?: string; size?: number }) {
   const { locale } = useI18n()
@@ -14,7 +15,7 @@ export function Logo({ className = "", size = 40 }: { className?: string; size?:
   return (
     <div className={`relative ${className}`} style={{ width: size, height }}>
       <Image
-        src="/logo.png"
+        src={getAssetPath('/logo.png')}
         alt={altText}
         fill
         className="object-contain"
