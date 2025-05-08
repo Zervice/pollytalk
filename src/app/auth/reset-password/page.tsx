@@ -6,8 +6,7 @@ import { useRouter } from 'next/navigation'
 import { useI18n } from '@/i18n/i18n-context'
 import { Button } from '@/components/ui/button'
 import { Logo } from '@/components/ui/logo'
-import { auth } from '@/lib/firebase'
-import { confirmPasswordReset, verifyPasswordResetCode } from 'firebase/auth'
+import { authApi } from '@/lib/api'
 
 export default function ResetPassword() {
   const { t, locale } = useI18n()
@@ -17,29 +16,22 @@ export default function ResetPassword() {
   const [error, setError] = useState<string | null>(null)
   const [message, setMessage] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [resetToken, setResetToken] = useState<string | null>(null)
 
   useEffect(() => {
-    // Check if we have an oobCode in the URL
+    // Check if we have a token in the URL
     const url = new URL(window.location.href)
-    const oobCode = url.searchParams.get('oobCode')
+    const token = url.searchParams.get('token')
     
-    if (!oobCode) {
-      // If no oobCode, redirect to sign in
+    if (!token) {
+      // If no token, redirect to sign in
       router.push('/auth/signin')
       return
     }
     
-    // Verify the password reset code
-    const verifyCode = async () => {
-      try {
-        await verifyPasswordResetCode(auth, oobCode)
-      } catch (error) {
-        console.error('Invalid or expired password reset code', error)
-        router.push('/auth/signin')
-      }
-    }
-    
-    verifyCode()
+    // We don't need to verify the token here as it will be verified when used
+    // Just store it for later use
+    setResetToken(token)
   }, [router])
 
   const handleResetPassword = async (e: React.FormEvent) => {
@@ -53,7 +45,7 @@ export default function ResetPassword() {
       return
     }
 
-    if (password.length < 6) {
+    if (password.length < 8) {
       setError(t('auth.errors.passwordTooShort'))
       return
     }
@@ -61,29 +53,25 @@ export default function ResetPassword() {
     setIsLoading(true)
 
     try {
-      // Get the oobCode from the URL
-      const url = new URL(window.location.href)
-      const oobCode = url.searchParams.get('oobCode')
-      
-      if (!oobCode) {
-        throw new Error('Password reset code is missing')
+      if (!resetToken) {
+        throw new Error('Password reset token is missing')
       }
       
-      // Confirm the password reset
-      await confirmPasswordReset(auth, oobCode, password)
+      // Reset the password
+      const response = await authApi.resetPassword(resetToken, password)
       
-      setMessage('Password updated successfully')
+      setMessage(response.message || t('auth.passwordResetSuccess'))
       // Redirect to sign in after a short delay
       setTimeout(() => {
         router.push('/auth/signin')
       }, 2000)
     } catch (error: any) {
-      if (error.code === 'auth/weak-password') {
+      if (error.error === 'weak_password') {
         setError(t('auth.errors.passwordTooWeak'))
-      } else if (error.code === 'auth/invalid-action-code') {
-        setError('Invalid or expired password reset link')
+      } else if (error.error === 'invalid_token' || error.error === 'expired_token') {
+        setError(t('auth.errors.invalidOrExpiredToken'))
       } else {
-        setError(error.message || 'An unexpected error occurred')
+        setError(error.message || t('auth.errors.general'))
       }
     } finally {
       setIsLoading(false)

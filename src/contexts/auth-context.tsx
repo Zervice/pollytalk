@@ -1,88 +1,127 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState } from 'react'
-import {
-  User as FirebaseUser,
-  GoogleAuthProvider,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  signInWithPopup,
-  signInWithRedirect,
-  signOut as firebaseSignOut,
-  onAuthStateChanged,
-  UserCredential
-} from 'firebase/auth'
-import { auth } from '@/lib/firebase'
+import { User, authApi, setAuthData, getStoredUser, isAuthenticated, ErrorResponse } from '@/lib/api'
 
 type AuthContextType = {
-  user: FirebaseUser | null
+  user: User | null
   isLoading: boolean
-  signIn: (email: string, password: string) => Promise<{ error: Error | null }>
-  signUp: (email: string, password: string) => Promise<{ error: Error | null; data: UserCredential | null }>
+  signIn: (email: string, password: string) => Promise<{ error: ErrorResponse | null }>
+  signUp: (email: string, password: string, name?: string) => Promise<{ error: ErrorResponse | null; data: User | null }>
   signOut: () => Promise<void>
   signInWithGoogle: () => Promise<void>
+  updateProfile: (data: Partial<User>) => Promise<{ error: ErrorResponse | null; data: User | null }>
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<FirebaseUser | null>(null)
+  const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Listen for auth state changes
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser)
+    // Check if user is already authenticated
+    const initAuth = async () => {
+      setIsLoading(true)
+      
+      // Try to get user from localStorage first
+      const storedUser = getStoredUser()
+      
+      if (storedUser && isAuthenticated()) {
+        try {
+          // Verify the token by fetching current user
+          const currentUser = await authApi.getCurrentUser()
+          setUser(currentUser)
+        } catch (error) {
+          // If token is invalid, try to refresh it
+          try {
+            const { token } = await authApi.refreshToken()
+            // Update token in localStorage
+            localStorage.setItem('auth_token', token)
+            // Fetch user again with new token
+            const currentUser = await authApi.getCurrentUser()
+            setUser(currentUser)
+          } catch (refreshError) {
+            // If refresh fails, clear auth data
+            localStorage.removeItem('auth_token')
+            localStorage.removeItem('auth_refresh_token')
+            localStorage.removeItem('auth_user')
+            setUser(null)
+          }
+        }
+      } else {
+        setUser(null)
+      }
+      
       setIsLoading(false)
-    })
+    }
 
-    // Cleanup subscription on unmount
-    return () => unsubscribe()
+    initAuth()
   }, [])
 
   const signIn = async (email: string, password: string) => {
     try {
-      await signInWithEmailAndPassword(auth, email, password)
+      const authResponse = await authApi.signIn(email, password)
+      setAuthData(authResponse)
+      setUser(authResponse.user)
       return { error: null }
     } catch (error) {
-      return { error: error as Error }
+      return { error: error as ErrorResponse }
     }
   }
 
-  const signUp = async (email: string, password: string) => {
+  const signUp = async (email: string, password: string, name?: string) => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
-      return { data: userCredential, error: null }
+      const authResponse = await authApi.signUp(email, password, name)
+      setAuthData(authResponse)
+      setUser(authResponse.user)
+      return { data: authResponse.user, error: null }
     } catch (error) {
-      return { data: null, error: error as Error }
+      return { data: null, error: error as ErrorResponse }
     }
   }
 
   const signOut = async () => {
-    await firebaseSignOut(auth)
+    try {
+      await authApi.signOut()
+    } catch (error) {
+      console.error('Error signing out:', error)
+    } finally {
+      // Always clear local storage and state
+      localStorage.removeItem('auth_token')
+      localStorage.removeItem('auth_refresh_token')
+      localStorage.removeItem('auth_user')
+      setUser(null)
+    }
   }
 
   const signInWithGoogle = async () => {
     try {
-      const provider = new GoogleAuthProvider()
-      // Add scopes if needed
-      provider.addScope('https://www.googleapis.com/auth/userinfo.email')
-      provider.addScope('https://www.googleapis.com/auth/userinfo.profile')
+      // Get the Google auth URL from the API
+      const { url } = await authApi.getGoogleAuthUrl()
       
-      // For GitHub Pages static export, we need to handle the base path
-      const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
-      const redirectUrl = `${window.location.origin}${basePath}/auth/callback`
-      
-      // Set custom parameters including redirect URL
-      provider.setCustomParameters({
-        prompt: 'select_account',
-        login_hint: '',
-      })
-      
-      // Use redirect-based authentication for better compatibility with static hosting
-      await signInWithRedirect(auth, provider)
+      // Redirect to Google auth page
+      window.location.href = url
     } catch (error) {
       console.error('Error signing in with Google:', error)
+    }
+  }
+  
+  const updateProfile = async (data: Partial<User>) => {
+    try {
+      const updatedUser = await authApi.updateProfile(data)
+      setUser(updatedUser)
+      
+      // Update stored user
+      const userJson = localStorage.getItem('auth_user')
+      if (userJson) {
+        const storedUser = JSON.parse(userJson)
+        localStorage.setItem('auth_user', JSON.stringify({ ...storedUser, ...data }))
+      }
+      
+      return { data: updatedUser, error: null }
+    } catch (error) {
+      return { data: null, error: error as ErrorResponse }
     }
   }
 
@@ -92,7 +131,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     signIn,
     signUp,
     signOut,
-    signInWithGoogle
+    signInWithGoogle,
+    updateProfile
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

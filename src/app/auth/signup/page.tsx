@@ -30,7 +30,7 @@ export default function SignUp() {
       return
     }
 
-    if (password.length < 6) {
+    if (password.length < 8) {
       setError(t('auth.errors.passwordTooShort'))
       return
     }
@@ -41,17 +41,17 @@ export default function SignUp() {
       const { data, error } = await signUp(email, password)
       
       if (error) {
-        if (error.message.includes('auth/email-already-in-use')) {
+        if (error.error === 'email_already_exists' || error.statusCode === 409) {
           setError(t('auth.errors.emailInUse'))
-        } else if (error.message.includes('auth/invalid-email')) {
+        } else if (error.error === 'invalid_email') {
           setError(t('auth.errors.invalidEmail'))
-        } else if (error.message.includes('auth/weak-password')) {
+        } else if (error.error === 'weak_password') {
           setError(t('auth.errors.passwordTooWeak'))
         } else {
-          setError(error.message)
+          setError(error.message || t('auth.errors.general'))
         }
       } else {
-        // Firebase automatically signs in the user after registration
+        // User is automatically signed in after registration
         setMessage(t('auth.accountCreated'))
         // Redirect to home page after a short delay
         setTimeout(() => {
@@ -59,7 +59,7 @@ export default function SignUp() {
         }, 1500)
       }
     } catch (error) {
-      setError('An unexpected error occurred')
+      setError(t('auth.errors.general'))
     } finally {
       setIsLoading(false)
     }

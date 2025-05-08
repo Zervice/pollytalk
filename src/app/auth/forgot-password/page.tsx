@@ -6,8 +6,7 @@ import { useRouter } from 'next/navigation'
 import { useI18n } from '@/i18n/i18n-context'
 import { Button } from '@/components/ui/button'
 import { Logo } from '@/components/ui/logo'
-import { auth } from '@/lib/firebase'
-import { sendPasswordResetEmail } from 'firebase/auth'
+import { authApi } from '@/lib/api'
 
 export default function ForgotPassword() {
   const { t, locale } = useI18n()
@@ -23,21 +22,22 @@ export default function ForgotPassword() {
     setIsLoading(true)
 
     try {
-      await sendPasswordResetEmail(auth, email, {
-        url: `${window.location.origin}/auth/reset-password`,
-      })
+      await authApi.forgotPassword(email)
       
+      // Always show success message even if email doesn't exist (for security)
       setMessage(t('auth.passwordResetEmailSent'))
       setEmail('')
     } catch (error: any) {
-      if (error.code === 'auth/user-not-found') {
+      if (error.error === 'user_not_found') {
         // Don't reveal if the email exists for security reasons
         setMessage(t('auth.passwordResetEmailSent'))
         setEmail('')
-      } else if (error.code === 'auth/invalid-email') {
+      } else if (error.error === 'invalid_email') {
         setError(t('auth.errors.invalidEmail'))
+      } else if (error.statusCode === 429) {
+        setError(t('auth.errors.tooManyAttempts'))
       } else {
-        setError(error.message || 'An unexpected error occurred')
+        setError(error.message || t('auth.errors.general'))
       }
     } finally {
       setIsLoading(false)

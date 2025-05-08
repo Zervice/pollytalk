@@ -25,15 +25,15 @@ export default function SignIn() {
     try {
       const { error } = await signIn(email, password)
       if (error) {
-        // Handle specific Firebase error codes for better user feedback
-        if (error.message.includes('auth/invalid-credential') || 
-            error.message.includes('auth/user-not-found') || 
-            error.message.includes('auth/wrong-password')) {
+        // Handle specific API error codes for better user feedback
+        if (error.statusCode === 401) {
           setError(t('auth.errors.invalidCredentials'))
-        } else if (error.message.includes('auth/too-many-requests')) {
+        } else if (error.statusCode === 429) {
           setError(t('auth.errors.tooManyAttempts'))
+        } else if (error.error === 'account_not_verified') {
+          setError(t('auth.errors.accountNotVerified'))
         } else {
-          setError(t('auth.errors.general'))
+          setError(error.message || t('auth.errors.general'))
         }
       } else {
         router.push('/')
