@@ -43,6 +43,12 @@ jobs:
         env:
           NEXT_PUBLIC_BASE_PATH: ${{ env.NEXT_PUBLIC_BASE_PATH }}
       
+      - name: Create .nojekyll file
+        run: touch ./out/.nojekyll
+        
+      - name: Copy 404.html to root
+        run: cp ./out/404.html ./out/
+        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

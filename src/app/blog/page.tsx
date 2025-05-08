@@ -5,6 +5,7 @@ import { Clock, User } from "lucide-react"
 import { useI18n } from "@/i18n/i18n-context"
 import { useEffect, useState } from "react"
 import { BlogPost, getBlogPosts } from "@/lib/blog"
+import Link from "next/link"
 
 export default function BlogPage() {
   const { t } = useI18n()
@@ -159,9 +160,9 @@ export default function BlogPage() {
                   </div>
                 </div>
               </div>
-              <a href={`/blog/${post.slug}`} className="absolute inset-0">
+              <Link href={`/blogs/${post.slug}`} className="block">
                 <span className="sr-only">{t('blog.viewArticle')}</span>
-              </a>
+              </Link>
             </motion.article>
           ))}
         </div>
