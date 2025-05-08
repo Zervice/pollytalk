@@ -1,7 +1,7 @@
+'use client'
+
 // This is needed for static export
 export const dynamic = 'force-static'
-
-'use client'
 
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
