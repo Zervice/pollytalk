@@ -398,6 +398,7 @@
     "signOut": "Sign Out",
     "email": "Email",
     "password": "Password",
+    "name": "Name",
     "forgotPassword": "Forgot Password?",
     "resetPassword": "Reset Password",
     "confirmPassword": "Confirm Password",
@@ -409,6 +410,13 @@
     "magicLink": "Send Magic Link",
     "checkEmail": "Check your email for the login link",
     "passwordsMustMatch": "Passwords must match",
+    "verificationCode": "Verification Code",
+    "getCode": "Get Code",
+    "sending": "Sending...",
+    "resendCode": "Resend Code",
+    "resendIn": "Resend in",
+    "codeSent": "Verification code sent to your email",
+    "accountCreated": "Account created successfully",
     "passwordReset": {
       "title": "Reset your password",
       "instructions": "Enter your email address and we'll send you a link to reset your password.",
@@ -419,7 +427,15 @@
       "passwordTooShort": "Password must be at least 6 characters",
       "passwordsDoNotMatch": "Passwords do not match",
       "invalidCredentials": "Invalid login credentials",
-      "emailInUse": "Email is already in use"
+      "emailInUse": "Email is already in use",
+      "emailRequired": "Email is required",
+      "verificationCodeRequired": "Verification code is required",
+      "verificationCodeFailed": "Failed to send verification code",
+      "invalidVerificationCode": "Invalid verification code",
+      "passwordTooWeak": "Password is too weak",
+      "general": "An error occurred. Please try again",
+      "tooManyAttempts": "Too many attempts. Please try again later",
+      "accountNotVerified": "Account not verified. Please check your email"
     }
   },
   "dashboard": {
