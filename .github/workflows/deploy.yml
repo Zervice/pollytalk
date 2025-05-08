@@ -46,8 +46,8 @@ jobs:
       - name: Create .nojekyll file
         run: touch ./out/.nojekyll
         
-      - name: Copy 404.html to root
-        run: cp ./out/404.html ./out/
+      - name: Copy custom 404.html to output directory
+        run: cp ./public/404.html ./out/
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
