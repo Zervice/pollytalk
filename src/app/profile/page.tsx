@@ -30,7 +30,7 @@ export default function Profile() {
       router.push('/auth/signin')
     }
     
-    // In a real app, you would fetch user profile from Supabase here
+    // In a real app, you would fetch user profile from Firebase here
     if (user) {
       setProfile({
         ...mockUserProfile,
@@ -50,7 +50,7 @@ export default function Profile() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // In a real app, you would update the user profile in Supabase here
+    // In a real app, you would update the user profile in Firebase here
     setProfile(formData)
     setIsEditing(false)
   }

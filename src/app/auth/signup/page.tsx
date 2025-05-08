@@ -41,17 +41,22 @@ export default function SignUp() {
       const { data, error } = await signUp(email, password)
       
       if (error) {
-        if (error.message.includes('email')) {
+        if (error.message.includes('auth/email-already-in-use')) {
           setError(t('auth.errors.emailInUse'))
+        } else if (error.message.includes('auth/invalid-email')) {
+          setError(t('auth.errors.invalidEmail'))
+        } else if (error.message.includes('auth/weak-password')) {
+          setError(t('auth.errors.passwordTooWeak'))
         } else {
           setError(error.message)
         }
       } else {
-        setMessage(t('auth.checkEmail'))
-        // If auto-confirm is enabled in Supabase, redirect to home
-        if (data?.user?.identities?.length === 0) {
+        // Firebase automatically signs in the user after registration
+        setMessage(t('auth.accountCreated'))
+        // Redirect to home page after a short delay
+        setTimeout(() => {
           router.push('/')
-        }
+        }, 1500)
       }
     } catch (error) {
       setError('An unexpected error occurred')

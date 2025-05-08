@@ -34,7 +34,7 @@ export default function Dashboard() {
       router.push('/auth/signin')
     }
     
-    // In a real app, you would fetch user statistics from Supabase here
+    // In a real app, you would fetch user statistics from Firebase here
     // For now, we're using mock data
   }, [user, isLoading, router])
 

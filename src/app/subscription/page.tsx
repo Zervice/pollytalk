@@ -32,7 +32,7 @@ export default function Subscription() {
       router.push('/auth/signin')
     }
     
-    // In a real app, you would fetch subscription data from Supabase here
+    // In a real app, you would fetch subscription data from Firebase here
   }, [user, isLoading, router])
 
   if (isLoading) {

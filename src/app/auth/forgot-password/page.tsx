@@ -2,10 +2,12 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useI18n } from '@/i18n/i18n-context'
 import { Button } from '@/components/ui/button'
 import { Logo } from '@/components/ui/logo'
-import { supabase } from '@/lib/supabase'
+import { auth } from '@/lib/firebase'
+import { sendPasswordResetEmail } from 'firebase/auth'
 
 export default function ForgotPassword() {
   const { t, locale } = useI18n()
@@ -21,17 +23,22 @@ export default function ForgotPassword() {
     setIsLoading(true)
 
     try {
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/auth/reset-password`,
+      await sendPasswordResetEmail(auth, email, {
+        url: `${window.location.origin}/auth/reset-password`,
       })
-
-      if (error) {
-        setError(error.message)
+      
+      setMessage(t('auth.passwordResetEmailSent'))
+      setEmail('')
+    } catch (error: any) {
+      if (error.code === 'auth/user-not-found') {
+        // Don't reveal if the email exists for security reasons
+        setMessage(t('auth.passwordResetEmailSent'))
+        setEmail('')
+      } else if (error.code === 'auth/invalid-email') {
+        setError(t('auth.errors.invalidEmail'))
       } else {
-        setMessage(t('auth.passwordReset.success'))
+        setError(error.message || 'An unexpected error occurred')
       }
-    } catch (error) {
-      setError('An unexpected error occurred')
     } finally {
       setIsLoading(false)
     }

@@ -5,7 +5,8 @@ export const dynamic = 'force-static'
 
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { getAuth, getRedirectResult } from 'firebase/auth'
+import { auth } from '@/lib/firebase'
 
 export default function AuthCallbackPage() {
   const router = useRouter()
@@ -14,18 +15,15 @@ export default function AuthCallbackPage() {
     // Handle the OAuth callback on the client side
     const handleOAuthCallback = async () => {
       try {
-        // Get the code from the URL
-        const url = new URL(window.location.href)
-        const code = url.searchParams.get('code')
+        // Get the redirect result from Firebase
+        const result = await getRedirectResult(auth)
         
-        if (code) {
-          // Exchange the code for a session
-          await supabase.auth.exchangeCodeForSession(code)
-          
+        if (result) {
+          // User is signed in
           // Redirect to the dashboard after successful authentication
           router.push('/dashboard')
         } else {
-          // If no code is present, redirect to the sign-in page
+          // If no result is present, redirect to the sign-in page
           router.push('/auth/signin')
         }
       } catch (error) {

@@ -25,12 +25,21 @@ export default function SignIn() {
     try {
       const { error } = await signIn(email, password)
       if (error) {
-        setError(t('auth.errors.invalidCredentials'))
+        // Handle specific Firebase error codes for better user feedback
+        if (error.message.includes('auth/invalid-credential') || 
+            error.message.includes('auth/user-not-found') || 
+            error.message.includes('auth/wrong-password')) {
+          setError(t('auth.errors.invalidCredentials'))
+        } else if (error.message.includes('auth/too-many-requests')) {
+          setError(t('auth.errors.tooManyAttempts'))
+        } else {
+          setError(t('auth.errors.general'))
+        }
       } else {
         router.push('/')
       }
     } catch (error) {
-      setError(t('auth.errors.invalidCredentials'))
+      setError(t('auth.errors.general'))
     } finally {
       setIsLoading(false)
     }

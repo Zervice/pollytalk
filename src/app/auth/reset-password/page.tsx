@@ -6,7 +6,8 @@ import { useRouter } from 'next/navigation'
 import { useI18n } from '@/i18n/i18n-context'
 import { Button } from '@/components/ui/button'
 import { Logo } from '@/components/ui/logo'
-import { supabase } from '@/lib/supabase'
+import { auth } from '@/lib/firebase'
+import { confirmPasswordReset, verifyPasswordResetCode } from 'firebase/auth'
 
 export default function ResetPassword() {
   const { t, locale } = useI18n()
@@ -18,16 +19,27 @@ export default function ResetPassword() {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    // Check if we have a session
-    const checkSession = async () => {
-      const { data } = await supabase.auth.getSession()
-      if (!data.session) {
-        // If no session, redirect to sign in
+    // Check if we have an oobCode in the URL
+    const url = new URL(window.location.href)
+    const oobCode = url.searchParams.get('oobCode')
+    
+    if (!oobCode) {
+      // If no oobCode, redirect to sign in
+      router.push('/auth/signin')
+      return
+    }
+    
+    // Verify the password reset code
+    const verifyCode = async () => {
+      try {
+        await verifyPasswordResetCode(auth, oobCode)
+      } catch (error) {
+        console.error('Invalid or expired password reset code', error)
         router.push('/auth/signin')
       }
     }
     
-    checkSession()
+    verifyCode()
   }, [router])
 
   const handleResetPassword = async (e: React.FormEvent) => {
@@ -49,19 +61,30 @@ export default function ResetPassword() {
     setIsLoading(true)
 
     try {
-      const { error } = await supabase.auth.updateUser({ password })
-
-      if (error) {
-        setError(error.message)
-      } else {
-        setMessage('Password updated successfully')
-        // Redirect to home after a short delay
-        setTimeout(() => {
-          router.push('/')
-        }, 2000)
+      // Get the oobCode from the URL
+      const url = new URL(window.location.href)
+      const oobCode = url.searchParams.get('oobCode')
+      
+      if (!oobCode) {
+        throw new Error('Password reset code is missing')
       }
-    } catch (error) {
-      setError('An unexpected error occurred')
+      
+      // Confirm the password reset
+      await confirmPasswordReset(auth, oobCode, password)
+      
+      setMessage('Password updated successfully')
+      // Redirect to sign in after a short delay
+      setTimeout(() => {
+        router.push('/auth/signin')
+      }, 2000)
+    } catch (error: any) {
+      if (error.code === 'auth/weak-password') {
+        setError(t('auth.errors.passwordTooWeak'))
+      } else if (error.code === 'auth/invalid-action-code') {
+        setError('Invalid or expired password reset link')
+      } else {
+        setError(error.message || 'An unexpected error occurred')
+      }
     } finally {
       setIsLoading(false)
     }

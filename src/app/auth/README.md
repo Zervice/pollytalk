@@ -1,69 +1,70 @@
-# Authentication Setup with Supabase
+# Authentication Setup with Firebase
 
-This project uses Supabase for authentication with email/password and Google OAuth support.
+This project uses Firebase for authentication with email/password and Google OAuth support.
 
 ## Setup Instructions
 
-1. Create a Supabase project at [https://supabase.com](https://supabase.com)
+1. Create a Firebase project at [https://console.firebase.google.com](https://console.firebase.google.com)
 
-2. Add the following environment variables to your `.env.local` file:
+2. Add your Firebase credentials to your `.env.local` file:
 
 ```
-NEXT_PUBLIC_SUPABASE_URL=your-supabase-project-url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+NEXT_PUBLIC_FIREBASE_API_KEY=your-api-key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-project-id.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your-project-id.appspot.com
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your-messaging-sender-id
+NEXT_PUBLIC_FIREBASE_APP_ID=your-app-id
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=your-measurement-id
 ```
 
-3. Configure Google OAuth in your Supabase project:
-   - Go to Authentication > Providers > Google
-   - Enable Google auth
-   - Create a Google OAuth client ID and client secret from the [Google Cloud Console](https://console.cloud.google.com/)
-   - Add your site URL to the authorized JavaScript origins
-   - Add `https://your-project-url.supabase.co/auth/v1/callback` to the authorized redirect URIs
-   - Save your Google client ID and client secret in Supabase
+3. Configure Google OAuth in your Firebase project:
+   - Go to Authentication > Sign-in method > Google
+   - Enable Google sign-in
+   - Configure the OAuth consent screen in the Google Cloud Console
+   - Add your domain to the authorized domains list
 
-4. Configure Auth Redirect URLs in Supabase:
-   - Go to Authentication > URL Configuration
-   - Add your site URL as the Site URL
-   - Add `/auth/callback` as a redirect URL
+4. Configure Auth Redirect URLs in Firebase:
+   - Go to Authentication > Settings > Authorized domains
+   - Add your site domain (e.g., `yourdomain.com`)
 
-## Features Implemented
+## Authentication Flow
 
-- Sign in with email/password
-- Sign up with email/password
-- Sign in/up with Google OAuth
-- Password reset functionality
-- Auth state management across the application
-- Responsive UI for all auth pages
-- Internationalization support (English and Chinese)
+The authentication flow is handled by the following components:
 
-## File Structure
-
-- `/src/contexts/auth-context.tsx` - Auth context provider for state management
-- `/src/lib/supabase.ts` - Supabase client configuration
+- `/src/contexts/auth-context.tsx` - Authentication context provider
 - `/src/app/auth/signin/page.tsx` - Sign in page
 - `/src/app/auth/signup/page.tsx` - Sign up page
-- `/src/app/auth/forgot-password/page.tsx` - Forgot password page
-- `/src/app/auth/reset-password/page.tsx` - Reset password page
-- `/src/app/auth/callback/route.ts` - OAuth callback handler
+- `/src/app/auth/callback/page.tsx` - OAuth callback handler
+- `/src/app/auth/forgot-password/page.tsx` - Password reset request
+- `/src/app/auth/reset-password/page.tsx` - Password reset form
+- `/src/lib/firebase.ts` - Firebase client configuration
 
-## Adding More OAuth Providers
+## Adding New OAuth Providers
 
-To add more OAuth providers in the future:
+To add a new OAuth provider (e.g., GitHub, Twitter):
 
-1. Configure the provider in Supabase dashboard
-2. Add the provider to the `signInWithOAuth` function in `auth-context.tsx`
-3. Create UI components for the new provider
-4. Add translations for the new provider
-
-Example for adding GitHub authentication:
+1. Enable the provider in Firebase Authentication dashboard
+2. Add a new sign-in function in the auth context:
 
 ```typescript
 const signInWithGitHub = async () => {
-  await supabase.auth.signInWithOAuth({
-    provider: 'github',
-    options: {
-      redirectTo: `${window.location.origin}/auth/callback`
-    }
-  })
+  try {
+    const provider = new GithubAuthProvider();
+    // Add scopes if needed
+    provider.addScope('user');
+    
+    // Set custom parameters
+    provider.setCustomParameters({
+      prompt: 'select_account',
+    });
+    
+    // Use redirect-based authentication for better compatibility with static hosting
+    await signInWithRedirect(auth, provider);
+  } catch (error) {
+    console.error('Error signing in with GitHub:', error);
+  }
 }
 ```
+
+3. Add the sign-in button to the sign-in and sign-up pages
