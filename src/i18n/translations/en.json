@@ -392,6 +392,82 @@
       "dpo": "Data Protection Officer: dpo@zervice.us"
     }
   },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "resetPassword": "Reset Password",
+    "confirmPassword": "Confirm Password",
+    "dontHaveAccount": "Don't have an account?",
+    "alreadyHaveAccount": "Already have an account?",
+    "createAccount": "Create Account",
+    "continueWithGoogle": "Continue with Google",
+    "orContinueWith": "or continue with",
+    "magicLink": "Send Magic Link",
+    "checkEmail": "Check your email for the login link",
+    "passwordsMustMatch": "Passwords must match",
+    "passwordReset": {
+      "title": "Reset your password",
+      "instructions": "Enter your email address and we'll send you a link to reset your password.",
+      "success": "Check your email for the password reset link"
+    },
+    "errors": {
+      "invalidEmail": "Invalid email address",
+      "passwordTooShort": "Password must be at least 6 characters",
+      "passwordsDoNotMatch": "Passwords do not match",
+      "invalidCredentials": "Invalid login credentials",
+      "emailInUse": "Email is already in use"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome back",
+    "stats": {
+      "title": "Your Statistics",
+      "conversations": "Conversations",
+      "learningTime": "Learning Time",
+      "wordsLearned": "Words Learned",
+      "level": "Current Level",
+      "streak": "Day Streak"
+    },
+    "recentActivity": "Recent Activity",
+    "noActivity": "No recent activity",
+    "startConversation": "Start a Conversation",
+    "continueConversation": "Continue Learning"
+  },
+  "subscription": {
+    "title": "Subscription",
+    "currentPlan": "Current Plan",
+    "upgradePlan": "Upgrade Plan",
+    "managePlan": "Manage Plan",
+    "cancelPlan": "Cancel Plan",
+    "billingInfo": "Billing Information",
+    "nextBilling": "Next Billing Date",
+    "paymentMethod": "Payment Method",
+    "updatePayment": "Update Payment Method",
+    "billingHistory": "Billing History",
+    "noHistory": "No billing history available"
+  },
+  "profile": {
+    "title": "Profile",
+    "personalInfo": "Personal Information",
+    "name": "Name",
+    "updateProfile": "Update Profile",
+    "changePassword": "Change Password",
+    "language": "Language Preferences",
+    "nativeLanguage": "Native Language",
+    "learningLanguage": "Learning Language",
+    "deleteAccount": "Delete Account",
+    "deleteWarning": "This action cannot be undone. This will permanently delete your account and remove your data from our servers."
+  },
+  "userNav": {
+    "dashboard": "Dashboard",
+    "subscription": "Subscription",
+    "profile": "Profile"
+  },
   "pricing": {
     "title": "Affordable Language Learning & Practicing",
     "subtitle": "Practice with PollyTalk at a fraction of human tutor costs",

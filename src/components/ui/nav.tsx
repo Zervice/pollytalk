@@ -4,16 +4,19 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Logo } from './logo'
-import { Menu, X, QrCode } from 'lucide-react'
+import { Menu, X, QrCode, LogIn, LogOut } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import QRCode from 'react-qr-code'
 import { useI18n } from '@/i18n/i18n-context'
 import { LanguageSwitcher } from './language-switcher'
+import { useAuth } from '@/contexts/auth-context'
+import { Button } from './button'
 
 export function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
   const { t, locale } = useI18n()
+  const { user, signOut } = useAuth()
   
   const navigation = [
     { name: t('nav.pricing'), href: '/pricing' },
@@ -61,6 +64,26 @@ export function Nav() {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-4 items-center">
           <LanguageSwitcher />
+          {user ? (
+            <Button 
+              variant="outline" 
+              onClick={() => signOut()}
+              className="flex items-center gap-2"
+            >
+              <LogOut className="h-4 w-4" />
+              <span>{t('auth.signOut')}</span>
+            </Button>
+          ) : (
+            <Link href="/auth/signin">
+              <Button 
+                variant="outline"
+                className="flex items-center gap-2"
+              >
+                <LogIn className="h-4 w-4" />
+                <span>{t('auth.signIn')}</span>
+              </Button>
+            </Link>
+          )}
           <div className="relative group">
             <button
               type="button"
@@ -144,6 +167,29 @@ export function Nav() {
                 <div className="mt-auto pt-4 border-t border-border">
                   <div className="flex flex-col items-center gap-4">
                     <LanguageSwitcher />
+                    {user ? (
+                      <Button 
+                        variant="outline" 
+                        onClick={() => {
+                          signOut();
+                          setMobileMenuOpen(false);
+                        }}
+                        className="flex items-center gap-2 w-full"
+                      >
+                        <LogOut className="h-4 w-4" />
+                        <span>{t('auth.signOut')}</span>
+                      </Button>
+                    ) : (
+                      <Link href="/auth/signin" className="w-full" onClick={() => setMobileMenuOpen(false)}>
+                        <Button 
+                          variant="outline"
+                          className="flex items-center gap-2 w-full"
+                        >
+                          <LogIn className="h-4 w-4" />
+                          <span>{t('auth.signIn')}</span>
+                        </Button>
+                      </Link>
+                    )}
                     <div className="flex items-center gap-2 p-2">
                       <QrCode className="h-5 w-5 text-primary" />
                       <p className="text-sm font-medium">{t('nav.scanToDownload')}</p>

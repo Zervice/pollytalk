@@ -8,6 +8,82 @@
     "downloadApp": "下载应用",
     "scanToDownload": "扫码下载博语通（PollyTalk）应用"
   },
+  "auth": {
+    "signIn": "登录",
+    "signUp": "注册",
+    "signOut": "退出登录",
+    "email": "邮箱",
+    "password": "密码",
+    "forgotPassword": "忘记密码？",
+    "resetPassword": "重置密码",
+    "confirmPassword": "确认密码",
+    "dontHaveAccount": "还没有账号？",
+    "alreadyHaveAccount": "已有账号？",
+    "createAccount": "创建账号",
+    "continueWithGoogle": "使用谷歌账号继续",
+    "orContinueWith": "或者继续使用",
+    "magicLink": "发送魔法链接",
+    "checkEmail": "查看您的邮箱获取登录链接",
+    "passwordsMustMatch": "密码必须匹配",
+    "passwordReset": {
+      "title": "重置您的密码",
+      "instructions": "输入您的邮箱地址，我们将发送一个链接来重置您的密码。",
+      "success": "请查看您的邮箱获取密码重置链接"
+    },
+    "errors": {
+      "invalidEmail": "无效的邮箱地址",
+      "passwordTooShort": "密码至少需要6个字符",
+      "passwordsDoNotMatch": "密码不匹配",
+      "invalidCredentials": "无效的登录凭证",
+      "emailInUse": "邮箱已被使用"
+    }
+  },
+  "dashboard": {
+    "title": "控制面板",
+    "welcome": "欢迎回来",
+    "stats": {
+      "title": "您的统计数据",
+      "conversations": "对话次数",
+      "learningTime": "学习时间",
+      "wordsLearned": "已学单词",
+      "level": "当前等级",
+      "streak": "连续学习天数"
+    },
+    "recentActivity": "最近活动",
+    "noActivity": "暂无最近活动",
+    "startConversation": "开始对话",
+    "continueConversation": "继续学习"
+  },
+  "subscription": {
+    "title": "订阅",
+    "currentPlan": "当前方案",
+    "upgradePlan": "升级方案",
+    "managePlan": "管理方案",
+    "cancelPlan": "取消方案",
+    "billingInfo": "账单信息",
+    "nextBilling": "下次付款日期",
+    "paymentMethod": "支付方式",
+    "updatePayment": "更新支付方式",
+    "billingHistory": "账单历史",
+    "noHistory": "暂无账单历史"
+  },
+  "profile": {
+    "title": "个人资料",
+    "personalInfo": "个人信息",
+    "name": "姓名",
+    "updateProfile": "更新资料",
+    "changePassword": "修改密码",
+    "language": "语言偏好",
+    "nativeLanguage": "母语",
+    "learningLanguage": "学习语言",
+    "deleteAccount": "删除账号",
+    "deleteWarning": "此操作无法撤销。这将永久删除您的账号并从我们的服务器中移除您的数据。"
+  },
+  "userNav": {
+    "dashboard": "控制面板",
+    "subscription": "订阅",
+    "profile": "个人资料"
+  },
   "home": {
     "hero": {
       "tagline": "使用博语通（PollyTalk）学习外语，像使用母语一样交谈！重构语言学习新方式：自然对话，真实场景，为你量身定制。"

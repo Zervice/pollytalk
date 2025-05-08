@@ -7,20 +7,23 @@ import { LanguageLoading } from '@/components/ui/language-loading'
 import { DynamicMetadata } from '@/components/dynamic-metadata'
 import { ClientRouter } from '@/components/client-router'
 import { ReactNode } from 'react'
+import { AuthProvider } from '@/contexts/auth-context'
 
 export function ClientLayout({ children }: { children: ReactNode }) {
   return (
     <I18nProvider>
-      <DynamicMetadata />
-      <LanguageLoading>
-        <ClientRouter>
-          <Nav />
-          <div className="flex-1 pt-[72px]">
-            {children}
-          </div>
-          <Footer />
-        </ClientRouter>
-      </LanguageLoading>
+      <AuthProvider>
+        <DynamicMetadata />
+        <LanguageLoading>
+          <ClientRouter>
+            <Nav />
+            <div className="flex-1 pt-[72px]">
+              {children}
+            </div>
+            <Footer />
+          </ClientRouter>
+        </LanguageLoading>
+      </AuthProvider>
     </I18nProvider>
   )
 }

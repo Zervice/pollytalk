@@ -9,13 +9,24 @@ import Link from "next/link"
 import { useI18n } from "@/i18n/i18n-context"
 import { useState, useEffect, useRef, useMemo } from 'react'
 import { Testimonials } from "@/components/testimonials"
+import { useAuth } from "@/contexts/auth-context"
+import { useRouter } from "next/navigation"
 
 export default function Home() {
   const { t, locale } = useI18n()
+  const { user, isLoading } = useAuth()
+  const router = useRouter()
   const [currentDialogIndex, setCurrentDialogIndex] = useState(0)
   const [isTyping, setIsTyping] = useState(false)
   const [userTyping, setUserTyping] = useState(false)
   const [userInputValue, setUserInputValue] = useState("")
+  
+  // Redirect authenticated users to dashboard
+  useEffect(() => {
+    if (!isLoading && user) {
+      router.push('/dashboard')
+    }
+  }, [user, isLoading, router])
   
   // Define dialog messages based on current locale
   const dialogMessages = useMemo(() => locale === 'zh' ? [
