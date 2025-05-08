@@ -61,10 +61,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const signInWithGoogle = async () => {
+    // For GitHub Pages static export, we need to handle the base path
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+    const redirectUrl = `${window.location.origin}${basePath}/auth/callback`
+    
     await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/auth/callback`
+        redirectTo: redirectUrl
       }
     })
   }
