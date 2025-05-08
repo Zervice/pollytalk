@@ -1,147 +1,176 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState } from 'react'
-import { User, authApi, setAuthData, getStoredUser, isAuthenticated, ErrorResponse } from '@/lib/api'
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { User, MemberInfo, authApi, setAuthData, getStoredUser, isAuthenticated } from '@/lib/api';
 
-type AuthContextType = {
-  user: User | null
-  isLoading: boolean
-  signIn: (email: string, password: string) => Promise<{ error: ErrorResponse | null }>
-  signUp: (email: string, password: string, name?: string) => Promise<{ error: ErrorResponse | null; data: User | null }>
-  signOut: () => Promise<void>
-  signInWithGoogle: () => Promise<void>
-  updateProfile: (data: Partial<User>) => Promise<{ error: ErrorResponse | null; data: User | null }>
+interface AuthContextType {
+  user: User | null;
+  member: MemberInfo | null;
+  isLoading: boolean;
+  isAuthenticated: boolean;
+  signIn: (email: string, password: string) => Promise<void>;
+  signUp: (email: string, password: string, code: string, id: string, name?: string) => Promise<void>;
+  signOut: () => Promise<void>;
+  updateProfile: (data: Partial<User>) => Promise<User>;
+  sendVerifyCode: (email: string, type: string) => Promise<{id: string}>;
+  signInWithGoogle: () => Promise<void>;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined)
+const AuthContext = createContext<AuthContextType>({
+  user: null,
+  member: null,
+  isLoading: true,
+  isAuthenticated: false,
+  signIn: async () => {},
+  signUp: async () => {},
+  signOut: async () => {},
+  updateProfile: async () => ({ id: '', loginName: '' }),
+  sendVerifyCode: async () => ({ id: '' }),
+  signInWithGoogle: async () => {},
+});
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [member, setMember] = useState<MemberInfo | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
+  // Check if user is already authenticated on mount
   useEffect(() => {
-    // Check if user is already authenticated
-    const initAuth = async () => {
-      setIsLoading(true)
-      
-      // Try to get user from localStorage first
-      const storedUser = getStoredUser()
-      
-      if (storedUser && isAuthenticated()) {
-        try {
-          // Verify the token by fetching current user
-          const currentUser = await authApi.getCurrentUser()
-          setUser(currentUser)
-        } catch (error) {
-          // If token is invalid, try to refresh it
+    const checkAuth = async () => {
+      try {
+        // Try to get stored user data
+        const storedUser = getStoredUser();
+        
+        if (storedUser && isAuthenticated()) {
           try {
-            const { token } = await authApi.refreshToken()
-            // Update token in localStorage
-            localStorage.setItem('auth_token', token)
-            // Fetch user again with new token
-            const currentUser = await authApi.getCurrentUser()
-            setUser(currentUser)
-          } catch (refreshError) {
-            // If refresh fails, clear auth data
-            localStorage.removeItem('auth_token')
-            localStorage.removeItem('auth_refresh_token')
-            localStorage.removeItem('auth_user')
-            setUser(null)
+            // Verify the token by fetching current user
+            const currentUser = await authApi.getCurrentUser();
+            setUser(currentUser);
+          } catch (error) {
+            // If token is invalid, try to refresh it
+            try {
+              const { token } = await authApi.refreshToken();
+              // Update token in localStorage
+              localStorage.setItem('auth_token', token);
+              // Fetch user again with new token
+              const currentUser = await authApi.getCurrentUser();
+              setUser(currentUser);
+            } catch (refreshError) {
+              // If refresh fails, clear auth data
+              localStorage.removeItem('auth_token');
+              localStorage.removeItem('auth_refresh_token');
+              localStorage.removeItem('auth_user');
+              setUser(null);
+            }
           }
+        } else {
+          setUser(null);
         }
-      } else {
-        setUser(null)
+      } catch (error) {
+        console.error('Error checking authentication:', error);
+      } finally {
+        setIsLoading(false);
       }
-      
-      setIsLoading(false)
-    }
-
-    initAuth()
-  }, [])
+    };
+    
+    checkAuth();
+  }, []);
 
   const signIn = async (email: string, password: string) => {
     try {
-      const authResponse = await authApi.signIn(email, password)
-      setAuthData(authResponse)
-      setUser(authResponse.user)
-      return { error: null }
+      const response = await authApi.signIn(email, password);
+      setAuthData(response);
+      setUser(response.user);
+      if (response.member) {
+        setMember(response.member);
+      }
     } catch (error) {
-      return { error: error as ErrorResponse }
+      console.error('Error signing in:', error);
+      throw error;
     }
-  }
-
-  const signUp = async (email: string, password: string, name?: string) => {
+  };
+  
+  const sendVerifyCode = async (email: string, type: string) => {
     try {
-      const authResponse = await authApi.signUp(email, password, name)
-      setAuthData(authResponse)
-      setUser(authResponse.user)
-      return { data: authResponse.user, error: null }
+      return await authApi.sendVerifyCode(email, type);
     } catch (error) {
-      return { data: null, error: error as ErrorResponse }
+      console.error('Error sending verification code:', error);
+      throw error;
     }
-  }
-
+  };
+  
+  const signUp = async (email: string, password: string, code: string, id: string, name?: string) => {
+    try {
+      const response = await authApi.signUp(email, password, code, id, name);
+      setAuthData(response);
+      setUser(response.user);
+      if (response.member) {
+        setMember(response.member);
+      }
+    } catch (error) {
+      console.error('Error signing up:', error);
+      throw error;
+    }
+  };
+  
   const signOut = async () => {
     try {
-      await authApi.signOut()
+      await authApi.signOut();
+      setUser(null);
+      setMember(null);
     } catch (error) {
-      console.error('Error signing out:', error)
-    } finally {
-      // Always clear local storage and state
-      localStorage.removeItem('auth_token')
-      localStorage.removeItem('auth_refresh_token')
-      localStorage.removeItem('auth_user')
-      setUser(null)
+      console.error('Error signing out:', error);
+      throw error;
     }
-  }
+  };
+  
+  const updateProfile = async (data: Partial<User>) => {
+    try {
+      const updatedUser = await authApi.updateProfile(data);
+      setUser(updatedUser);
+      // Update stored user data
+      localStorage.setItem('auth_user', JSON.stringify(updatedUser));
+      return updatedUser;
+    } catch (error) {
+      console.error('Error updating profile:', error);
+      throw error;
+    }
+  };
 
   const signInWithGoogle = async () => {
     try {
       // Get the Google auth URL from the API
-      const { url } = await authApi.getGoogleAuthUrl()
+      const { url } = await authApi.getGoogleAuthUrl();
       
       // Redirect to Google auth page
-      window.location.href = url
+      window.location.href = url;
     } catch (error) {
-      console.error('Error signing in with Google:', error)
+      console.error('Error signing in with Google:', error);
     }
-  }
-  
-  const updateProfile = async (data: Partial<User>) => {
-    try {
-      const updatedUser = await authApi.updateProfile(data)
-      setUser(updatedUser)
-      
-      // Update stored user
-      const userJson = localStorage.getItem('auth_user')
-      if (userJson) {
-        const storedUser = JSON.parse(userJson)
-        localStorage.setItem('auth_user', JSON.stringify({ ...storedUser, ...data }))
-      }
-      
-      return { data: updatedUser, error: null }
-    } catch (error) {
-      return { data: null, error: error as ErrorResponse }
-    }
-  }
+  };
 
-  const value = {
-    user,
-    isLoading,
-    signIn,
-    signUp,
-    signOut,
-    signInWithGoogle,
-    updateProfile
-  }
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
-}
+  return (
+    <AuthContext.Provider value={{
+      user,
+      member,
+      isLoading,
+      isAuthenticated: !!user,
+      signIn,
+      signUp,
+      signOut,
+      updateProfile,
+      sendVerifyCode,
+      signInWithGoogle,
+    }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
 
 export const useAuth = () => {
-  const context = useContext(AuthContext)
+  const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider')
+    throw new Error('useAuth must be used within an AuthProvider');
   }
   return context
 }

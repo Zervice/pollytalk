@@ -27,7 +27,8 @@ export default function ForgotPassword() {
       // Always show success message even if email doesn't exist (for security)
       setMessage(t('auth.passwordResetEmailSent'))
       setEmail('')
-    } catch (error: any) {
+    } catch (err: unknown) {
+      const error = err as { error?: string; statusCode?: number; message?: string }
       if (error.error === 'user_not_found') {
         // Don't reveal if the email exists for security reasons
         setMessage(t('auth.passwordResetEmailSent'))

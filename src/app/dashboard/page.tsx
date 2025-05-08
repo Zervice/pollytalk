@@ -58,7 +58,7 @@ export default function Dashboard() {
               {t('dashboard.title')}
             </h1>
             <p className="text-xl text-muted-foreground mt-2">
-              {t('dashboard.welcome')}, {user.email?.split('@')[0] || 'User'}
+              {t('dashboard.welcome')}, {user.loginName?.split('@')[0] || 'User'}
             </p>
           </div>
 

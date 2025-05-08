@@ -44,28 +44,14 @@ if (hasCustomDomain) {
   }
 }
 
-// Check for Firebase environment variables
-if (!process.env.NEXT_PUBLIC_FIREBASE_API_KEY || !process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN) {
-  console.warn('WARNING: Firebase environment variables are not set. Authentication will not work.');
-  console.warn('Please set Firebase environment variables in your .env.local file or in your GitHub repository secrets.');
-  
-  // For GitHub Actions, we can use placeholder values that will be replaced during deployment
-  if (process.env.CI) {
-    console.log('Setting placeholder Firebase variables for CI build...');
-    process.env.NEXT_PUBLIC_FIREBASE_API_KEY = 'NEXT_PUBLIC_FIREBASE_API_KEY_PLACEHOLDER';
-    process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN = 'NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN_PLACEHOLDER';
-    process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID = 'NEXT_PUBLIC_FIREBASE_PROJECT_ID_PLACEHOLDER';
-    process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET = 'NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET_PLACEHOLDER';
-    process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID = 'NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID_PLACEHOLDER';
-    process.env.NEXT_PUBLIC_FIREBASE_APP_ID = 'NEXT_PUBLIC_FIREBASE_APP_ID_PLACEHOLDER';
-  }
+// Check for API server environment variables
+if (!process.env.NEXT_PUBLIC_API_URL) {
+  console.log('No API URL set, using default: https://api.zervice.me/pollytalk');
+  process.env.NEXT_PUBLIC_API_URL = 'https://api.zervice.me/pollytalk';
 }
 
 console.log(`Building with: NEXT_PUBLIC_CUSTOM_DOMAIN=${process.env.NEXT_PUBLIC_CUSTOM_DOMAIN}, NEXT_PUBLIC_BASE_PATH=${process.env.NEXT_PUBLIC_BASE_PATH}`);
-console.log(`Firebase API Key: ${process.env.NEXT_PUBLIC_FIREBASE_API_KEY ? '✓ Set' : '✗ Not set'}`);
-console.log(`Firebase Auth Domain: ${process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN ? '✓ Set' : '✗ Not set'}`);
-console.log(`Firebase Project ID: ${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID ? '✓ Set' : '✗ Not set'}`);
-console.log(`Firebase App ID: ${process.env.NEXT_PUBLIC_FIREBASE_APP_ID ? '✓ Set' : '✗ Not set'}`);
+console.log(`API URL: ${process.env.NEXT_PUBLIC_API_URL}`);
 
 
 

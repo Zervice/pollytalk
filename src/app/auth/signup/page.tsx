@@ -11,55 +11,113 @@ import { Logo } from '@/components/ui/logo'
 export default function SignUp() {
   const { t, locale } = useI18n()
   const router = useRouter()
-  const { signUp, signInWithGoogle } = useAuth()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const { signUp, signInWithGoogle, sendVerifyCode } = useAuth()
+  
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+    name: '',
+    code: ''
+  })
+  
+  const [verifyId, setVerifyId] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState<string | null>(null)
+  const [isSendingCode, setIsSendingCode] = useState(false)
+  const [codeSent, setCodeSent] = useState(false)
+  const [countdown, setCountdown] = useState(0)
 
-  const handleSignUp = async (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
+  const handleSendVerifyCode = async () => {
+    if (!formData.email) {
+      setError(t('auth.errors.emailRequired'))
+      return
+    }
+    
+    setError(null)
+    setIsSendingCode(true)
+    
+    try {
+      const response = await sendVerifyCode(formData.email, 'signup')
+      setVerifyId(response.id)
+      setCodeSent(true)
+      setMessage(t('auth.codeSent'))
+      
+      // Start countdown for resend (60 seconds)
+      setCountdown(60)
+      const timer = setInterval(() => {
+        setCountdown(prev => {
+          if (prev <= 1) {
+            clearInterval(timer)
+            return 0
+          }
+          return prev - 1
+        })
+      }, 1000)
+      
+    } catch (err: unknown) {
+      const error = err as { error?: string; statusCode?: number; message?: string }
+      if (error.error === 'email_already_exists' || error.statusCode === 409) {
+        setError(t('auth.errors.emailInUse'))
+      } else {
+        setError(error.message || t('auth.errors.verificationCodeFailed'))
+      }
+    } finally {
+      setIsSendingCode(false)
+    }
+  }
+  
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
     setMessage(null)
 
     // Validate inputs
-    if (password !== confirmPassword) {
+    if (formData.password !== formData.confirmPassword) {
       setError(t('auth.errors.passwordsDoNotMatch'))
       return
     }
 
-    if (password.length < 8) {
+    if (formData.password.length < 8) {
       setError(t('auth.errors.passwordTooShort'))
+      return
+    }
+    
+    if (!verifyId || !formData.code) {
+      setError(t('auth.errors.verificationCodeRequired'))
       return
     }
 
     setIsLoading(true)
 
     try {
-      const { data, error } = await signUp(email, password)
+      await signUp(formData.email, formData.password, formData.code, verifyId, formData.name)
       
-      if (error) {
-        if (error.error === 'email_already_exists' || error.statusCode === 409) {
-          setError(t('auth.errors.emailInUse'))
-        } else if (error.error === 'invalid_email') {
-          setError(t('auth.errors.invalidEmail'))
-        } else if (error.error === 'weak_password') {
-          setError(t('auth.errors.passwordTooWeak'))
-        } else {
-          setError(error.message || t('auth.errors.general'))
-        }
+      // User is automatically signed in after registration
+      setMessage(t('auth.accountCreated'))
+      // Redirect to home page after a short delay
+      setTimeout(() => {
+        router.push('/')
+      }, 1500)
+    } catch (err: unknown) {
+      const error = err as { error?: string; statusCode?: number; message?: string }
+      if (error.error === 'email_already_exists' || error.statusCode === 409) {
+        setError(t('auth.errors.emailInUse'))
+      } else if (error.error === 'invalid_email') {
+        setError(t('auth.errors.invalidEmail'))
+      } else if (error.error === 'weak_password') {
+        setError(t('auth.errors.passwordTooWeak'))
+      } else if (error.error === 'invalid_code') {
+        setError(t('auth.errors.invalidVerificationCode'))
       } else {
-        // User is automatically signed in after registration
-        setMessage(t('auth.accountCreated'))
-        // Redirect to home page after a short delay
-        setTimeout(() => {
-          router.push('/')
-        }, 1500)
+        setError(error.message || t('auth.errors.general'))
       }
-    } catch (error) {
-      setError(t('auth.errors.general'))
     } finally {
       setIsLoading(false)
     }
@@ -125,7 +183,7 @@ export default function SignUp() {
             </div>
           </div>
 
-          <form className="space-y-6" onSubmit={handleSignUp}>
+          <form className="space-y-6" onSubmit={handleSubmit}>
             {error && (
               <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
                 {error}
@@ -137,6 +195,24 @@ export default function SignUp() {
               </div>
             )}
             <div>
+              <label htmlFor="name" className="block text-sm font-medium text-foreground">
+                {t('auth.name')}
+              </label>
+              <div className="mt-1">
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  className="block w-full rounded-md border border-border bg-background px-3 py-2 placeholder-muted-foreground shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  placeholder={t('auth.name')}
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            
+            <div>
               <label htmlFor="email" className="block text-sm font-medium text-foreground">
                 {t('auth.email')}
               </label>
@@ -147,13 +223,14 @@ export default function SignUp() {
                   type="email"
                   autoComplete="email"
                   required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
                   className="block w-full rounded-md border border-border bg-background px-3 py-2 placeholder-muted-foreground shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  placeholder={t('auth.email')}
+                  value={formData.email}
+                  onChange={handleChange}
                 />
               </div>
             </div>
-
+            
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-foreground">
                 {t('auth.password')}
@@ -165,13 +242,14 @@ export default function SignUp() {
                   type="password"
                   autoComplete="new-password"
                   required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
                   className="block w-full rounded-md border border-border bg-background px-3 py-2 placeholder-muted-foreground shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  placeholder={t('auth.password')}
+                  value={formData.password}
+                  onChange={handleChange}
                 />
               </div>
             </div>
-
+            
             <div>
               <label htmlFor="confirmPassword" className="block text-sm font-medium text-foreground">
                 {t('auth.confirmPassword')}
@@ -183,25 +261,54 @@ export default function SignUp() {
                   type="password"
                   autoComplete="new-password"
                   required
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
                   className="block w-full rounded-md border border-border bg-background px-3 py-2 placeholder-muted-foreground shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  placeholder={t('auth.confirmPassword')}
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
                 />
               </div>
             </div>
-
+            
+            <div>
+              <label htmlFor="code" className="block text-sm font-medium text-foreground">
+                {t('auth.verificationCode')}
+              </label>
+              <div className="mt-1 flex">
+                <input
+                  id="code"
+                  name="code"
+                  type="text"
+                  required
+                  className="block w-full rounded-md border border-border bg-background px-3 py-2 placeholder-muted-foreground shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  placeholder={t('auth.verificationCode')}
+                  value={formData.code}
+                  onChange={handleChange}
+                />
+                <button
+                  type="button"
+                  onClick={handleSendVerifyCode}
+                  disabled={isSendingCode || countdown > 0}
+                  className="ml-2 px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primary/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary disabled:bg-primary/50"
+                >
+                  {isSendingCode ? t('auth.sending') : 
+                   countdown > 0 ? `${t('auth.resendIn')} ${countdown}s` : 
+                   codeSent ? t('auth.resendCode') : t('auth.getCode')}
+                </button>
+              </div>
+            </div>
+            
             <div>
               <Button
                 type="submit"
                 className="w-full"
                 disabled={isLoading}
               >
-                {isLoading ? 'Loading...' : t('auth.createAccount')}
+                {isLoading ? t('auth.creatingAccount') : t('auth.createAccount')}
               </Button>
             </div>
           </form>
         </div>
       </div>
     </div>
-  )
+  );
 }

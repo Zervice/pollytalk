@@ -34,11 +34,11 @@ export default function Profile() {
     if (user) {
       setProfile({
         ...mockUserProfile,
-        email: user.email || mockUserProfile.email,
+        email: user.loginName || mockUserProfile.email,
       })
       setFormData({
         ...mockUserProfile,
-        email: user.email || mockUserProfile.email,
+        email: user.loginName || mockUserProfile.email,
       })
     }
   }, [user, isLoading, router])

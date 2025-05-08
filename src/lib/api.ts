@@ -2,28 +2,36 @@
  * API client for PollyTalk backend services
  */
 
-const API_BASE_URL = 'https://api.zervice.me/pollytalk';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.zervice.me/pollytalk';
 
 // Types for authentication
 export interface User {
   id: string;
-  email: string;
+  loginName: string;
   name?: string;
   avatar?: string;
-  createdAt: string;
-  updatedAt: string;
+}
+
+export interface MemberInfo {
+  name: string;
+  expireAt: number;
+  studySeconds: number;
 }
 
 export interface AuthResponse {
   user: User;
+  member?: MemberInfo;
   token: string;
-  refreshToken: string;
 }
 
 export interface ErrorResponse {
   error: string;
   message: string;
   statusCode: number;
+}
+
+export interface VerifyCodeResponse {
+  id: string;
 }
 
 // Helper function to handle API responses
@@ -44,10 +52,25 @@ const handleResponse = async <T>(response: Response): Promise<T> => {
 // Authentication API
 export const authApi = {
   /**
+   * Send verification code for signup
+   */
+  sendVerifyCode: async (email: string, type: string): Promise<VerifyCodeResponse> => {
+    const response = await fetch(`${API_BASE_URL}/web/notify`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ receiver: email, type }),
+    });
+    
+    return handleResponse<VerifyCodeResponse>(response);
+  },
+
+  /**
    * Sign in with email and password
    */
   signIn: async (email: string, password: string): Promise<AuthResponse> => {
-    const response = await fetch(`${API_BASE_URL}/auth/signin`, {
+    const response = await fetch(`${API_BASE_URL}/web/auth/signin`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -61,13 +84,13 @@ export const authApi = {
   /**
    * Sign up with email and password
    */
-  signUp: async (email: string, password: string, name?: string): Promise<AuthResponse> => {
-    const response = await fetch(`${API_BASE_URL}/auth/signup`, {
+  signUp: async (email: string, password: string, code: string, id: string, name?: string): Promise<AuthResponse> => {
+    const response = await fetch(`${API_BASE_URL}/web/auth/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, password, name }),
+      body: JSON.stringify({ email, password, code, id, name }),
     });
     
     return handleResponse<AuthResponse>(response);
@@ -79,7 +102,7 @@ export const authApi = {
    */
   getGoogleAuthUrl: async (): Promise<{ url: string }> => {
     const redirectUrl = `${window.location.origin}/auth/callback`;
-    const response = await fetch(`${API_BASE_URL}/auth/google/url?redirectUrl=${encodeURIComponent(redirectUrl)}`, {
+    const response = await fetch(`${API_BASE_URL}/web/auth/google?redirectUrl=${encodeURIComponent(redirectUrl)}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -94,7 +117,7 @@ export const authApi = {
    */
   exchangeOAuthCode: async (code: string, provider: string): Promise<AuthResponse> => {
     const redirectUrl = `${window.location.origin}/auth/callback`;
-    const response = await fetch(`${API_BASE_URL}/auth/oauth/callback`, {
+    const response = await fetch(`${API_BASE_URL}/web/auth/oauth/callback`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -112,7 +135,7 @@ export const authApi = {
     const token = localStorage.getItem('auth_token');
     if (!token) return;
     
-    await fetch(`${API_BASE_URL}/auth/signout`, {
+    await fetch(`${API_BASE_URL}/web/auth/signout`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -122,8 +145,8 @@ export const authApi = {
     
     // Clear local storage regardless of response
     localStorage.removeItem('auth_token');
-    localStorage.removeItem('auth_refresh_token');
     localStorage.removeItem('auth_user');
+    localStorage.removeItem('auth_member');
   },
   
   /**
@@ -139,7 +162,7 @@ export const authApi = {
       } as ErrorResponse;
     }
     
-    const response = await fetch(`${API_BASE_URL}/auth/me`, {
+    const response = await fetch(`${API_BASE_URL}/web/auth/me`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -154,21 +177,22 @@ export const authApi = {
    * Refresh the authentication token
    */
   refreshToken: async (): Promise<{ token: string }> => {
-    const refreshToken = localStorage.getItem('auth_refresh_token');
-    if (!refreshToken) {
+    const token = localStorage.getItem('auth_token');
+    if (!token) {
       throw {
         error: 'unauthorized',
-        message: 'No refresh token available',
+        message: 'User is not authenticated',
         statusCode: 401
       } as ErrorResponse;
     }
     
-    const response = await fetch(`${API_BASE_URL}/auth/refresh`, {
+    const response = await fetch(`${API_BASE_URL}/web/auth/refresh`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
       },
-      body: JSON.stringify({ refreshToken }),
+      body: JSON.stringify({}),
     });
     
     return handleResponse<{ token: string }>(response);
@@ -177,9 +201,9 @@ export const authApi = {
   /**
    * Request a password reset email
    */
-  forgotPassword: async (email: string): Promise<{ message: string }> => {
+  forgotPassword: async (email: string): Promise<void> => {
     const redirectUrl = `${window.location.origin}/auth/reset-password`;
-    const response = await fetch(`${API_BASE_URL}/auth/forgot-password`, {
+    const response = await fetch(`${API_BASE_URL}/web/auth/forgot-password`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -187,14 +211,14 @@ export const authApi = {
       body: JSON.stringify({ email, redirectUrl }),
     });
     
-    return handleResponse<{ message: string }>(response);
+    return handleResponse<void>(response);
   },
   
   /**
    * Reset password with token
    */
-  resetPassword: async (token: string, password: string): Promise<{ message: string }> => {
-    const response = await fetch(`${API_BASE_URL}/auth/reset-password`, {
+  resetPassword: async (token: string, password: string): Promise<void> => {
+    const response = await fetch(`${API_BASE_URL}/web/auth/reset-password`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -202,7 +226,7 @@ export const authApi = {
       body: JSON.stringify({ token, password }),
     });
     
-    return handleResponse<{ message: string }>(response);
+    return handleResponse<void>(response);
   },
   
   /**
@@ -218,7 +242,7 @@ export const authApi = {
       } as ErrorResponse;
     }
     
-    const response = await fetch(`${API_BASE_URL}/auth/profile`, {
+    const response = await fetch(`${API_BASE_URL}/web/auth/profile`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -234,8 +258,10 @@ export const authApi = {
 // Helper function to set authentication data
 export const setAuthData = (data: AuthResponse): void => {
   localStorage.setItem('auth_token', data.token);
-  localStorage.setItem('auth_refresh_token', data.refreshToken);
   localStorage.setItem('auth_user', JSON.stringify(data.user));
+  if (data.member) {
+    localStorage.setItem('auth_member', JSON.stringify(data.member));
+  }
 };
 
 // Helper function to get stored user

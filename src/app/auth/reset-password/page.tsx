@@ -58,14 +58,15 @@ export default function ResetPassword() {
       }
       
       // Reset the password
-      const response = await authApi.resetPassword(resetToken, password)
+      await authApi.resetPassword(resetToken, password)
       
-      setMessage(response.message || t('auth.passwordResetSuccess'))
+      setMessage(t('auth.passwordResetSuccess'))
       // Redirect to sign in after a short delay
       setTimeout(() => {
         router.push('/auth/signin')
       }, 2000)
-    } catch (error: any) {
+    } catch (err: unknown) {
+      const error = err as { error?: string; statusCode?: number; message?: string }
       if (error.error === 'weak_password') {
         setError(t('auth.errors.passwordTooWeak'))
       } else if (error.error === 'invalid_token' || error.error === 'expired_token') {

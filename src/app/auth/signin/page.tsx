@@ -23,23 +23,20 @@ export default function SignIn() {
     setIsLoading(true)
 
     try {
-      const { error } = await signIn(email, password)
-      if (error) {
-        // Handle specific API error codes for better user feedback
-        if (error.statusCode === 401) {
-          setError(t('auth.errors.invalidCredentials'))
-        } else if (error.statusCode === 429) {
-          setError(t('auth.errors.tooManyAttempts'))
-        } else if (error.error === 'account_not_verified') {
-          setError(t('auth.errors.accountNotVerified'))
-        } else {
-          setError(error.message || t('auth.errors.general'))
-        }
+      await signIn(email, password)
+      router.push('/')
+    } catch (err: unknown) {
+      const error = err as { error?: string; statusCode?: number; message?: string }
+      // Handle specific API error codes for better user feedback
+      if (error.statusCode === 401 || error.error === 'invalid_credentials') {
+        setError(t('auth.errors.invalidCredentials'))
+      } else if (error.statusCode === 429 || error.error === 'too_many_requests') {
+        setError(t('auth.errors.tooManyAttempts'))
+      } else if (error.error === 'account_not_verified') {
+        setError(t('auth.errors.accountNotVerified'))
       } else {
-        router.push('/')
+        setError(error.message || t('auth.errors.general'))
       }
-    } catch (error) {
-      setError(t('auth.errors.general'))
     } finally {
       setIsLoading(false)
     }
