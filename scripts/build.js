@@ -1,6 +1,16 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const dotenv = require('dotenv');
+
+// Load environment variables from .env.local if it exists
+const envPath = path.join(__dirname, '../.env.local');
+if (fs.existsSync(envPath)) {
+  console.log('Loading environment variables from .env.local');
+  dotenv.config({ path: envPath });
+} else {
+  console.log('No .env.local file found. Using environment variables from the system.');
+}
 
 // Check if we have a CNAME file (indicating a custom domain)
 const cnameFile = path.join(__dirname, '../public/CNAME');
@@ -34,7 +44,23 @@ if (hasCustomDomain) {
   }
 }
 
+// Check for Supabase environment variables
+if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+  console.warn('WARNING: Supabase environment variables are not set. Authentication will not work.');
+  console.warn('Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in your .env.local file or in your GitHub repository secrets.');
+  
+  // For GitHub Actions, we can use placeholder values that will be replaced during deployment
+  if (process.env.CI) {
+    console.log('Setting placeholder Supabase variables for CI build...');
+    process.env.NEXT_PUBLIC_SUPABASE_URL = 'NEXT_PUBLIC_SUPABASE_URL_PLACEHOLDER';
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = 'NEXT_PUBLIC_SUPABASE_ANON_KEY_PLACEHOLDER';
+  }
+}
+
 console.log(`Building with: NEXT_PUBLIC_CUSTOM_DOMAIN=${process.env.NEXT_PUBLIC_CUSTOM_DOMAIN}, NEXT_PUBLIC_BASE_PATH=${process.env.NEXT_PUBLIC_BASE_PATH}`);
+console.log(`Supabase URL: ${process.env.NEXT_PUBLIC_SUPABASE_URL ? '✓ Set' : '✗ Not set'}`);
+console.log(`Supabase Anon Key: ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? '✓ Set' : '✗ Not set'}`);
+
 
 // Run the Next.js build
 try {

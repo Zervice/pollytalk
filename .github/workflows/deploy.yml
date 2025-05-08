@@ -54,6 +54,8 @@ jobs:
         env:
           NEXT_PUBLIC_BASE_PATH: ${{ env.NEXT_PUBLIC_BASE_PATH }}
           NEXT_PUBLIC_CUSTOM_DOMAIN: ${{ env.NEXT_PUBLIC_CUSTOM_DOMAIN }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
       
       - name: Create .nojekyll file
         run: touch ./out/.nojekyll
