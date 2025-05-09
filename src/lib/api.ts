@@ -117,7 +117,7 @@ export const authApi = {
    */
   exchangeOAuthCode: async (code: string, provider: string): Promise<AuthResponse> => {
     const redirectUrl = `${window.location.origin}/auth/callback`;
-    const response = await fetch(`${API_BASE_URL}/web/auth/oauth/callback`, {
+    const response = await fetch(`${API_BASE_URL}/web/auth/callback`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
