@@ -7,12 +7,21 @@ const nextConfig = {
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
   assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH || '',
   trailingSlash: true,
-  // This is important for GitHub Pages to handle client-side routing correctly
+  // Environment variables
   env: {
-    // Expose environment variables to the browser
     NEXT_PUBLIC_BASE_PATH: process.env.NEXT_PUBLIC_BASE_PATH || '',
     NEXT_PUBLIC_CUSTOM_DOMAIN: process.env.NEXT_PUBLIC_CUSTOM_DOMAIN || 'false',
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'https://api.zervice.me/pollytalk',
   },
+  // Disable React StrictMode for production builds on Cloudflare
+  reactStrictMode: process.env.NODE_ENV !== 'production',
+  // Cloudflare specific settings
+  experimental: {
+    // Disable CSS optimization to avoid critters issues
+    optimizeCss: false,
+    // Reduce bundle size
+    optimizePackageImports: ['react', 'react-dom', 'framer-motion', 'lucide-react']
+  }
 }
 
 module.exports = nextConfig
