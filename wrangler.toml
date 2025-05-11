@@ -1,13 +1,8 @@
+name = "pollytalk"
+pages_build_output_dir = "./out"
+
 [build]
 command = "npm run build"
 
 [build.environment]
 NODE_VERSION = "20"
-
-# Specify the directory that contains the static assets
-[site]
-site_name = "pollytalk"
-
-# Output directory for the build
-[pages_build_output_dir]
-value = "out"
