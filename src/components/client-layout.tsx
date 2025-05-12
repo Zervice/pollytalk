@@ -1,6 +1,7 @@
 'use client'
 
 import { Nav } from '@/components/ui/nav'
+import { UserNav } from '@/components/ui/user-nav'
 import { Footer } from "@/components/ui/footer"
 import { I18nProvider } from '@/i18n/i18n-context'
 import { LanguageLoading } from '@/components/ui/language-loading'
@@ -17,6 +18,7 @@ export function ClientLayout({ children }: { children: ReactNode }) {
         <LanguageLoading>
           <ClientRouter>
             <Nav />
+            <UserNav />
             <div className="flex-1 pt-[72px]">
               {children}
             </div>

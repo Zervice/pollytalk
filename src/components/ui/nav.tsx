@@ -18,6 +18,10 @@ export function Nav() {
   const { t, locale } = useI18n()
   const { user, signOut } = useAuth()
   
+  // If user is authenticated, don't render this navigation
+  // as UserNav will be shown instead
+  if (user) return null;
+  
   const navigation = [
     { name: t('nav.pricing'), href: '/pricing' },
     { name: t('nav.blog'), href: '/blog' },
