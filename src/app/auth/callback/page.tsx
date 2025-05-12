@@ -51,20 +51,20 @@ export default function AuthCallbackPage() {
           } catch (exchangeError) {
             console.error('Error exchanging OAuth code:', exchangeError);
             setStatus('error');
-            setErrorMessage('Failed to exchange authorization code');
+            setErrorMessage(t('auth.errors.exchangeCodeFailed'));
             setTimeout(() => router.push('/auth/signin'), 2000);
           }
         } else {
           // If no code is present, redirect to the sign-in page
           console.error('No authorization code found in callback URL');
           setStatus('error');
-          setErrorMessage('No authorization code found');
+          setErrorMessage(t('auth.errors.noCodeFound'));
           setTimeout(() => router.push('/auth/signin'), 2000);
         }
       } catch (error) {
         console.error('Error handling OAuth callback:', error);
         setStatus('error');
-        setErrorMessage('Authentication process failed');
+        setErrorMessage(t('auth.errors.authProcessFailed'));
         setTimeout(() => router.push('/auth/signin'), 2000);
       }
     }
@@ -79,7 +79,7 @@ export default function AuthCallbackPage() {
         {status === 'processing' && (
           <>
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary mx-auto mb-4"></div>
-            <p className="text-lg">Processing authentication...</p>
+            <p className="text-lg">{t('auth.completingAuthentication')}</p>
           </>
         )}
         
@@ -91,7 +91,7 @@ export default function AuthCallbackPage() {
                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
               </svg>
             </div>
-            <p className="text-lg">Authentication successful! Redirecting...</p>
+            <p className="text-lg">{t('auth.authSuccess')}</p>
           </>
         )}
         
@@ -104,9 +104,9 @@ export default function AuthCallbackPage() {
                 <line x1="9" y1="9" x2="15" y2="15"></line>
               </svg>
             </div>
-            <p className="text-lg">Authentication failed</p>
+            <p className="text-lg">{t('auth.authFailed')}</p>
             <p className="text-sm text-muted-foreground mt-2">{errorMessage}</p>
-            <p className="text-sm mt-4">Redirecting to sign-in page...</p>
+            <p className="text-sm mt-4">{t('auth.redirecting')}</p>
           </>
         )}
       </div>

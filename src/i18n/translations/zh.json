@@ -11,8 +11,13 @@
   "auth": {
     "signIn": "登录",
     "signUp": "注册",
-    "signOut": "退出登录",
-    "email": "邮箱",
+    "signOut": "退出",
+    "email": "电子邮件",
+    "completingAuthentication": "正在处理认证...",
+    "authSuccess": "认证成功！正在重定向...",
+    "authFailed": "认证失败",
+    "redirecting": "正在重定向到登录页面...",
+
     "password": "密码",
     "name": "姓名",
     "forgotPassword": "忘记密码？",
@@ -50,6 +55,9 @@
       "invalidVerificationCode": "无效的验证码",
       "passwordTooWeak": "密码强度太弱",
       "general": "发生错误，请重试",
+      "exchangeCodeFailed": "交换授权码失败",
+      "noCodeFound": "未找到授权码",
+      "authProcessFailed": "认证过程失败",
       "tooManyAttempts": "尝试次数过多，请稍后再试",
       "accountNotVerified": "账号未验证，请检查您的邮箱"
     }
@@ -588,5 +596,64 @@
     "contact": "联系我们",
     "terms": "条款",
     "privacy": "隐私"
+  },
+  "aboutPage": {
+    "title": "关于博语通",
+    "mission": {
+      "title": "我们的使命",
+      "content": "博语通致力于通过先进的人工智能技术，打破语言障碍，让语言学习变得更加自然、高效和愉快。我们相信，每个人都应该有机会学习新语言，探索新文化，拓展自己的视野。"
+    },
+    "technology": {
+      "title": "我们的技术",
+      "content": "我们的平台结合了最先进的自然语言处理技术和语音识别系统，为用户提供沉浸式的语言学习体验。通过与我们的AI助手进行真实对话，用户可以在实际情境中练习语言技能，获得即时反馈，并以自己的节奏进步。"
+    },
+    "team": {
+      "title": "我们的团队",
+      "content": "博语通由一群热衷于语言学习和人工智能的专业人士组成。我们的团队包括语言学家、软件工程师、AI研究人员和教育专家，他们共同努力创造最佳的语言学习解决方案。"
+    },
+    "values": {
+      "title": "我们的价值观",
+      "innovation": "创新",
+      "innovationDesc": "不断探索新技术和方法，提升语言学习体验。",
+      "inclusivity": "包容",
+      "inclusivityDesc": "创造适合所有人的学习工具，无论背景或能力如何。",
+      "quality": "质量",
+      "qualityDesc": "致力于提供最高质量的语言学习内容和技术。",
+      "community": "社区",
+      "communityDesc": "培养语言学习者的全球社区，促进文化交流。"
+    },
+    "joinUs": {
+      "title": "加入我们的旅程",
+      "content": "我们邀请您加入我们的语言学习革命。无论您是想学习一门新语言，还是希望提高已有的语言技能，博语通都能为您提供所需的工具和支持。开始您的语言学习之旅，探索新的可能性吧！"
+    }
+  },
+  "contactPage": {
+    "title": "联系我们",
+    "getInTouch": {
+      "title": "与我们取得联系",
+      "content": "我们很乐意听取您的反馈、问题或建议。请填写表格，我们的团队将尽快与您联系。"
+    },
+    "contactInfo": {
+      "phone": "电话",
+      "email": "电子邮件",
+      "address": "地址"
+    },
+    "followUs": "关注我们",
+    "form": {
+      "name": "姓名",
+      "email": "电子邮件",
+      "subject": "主题",
+      "selectSubject": "请选择一个主题",
+      "generalInquiry": "一般咨询",
+      "technicalSupport": "技术支持",
+      "billing": "账单和订阅",
+      "feedback": "产品反馈",
+      "partnership": "合作机会",
+      "message": "消息",
+      "sending": "发送中...",
+      "send": "发送消息",
+      "success": "您的消息已成功发送。我们将尽快回复您。",
+      "error": "发送消息时出错。请稍后再试。"
+    }
   }
 }
