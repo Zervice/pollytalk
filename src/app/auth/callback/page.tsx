@@ -18,51 +18,39 @@ export default function AuthCallbackPage() {
     // Handle the OAuth callback on the client side
     const handleOAuthCallback = async () => {
       try {
-        console.log('Starting OAuth callback handling...');
         // Get the code and provider from the URL
         const url = new URL(window.location.href)
         const code = url.searchParams.get('code')
         const provider = url.searchParams.get('provider') || 'google'
         
-        console.log('OAuth params:', { code: code ? 'present' : 'missing', provider });
-        
         if (code) {
           try {
             // Exchange the code for tokens
-            console.log('Exchanging OAuth code for tokens...');
             const authResponse = await authApi.exchangeOAuthCode(code, provider)
-            console.log('Auth response received:', JSON.stringify(authResponse, null, 2));
             
             // Store the authentication data
             setAuthData(authResponse)
-            console.log('Auth data stored in localStorage');
-            console.log('User data:', localStorage.getItem('auth_user'));
-            console.log('Token present:', !!localStorage.getItem('auth_token'));
             
             setStatus('success');
             
             // Wait a moment to ensure state is updated before redirect
             setTimeout(() => {
-              console.log('Redirecting to dashboard...');
               // Use window.location for a hard redirect instead of the router
               // This ensures a full page reload and proper auth context initialization
               window.location.href = '/dashboard';
             }, 1500);
           } catch (exchangeError) {
-            console.error('Error exchanging OAuth code:', exchangeError);
             setStatus('error');
             setErrorMessage(t('auth.errors.exchangeCodeFailed'));
             setTimeout(() => router.push('/auth/signin'), 2000);
           }
         } else {
           // If no code is present, redirect to the sign-in page
-          console.error('No authorization code found in callback URL');
           setStatus('error');
           setErrorMessage(t('auth.errors.noCodeFound'));
           setTimeout(() => router.push('/auth/signin'), 2000);
         }
       } catch (error) {
-        console.error('Error handling OAuth callback:', error);
         setStatus('error');
         setErrorMessage(t('auth.errors.authProcessFailed'));
         setTimeout(() => router.push('/auth/signin'), 2000);
