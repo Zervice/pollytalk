@@ -1,5 +1,5 @@
 /**
- * API client for PollyTalk backend services
+ * API client for PollyTalkie backend services
  */
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.zervice.me/pollytalk';

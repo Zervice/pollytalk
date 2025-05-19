@@ -10,7 +10,7 @@ export function Logo({ className = "", size = 40 }: { className?: string; size?:
   const height = Math.round(size * 1) // Adjust this multiplier based on your logo's aspect ratio
   
   // Set alt text based on language
-  const altText = locale === 'zh' ? '博语通 (PollyTalk) 标志' : 'PollyTalk Logo'
+  const altText = locale === 'zh' ? '博语通 (PollyTalkie) 标志' : 'PollyTalkie Logo'
 
   return (
     <div className={`relative ${className}`} style={{ width: size, height }}>

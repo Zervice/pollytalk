@@ -63,7 +63,7 @@ This widespread activation during conversation explains why it's so effective—
 
 ### Stress and Language Acquisition
 
-Interestingly, the right kind of conversation creates an optimal stress level for learning. When the stakes are low (as with a supportive conversation partner or AI system like PollyTalk), learners experience mild stress that enhances focus without triggering the anxiety that can block language production.
+Interestingly, the right kind of conversation creates an optimal stress level for learning. When the stakes are low (as with a supportive conversation partner or AI system like PollyTalkie), learners experience mild stress that enhances focus without triggering the anxiety that can block language production.
 
 Dr. Stephen Krashen's influential "affective filter hypothesis" explains that emotional factors significantly impact language acquisition. Conversation in a supportive environment keeps this filter low, allowing for optimal learning.
 
@@ -98,7 +98,7 @@ For example, discussing your morning routine on Monday, your evening routine on 
 
 ## The AI Conversation Revolution
 
-One of the most significant developments in language learning is the emergence of AI conversation partners. Systems like PollyTalk offer several unique advantages:
+One of the most significant developments in language learning is the emergence of AI conversation partners. Systems like PollyTalkie offer several unique advantages:
 
 - **Judgment-free practice environment** that reduces anxiety
 - **Personalized difficulty adjustment** based on your responses
@@ -123,7 +123,7 @@ This balanced approach ensures that you develop all language skills while priori
 
 The evidence is clear: conversation isn't just one aspect of language learning—it's the central mechanism through which true language acquisition occurs. By engaging in regular conversational practice, you're not simply applying knowledge gained elsewhere; you're actively rewiring your brain to process and produce language naturally.
 
-Whether you're practicing with native speakers, other learners, or AI conversation partners like PollyTalk, making conversation the cornerstone of your language learning strategy will accelerate your progress toward true fluency. The path to mastering a new language isn't found in textbooks alone—it's discovered through the words exchanged in thousands of conversations, each one building your neural networks and bringing you closer to thinking in your new language.
+Whether you're practicing with native speakers, other learners, or AI conversation partners like PollyTalkie, making conversation the cornerstone of your language learning strategy will accelerate your progress toward true fluency. The path to mastering a new language isn't found in textbooks alone—it's discovered through the words exchanged in thousands of conversations, each one building your neural networks and bringing you closer to thinking in your new language.
 
 ---
 

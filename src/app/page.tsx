@@ -45,18 +45,18 @@ export default function Home() {
     { type: 'bot', text: "博语通提供有限日常对话的免费计划，以及收费低至不足两美元每小时的多种可选高级计划。为什么不先尝试我们的免费计划，看看你是否喜欢呢？" }
   ] : [
     { type: 'bot', text: "Hi, I'm Polly, your English tutor. Would you like to know more about how I can help you learn languages?" },
-    { type: 'user', text: "Sure! What exactly is PollyTalk?" },
-    { type: 'bot', text: "PollyTalk is an AI-powered language learning app that helps you quickly improve your conversational and spoken language skills. Unlike traditional apps that focus on repetitive exercises, I'm designed to chat with you like a real language partner, allowing you to practice and master languages through actual conversations!" },
+    { type: 'user', text: "Sure! What exactly is PollyTalkie?" },
+    { type: 'bot', text: "PollyTalkie is an AI-powered language learning app that helps you quickly improve your conversational and spoken language skills. Unlike traditional apps that focus on repetitive exercises, I'm designed to chat with you like a real language partner, allowing you to practice and master languages through actual conversations!" },
     { type: 'user', text: "How is this different from other apps like Duolingo?" },
-    { type: 'bot', text: "Great question! While apps like Duolingo focus on gamified exercises and translation, PollyTalk specializes in developing your speaking fluency through real conversations. Our key strengths are: personalized feedback on your pronunciation and intonation, adaptive conversations that match your proficiency level, and practical dialog scenarios you'll actually use in real life. We're specifically designed to help you sound more natural and confident when you speak!" },
-    { type: 'user', text: "I'm new to the language, can I use PollyTalk to learn it?" },
-    { type: 'bot', text: "Thanks for asking! PollyTalk is best suited for learners who already have some basic knowledge of the language. If you're a complete beginner, we recommend starting with apps like Duolingo to learn fundamental vocabulary and grammar, then switching to PollyTalk to enhance your conversation skills and fluency. Our strength is helping you progress from 'knowing the language' to 'naturally using the language'!" },
+    { type: 'bot', text: "Great question! While apps like Duolingo focus on gamified exercises and translation, PollyTalkie specializes in developing your speaking fluency through real conversations. Our key strengths are: personalized feedback on your pronunciation and intonation, adaptive conversations that match your proficiency level, and practical dialog scenarios you'll actually use in real life. We're specifically designed to help you sound more natural and confident when you speak!" },
+    { type: 'user', text: "I'm new to the language, can I use PollyTalkie to learn it?" },
+    { type: 'bot', text: "Thanks for asking! PollyTalkie is best suited for learners who already have some basic knowledge of the language. If you're a complete beginner, we recommend starting with apps like Duolingo to learn fundamental vocabulary and grammar, then switching to PollyTalkie to enhance your conversation skills and fluency. Our strength is helping you progress from 'knowing the language' to 'naturally using the language'!" },
     { type: 'user', text: "That sounds interesting. How much time would I need to commit each day?" },
     { type: 'bot', text: "That's entirely up to you! Some learners chat with me for just 10 minutes daily, while others enjoy longer 30-minute conversations. The key is consistency - even short, regular practice sessions lead to significant improvement over time." },
     { type: 'user', text: "Will I actually become fluent using this app?" },
-    { type: 'bot', text: "Fluency comes from regular practice and real-world application. PollyTalk provides the conversation practice that's often missing from traditional learning. I'll help you build confidence, develop natural speech patterns, and prepare you for real-world conversations. Many of our users report breakthrough moments when traveling abroad!" },
+    { type: 'bot', text: "Fluency comes from regular practice and real-world application. PollyTalkie provides the conversation practice that's often missing from traditional learning. I'll help you build confidence, develop natural speech patterns, and prepare you for real-world conversations. Many of our users report breakthrough moments when traveling abroad!" },
     { type: 'user', text: "How much does it cost?" },
-    { type: 'bot', text: "PollyTalk offers a free plan with limited daily conversations, and premium plans with hourly costs below 2 dollars! Why not just start with our free plan and see how you like it?" }
+    { type: 'bot', text: "PollyTalkie offers a free plan with limited daily conversations, and premium plans with hourly costs below 2 dollars! Why not just start with our free plan and see how you like it?" }
   ], [locale])
 
   // Reference to the chat container for auto-scrolling
@@ -184,10 +184,10 @@ export default function Home() {
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
                     {locale === 'zh' ? (
                       <>
-                        博语通 <span className="text-2xl font-normal text-muted-foreground">(PollyTalk)</span>
+                        博语通 <span className="text-2xl font-normal text-muted-foreground">(PollyTalkie)</span>
                       </>
                     ) : (
-                      'PollyTalk'
+                      'PollyTalkie'
                     )}
                   </h1>
                 </motion.div>
@@ -200,7 +200,7 @@ export default function Home() {
                   <p className="mb-4 text-2xl font-bold text-primary">
                     {locale === 'zh' ? 
                       "使用博语通，像说母语一样流利使用新语言！" :
-                      "Learn with PollyTalk, speak like a native!"}
+                      "Learn with PollyTalkie, speak like a native!"}
                   </p>
                   <p className="text-zinc-600 dark:text-zinc-300">
                     {locale === 'zh' ? 
@@ -376,7 +376,7 @@ export default function Home() {
                 {locale === 'zh' ? '用户评价' : 'What Our Users Say'}
               </h3>
               <p className="text-muted-foreground max-w-[700px] mx-auto text-center mb-8">
-                {locale === 'zh' ? '听听我们的学习者如何评价博语通（PollyTalk）' : 'Hear from our community of language learners'}
+                {locale === 'zh' ? '听听我们的学习者如何评价博语通（PollyTalkie）' : 'Hear from our community of language learners'}
               </p>
               <Testimonials />
             </motion.div>

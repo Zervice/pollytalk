@@ -30,8 +30,8 @@ export function UserNav() {
           <Link href="/dashboard" className="-m-1.5 p-1.5 flex items-center gap-2">
             <Logo size={32} />
             <span className="font-semibold text-xl">
-              {locale === 'zh' ? '博语通' : 'PollyTalk'}
-              {locale === 'zh' && <span className="text-xs ml-1 text-muted-foreground">(PollyTalk)</span>}
+              {locale === 'zh' ? '博语通' : 'PollyTalkie'}
+              {locale === 'zh' && <span className="text-xs ml-1 text-muted-foreground">(PollyTalkie)</span>}
             </span>
           </Link>
         </div>

@@ -6,7 +6,7 @@ import type { Metadata } from 'next'
 // This prevents build failures when Google Fonts can't be fetched
 
 export const metadata: Metadata = {
-  title: 'PollyTalk - Your AI Conversation Companion',
+  title: 'PollyTalkie - Your AI Conversation Companion',
   description: 'Practice languages through natural conversations with AI',
   alternates: {
     languages: {

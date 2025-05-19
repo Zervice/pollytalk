@@ -37,8 +37,8 @@ export function Nav() {
           <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-1">
             <Logo size={28} />
             <span className="font-semibold text-lg">
-              {locale === 'zh' ? '博语通' : 'PollyTalk'}
-              {locale === 'zh' && <span className="text-xs ml-1 text-muted-foreground">(PollyTalk)</span>}
+              {locale === 'zh' ? '博语通' : 'PollyTalkie'}
+              {locale === 'zh' && <span className="text-xs ml-1 text-muted-foreground">(PollyTalkie)</span>}
             </span>
           </Link>
         </div>
@@ -135,8 +135,8 @@ export function Nav() {
                   <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
                     <Logo size={32} />
                     <span className="font-semibold text-xl">
-                      {locale === 'zh' ? '博语通' : 'PollyTalk'}
-                      {locale === 'zh' && <span className="text-xs ml-1 text-muted-foreground">(PollyTalk)</span>}
+                      {locale === 'zh' ? '博语通' : 'PollyTalkie'}
+                      {locale === 'zh' && <span className="text-xs ml-1 text-muted-foreground">(PollyTalkie)</span>}
                     </span>
                   </Link>
                   <button

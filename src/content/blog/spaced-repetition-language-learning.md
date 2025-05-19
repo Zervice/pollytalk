@@ -79,7 +79,7 @@ Several apps and programs use algorithms to optimize review schedules:
 
 - **Anki**: A highly customizable flashcard system with community-shared decks
 - **Memrise**: Combines spaced repetition with gamification
-- **PollyTalk's vocabulary trainer**: Integrates spaced repetition with conversational practice
+- **PollyTalkie's vocabulary trainer**: Integrates spaced repetition with conversational practice
 
 These digital tools handle the scheduling automatically, showing you cards just before you're likely to forget them based on your performance.
 

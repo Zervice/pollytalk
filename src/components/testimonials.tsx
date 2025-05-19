@@ -17,13 +17,13 @@ export function Testimonials() {
       name: "李明",
       location: "北京，中国",
       image: "/testimonials/user1.jpg",
-      text: "博语通（PollyTalk）完全改变了我学习英语的方式。AI对话非常自然，我在3个月内的进步比传统课堂2年的学习还要多！"
+      text: "博语通（PollyTalkie）完全改变了我学习英语的方式。AI对话非常自然，我在3个月内的进步比传统课堂2年的学习还要多！"
     },
     {
       name: "张伟",
       location: "上海，中国",
       image: "/testimonials/user2.jpg",
-      text: "作为一个有语言学习焦虑的人，博语通（PollyTalk）对我来说是一个改变游戏规则的工具。我可以练习英语而不用担心被评判，个性化的反馈帮助我纠正了我甚至不知道自己有的发音问题。"
+      text: "作为一个有语言学习焦虑的人，博语通（PollyTalkie）对我来说是一个改变游戏规则的工具。我可以练习英语而不用担心被评判，个性化的反馈帮助我纠正了我甚至不知道自己有的发音问题。"
     },
     {
       name: "王芳",
@@ -35,7 +35,7 @@ export function Testimonials() {
       name: "刘强",
       location: "成都，中国",
       image: "/testimonials/user4.jpg",
-      text: "我尝试过市面上所有的语言学习应用，博语通（PollyTalk）是迄今为止最有效的。AI能适应我的学习风格，并在恰到好处的水平上挑战我。我的德语在短短几周内就有了显著提高！"
+      text: "我尝试过市面上所有的语言学习应用，博语通（PollyTalkie）是迄今为止最有效的。AI能适应我的学习风格，并在恰到好处的水平上挑战我。我的德语在短短几周内就有了显著提高！"
     },
     {
       name: "陈静",
@@ -47,20 +47,20 @@ export function Testimonials() {
       name: "赵阳",
       location: "杭州，中国",
       image: "/testimonials/user6.jpg",
-      text: "作为一名语言老师，我对博语通（PollyTalk）的教学方法印象深刻。它将语法自然地融入对话的方式非常出色。我现在向我所有的学生推荐它！"
+      text: "作为一名语言老师，我对博语通（PollyTalkie）的教学方法印象深刻。它将语法自然地融入对话的方式非常出色。我现在向我所有的学生推荐它！"
     }
   ] : [
     {
       name: "Sarah Johnson",
       location: "New York, USA",
       image: "/testimonials/user1.jpg",
-      text: "PollyTalk has completely transformed my Spanish learning journey. The AI conversations feel incredibly natural, and I've made more progress in 3 months than I did in 2 years of traditional classes!"
+      text: "PollyTalkie has completely transformed my Spanish learning journey. The AI conversations feel incredibly natural, and I've made more progress in 3 months than I did in 2 years of traditional classes!"
     },
     {
       name: "Michael Chen",
       location: "Toronto, Canada",
       image: "/testimonials/user2.jpg",
-      text: "As someone who struggled with language learning anxiety, PollyTalk has been a game-changer. I can practice French without the fear of judgment, and the personalized feedback has helped me correct pronunciation issues I didn't even know I had."
+      text: "As someone who struggled with language learning anxiety, PollyTalkie has been a game-changer. I can practice French without the fear of judgment, and the personalized feedback has helped me correct pronunciation issues I didn't even know I had."
     },
     {
       name: "Emma Rodriguez",
@@ -72,7 +72,7 @@ export function Testimonials() {
       name: "David Kim",
       location: "Sydney, Australia",
       image: "/testimonials/user4.jpg",
-      text: "I've tried every language app out there, and PollyTalk is by far the most effective. The AI adapts to my learning style and challenges me at just the right level. My German has improved dramatically in just weeks!"
+      text: "I've tried every language app out there, and PollyTalkie is by far the most effective. The AI adapts to my learning style and challenges me at just the right level. My German has improved dramatically in just weeks!"
     },
     {
       name: "Sophia Patel",
@@ -84,7 +84,7 @@ export function Testimonials() {
       name: "Lucas Moreau",
       location: "Paris, France",
       image: "/testimonials/user6.jpg",
-      text: "As a language teacher myself, I'm impressed by the pedagogical approach of PollyTalk. The way it integrates grammar naturally into conversations is brilliant. I now recommend it to all my students!"
+      text: "As a language teacher myself, I'm impressed by the pedagogical approach of PollyTalkie. The way it integrates grammar naturally into conversations is brilliant. I now recommend it to all my students!"
     }
   ];
   

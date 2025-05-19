@@ -52,8 +52,8 @@ export default function ForgotPassword() {
           <Link href="/" className="flex items-center gap-2">
             <Logo size={40} />
             <span className="font-semibold text-2xl">
-              {locale === 'zh' ? '博语通' : 'PollyTalk'}
-              {locale === 'zh' && <span className="text-xs ml-1 text-muted-foreground">(PollyTalk)</span>}
+              {locale === 'zh' ? '博语通' : 'PollyTalkie'}
+              {locale === 'zh' && <span className="text-xs ml-1 text-muted-foreground">(PollyTalkie)</span>}
             </span>
           </Link>
         </div>

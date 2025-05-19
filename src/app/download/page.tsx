@@ -21,7 +21,7 @@ export default function DownloadPage() {
         t('download.ios.step4')
       ],
       buttonText: t('download.ios.buttonText'),
-      href: "https://apps.apple.com/app/pollytalk",
+      href: "https://apps.apple.com/app/pollytalkie",
       systemRequirements: t('download.ios.requirements')
     },
     {
@@ -35,7 +35,7 @@ export default function DownloadPage() {
         t('download.android.step4')
       ],
       buttonText: t('download.android.buttonText'),
-      href: "https://play.google.com/store/apps/details?id=com.pollytalk",
+      href: "https://play.google.com/store/apps/details?id=com.zervice.polly_talkie",
       systemRequirements: t('download.android.requirements')
     }
   ]

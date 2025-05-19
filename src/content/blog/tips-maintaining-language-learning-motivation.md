@@ -79,7 +79,7 @@ A 2024 study found that learners who tracked their progress were 65% more likely
 
 Language learning doesn't have to be solitary or serious. In fact, the more enjoyable you make it, the more likely you are to continue:
 
-- **Practice with AI conversation partners** like PollyTalk that adapt to your interests
+- **Practice with AI conversation partners** like PollyTalkie that adapt to your interests
 - **Join language learning communities** online or in-person
 - **Find a study buddy** for accountability and shared learning
 - **Gamify your learning** with challenges and rewards

@@ -12,9 +12,9 @@ export function DynamicMetadata() {
   useEffect(() => {
     // Update the document title based on the current language
     if (locale === 'zh') {
-      document.title = '博语通 (PollyTalk) - 您的AI对话伴侣'
+      document.title = '博语通 (PollyTalkie) - 您的AI对话伴侣'
     } else {
-      document.title = 'PollyTalk - Your AI Conversation Companion'
+      document.title = 'PollyTalkie - Your AI Conversation Companion'
     }
     
     // Update meta description

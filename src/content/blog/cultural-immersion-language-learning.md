@@ -78,7 +78,7 @@ Technology enables participation in cultural activities from anywhere:
 - **Virtual reality travel experiences** with immersive language components
 - **Live-streamed cultural events and festivals**
 
-PollyTalk's cultural simulation modules, for example, allow you to practice language in context-specific scenarios like ordering in a restaurant or navigating a train station, complete with cultural nuances and etiquette.
+PollyTalkie's cultural simulation modules, for example, allow you to practice language in context-specific scenarios like ordering in a restaurant or navigating a train station, complete with cultural nuances and etiquette.
 
 ### 3. Digital Cultural Exchange
 
