@@ -55,6 +55,17 @@ console.log(`API URL: ${process.env.NEXT_PUBLIC_API_URL}`);
 
 
 
+// Run the blog page generator
+console.log('Generating static blog pages...');
+try {
+  // Generate blog pages
+  execSync('node ./scripts/generate-blog-pages.js', { stdio: 'inherit' });
+  console.log('Blog pages generated successfully');
+} catch (error) {
+  console.error('Blog page generation failed:', error.message);
+  process.exit(1);
+}
+
 // Run the Next.js build
 try {
   // Build the application

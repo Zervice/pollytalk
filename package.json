@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "node ./scripts/build.js",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean-blog": "node ./scripts/clean-blog-pages.js",
+    "postbuild": "npm run clean-blog"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.7",
