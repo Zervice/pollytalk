@@ -23,6 +23,9 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning>
+      <head>
+        <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4bcf3f093bd540b1abf323957828f8b2"}'></script>
+      </head>
       <body className="antialiased min-h-screen flex flex-col font-sans">
         <ClientLayout>
           {children}
