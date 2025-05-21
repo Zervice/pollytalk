@@ -1,3 +1,2 @@
 name = "pollytalkie"
 pages_build_output_dir = "out"
-build.command = "npm run cloudflare-build"

@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "node ./scripts/build.js",
-    "cloudflare-build": "node ./scripts/generate-blog-pages.js && next build",
     "start": "next start",
     "lint": "next lint",
     "clean-blog": "node ./scripts/clean-blog-pages.js",
