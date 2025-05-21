@@ -40,52 +40,46 @@ export default function BlogPage() {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post: BlogPost, index: number) => (
-            <article
-              key={post.slug}
-              className="group relative flex flex-col space-y-4 cursor-pointer"
-              onClick={() => window.location.href = `/blog/${post.slug}/`}
-            >
-              <div className="relative h-48 overflow-hidden rounded-lg">
-                <div 
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ 
-                    backgroundImage: `url(${getAssetPath(post.image)})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                  }} 
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5" />
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center gap-x-4 text-xs">
-                  <span className="text-primary font-medium">{post.category}</span>
-                  <span className="text-zinc-500 dark:text-zinc-400">
-                    <time dateTime={post.date}>{post.date}</time>
-                  </span>
+            <Link href={`/blog/${post.slug}/`} key={post.slug} className="block">
+              <article className="group relative flex flex-col space-y-4 cursor-pointer">
+                <div className="relative h-48 overflow-hidden rounded-lg">
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ 
+                      backgroundImage: `url(${getAssetPath(post.image)})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center'
+                    }} 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5" />
                 </div>
-                <div className="group-hover:text-primary">
-                  <Link href={`/blog/${post.slug}/`} className="hover:underline block">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-x-4 text-xs">
+                    <span className="text-primary font-medium">{post.category}</span>
+                    <span className="text-zinc-500 dark:text-zinc-400">
+                      <time dateTime={post.date}>{post.date}</time>
+                    </span>
+                  </div>
+                  <div className="group-hover:text-primary">
                     <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
-                  </Link>
-                  <p className="text-sm text-muted-foreground line-clamp-3">
-                    {post.description}
-                  </p>
-                </div>
-                <div className="flex items-center gap-x-4 text-sm">
-                  <div className="flex items-center gap-x-1">
-                    <User className="h-4 w-4" />
-                    <span>{post.author}</span>
+                    <p className="text-sm text-muted-foreground line-clamp-3">
+                      {post.description}
+                    </p>
                   </div>
-                  <div className="flex items-center gap-x-1">
-                    <Clock className="h-4 w-4" />
-                    <span>{post.readTime.replace('min read', t('blog.readTime'))}</span>
+                  <div className="flex items-center gap-x-4 text-sm">
+                    <div className="flex items-center gap-x-1">
+                      <User className="h-4 w-4" />
+                      <span>{post.author}</span>
+                    </div>
+                    <div className="flex items-center gap-x-1">
+                      <Clock className="h-4 w-4" />
+                      <span>{post.readTime.replace('min read', t('blog.readTime'))}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <Link href={`/blog/${post.slug}/`} className="block">
                 <span className="sr-only">{t('blog.viewArticle')}</span>
-              </Link>
-            </article>
+              </article>
+            </Link>
           ))}
         </div>
 
