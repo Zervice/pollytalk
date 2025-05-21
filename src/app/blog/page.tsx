@@ -42,7 +42,8 @@ export default function BlogPage() {
           {posts.map((post: BlogPost, index: number) => (
             <article
               key={post.slug}
-              className="group relative flex flex-col space-y-4"
+              className="group relative flex flex-col space-y-4 cursor-pointer"
+              onClick={() => window.location.href = `/blog/${post.slug}/`}
             >
               <div className="relative h-48 overflow-hidden rounded-lg">
                 <div 
@@ -63,7 +64,9 @@ export default function BlogPage() {
                   </span>
                 </div>
                 <div className="group-hover:text-primary">
-                  <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
+                  <Link href={`/blog/${post.slug}/`} className="hover:underline block">
+                    <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
+                  </Link>
                   <p className="text-sm text-muted-foreground line-clamp-3">
                     {post.description}
                   </p>
