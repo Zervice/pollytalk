@@ -25,6 +25,7 @@ export default function RootLayout({
     <html suppressHydrationWarning>
       <head>
         <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4bcf3f093bd540b1abf323957828f8b2"}'></script>
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="0224687c-8896-4c82-8b39-8356fcfc150b"></script>
       </head>
       <body className="antialiased min-h-screen flex flex-col font-sans">
         <ClientLayout>
