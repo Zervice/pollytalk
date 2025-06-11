@@ -4,7 +4,7 @@ This document outlines the API endpoints and request/response formats for the Po
 
 ## Base URL
 
-All API endpoints are relative to: `https://api.pollytalkie.com/`
+All API endpoints are relative to: `https://api.pollytalkie.com`
 
 ## Authentication
 

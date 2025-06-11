@@ -46,8 +46,8 @@ if (hasCustomDomain) {
 
 // Check for API server environment variables
 if (!process.env.NEXT_PUBLIC_API_URL) {
-  console.log('No API URL set, using default: https://api.pollytalkie.com/');
-  process.env.NEXT_PUBLIC_API_URL = 'https://api.pollytalkie.com/';
+  console.log('No API URL set, using default: https://api.pollytalkie.com');
+  process.env.NEXT_PUBLIC_API_URL = 'https://api.pollytalkie.com';
 }
 
 console.log(`Building with: NEXT_PUBLIC_CUSTOM_DOMAIN=${process.env.NEXT_PUBLIC_CUSTOM_DOMAIN}, NEXT_PUBLIC_BASE_PATH=${process.env.NEXT_PUBLIC_BASE_PATH}`);
