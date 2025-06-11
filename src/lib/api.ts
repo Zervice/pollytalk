@@ -1,8 +1,7 @@
 /**
  * API client for PollyTalkie backend services
  */
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.zervice.me/pollytalk';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.pollytalkie.com/';
 
 // Types for authentication
 export interface User {

@@ -88,7 +88,7 @@ export default function ContactPage() {
                   </div>
                   <div className="ml-3">
                     <p className="font-medium">{t('contactPage.contactInfo.email')}</p>
-                    <p className="text-muted-foreground">support@zervice.us</p>
+                    <p className="text-muted-foreground">support@pollytalkie.com</p>
                   </div>
                 </div>
                 

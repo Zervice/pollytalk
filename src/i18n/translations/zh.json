@@ -341,7 +341,7 @@
     "contact": {
       "title": "14. 联系信息",
       "content": "如有关于这些条款的问题，请通过以下方式联系我们：",
-      "email": "电子邮件：support@zervice.us",
+      "email": "电子邮件：support@pollytalkie.com",
       "address": "地址：123 Language Lane, San Francisco, CA 94103, USA"
     }
   },
@@ -487,8 +487,8 @@
     "contact": {
       "title": "12. 联系我们",
       "content": "如有关于我们隐私政策的问题或疑虑，请联系我们",
-      "email": "privacy@zervice.us",
-      "dpo": "数据保护官：dpo@zervice.us",
+      "email": "privacy@pollytalkie.com",
+      "dpo": "数据保护官：dpo@pollytalkie.com",
       "address": "地址：[您的业务地址]"
     }
   },

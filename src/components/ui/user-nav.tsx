@@ -71,12 +71,12 @@ export function UserNav() {
                 <p className="text-sm font-medium mb-2">{t('nav.scanToDownload')}</p>
                 <div className="p-3 bg-white rounded-md border border-primary/20">
                   <QRCode
-                    value="https://downloads.zervice.me/release/app-release.apk"
+                    value="https://www.pollytalkie.com/release/app-release.apk"
                     size={180}
                     level="H"
                   />
                 </div>
-                <p className="text-xs text-muted-foreground mt-1">https://downloads.zervice.me/release/app-release.apk</p>
+                <p className="text-xs text-muted-foreground mt-1">https://www.pollytalkie.com/release/app-release.apk</p>
               </div>
             </div>
           </div>

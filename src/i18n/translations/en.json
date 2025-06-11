@@ -6,7 +6,7 @@
     "terms": "Terms & Service",
     "privacy": "Privacy Policy",
     "downloadApp": "Download App",
-    "scanToDownload": "Scan to download PollyTalk app"
+    "scanToDownload": "Scan to download PollyTalkie app"
   },
   "auth": {
     "signIn": "Sign In",
@@ -110,7 +110,7 @@
   },
   "home": {
     "hero": {
-      "tagline": "Learn with PollyTalk, Talk like a native! Language learning reimagined: Natural conversations, real-world scenarios, personalized to you."
+      "tagline": "Learn with PollyTalkie, Talk like a native! Language learning reimagined: Natural conversations, real-world scenarios, personalized to you."
     },
     "buttons": {
       "startLearning": "Start Learning",
@@ -125,13 +125,13 @@
           "name": "Sarah Johnson",
           "location": "New York, USA",
           "image": "/testimonials/user1.jpg",
-          "text": "PollyTalk has completely transformed my Spanish learning journey. The AI conversations feel incredibly natural, and I've made more progress in 3 months than I did in 2 years of traditional classes!"
+          "text": "PollyTalkie has completely transformed my Spanish learning journey. The AI conversations feel incredibly natural, and I've made more progress in 3 months than I did in 2 years of traditional classes!"
         },
         {
           "name": "Michael Chen",
           "location": "Toronto, Canada",
           "image": "/testimonials/user2.jpg",
-          "text": "As someone who struggled with language learning anxiety, PollyTalk has been a game-changer. I can practice French without the fear of judgment, and the personalized feedback has helped me correct pronunciation issues I didn't even know I had."
+          "text": "As someone who struggled with language learning anxiety, PollyTalkie has been a game-changer. I can practice French without the fear of judgment, and the personalized feedback has helped me correct pronunciation issues I didn't even know I had."
         },
         {
           "name": "Emma Rodriguez",
@@ -143,7 +143,7 @@
           "name": "David Kim",
           "location": "Sydney, Australia",
           "image": "/testimonials/user4.jpg",
-          "text": "I've tried every language app out there, and PollyTalk is by far the most effective. The AI adapts to my learning style and challenges me at just the right level. My German has improved dramatically in just weeks!"
+          "text": "I've tried every language app out there, and PollyTalkie is by far the most effective. The AI adapts to my learning style and challenges me at just the right level. My German has improved dramatically in just weeks!"
         },
         {
           "name": "Sophia Patel",
@@ -155,12 +155,12 @@
           "name": "Lucas Moreau",
           "location": "Paris, France",
           "image": "/testimonials/user6.jpg",
-          "text": "As a language teacher myself, I'm impressed by the pedagogical approach of PollyTalk. The way it integrates grammar naturally into conversations is brilliant. I now recommend it to all my students!"
+          "text": "As a language teacher myself, I'm impressed by the pedagogical approach of PollyTalkie. The way it integrates grammar naturally into conversations is brilliant. I now recommend it to all my students!"
         }
       ]
     },
     "features": {
-      "title": "Why Choose PollyTalk?",
+      "title": "Why Choose PollyTalkie?",
       "naturalConversations": {
         "title": "Natural Conversations",
         "description": "Practice real-world conversations with our AI language partners"
@@ -185,7 +185,7 @@
     }
   },
   "blogPage": {
-    "title": "PollyTalk Blog",
+    "title": "PollyTalkie Blog",
     "subtitle": "Insights and tips for better language learning",
     "contribute": "Want to contribute to our blog?",
     "contactUs": "Contact us",
@@ -205,7 +205,7 @@
     "imagePlaceholder": "Image not available"
   },
   "download": {
-    "title": "Download PollyTalk",
+    "title": "Download PollyTalkie",
     "subtitle": "Start your language learning journey on your mobile device",
     "installationSteps": "Installation Steps",
     "directDownload": "Direct APK Download",
@@ -214,7 +214,7 @@
     "step1": "Scan the QR code with your phone's camera",
     "step2": "Tap the link that appears",
     "step3": "Allow installation from unknown sources if prompted",
-    "step4": "Install and enjoy PollyTalk!",
+    "step4": "Install and enjoy PollyTalkie!",
     "downloadApk": "Download APK Directly",
     "apkFileSize": "APK file size: ~25MB • Android 8.0+ required",
     "needHelp": "Need Help?",
@@ -227,9 +227,9 @@
     "benefit4": "Better speech recognition",
     "ios": {
       "name": "iOS App",
-      "description": "Download PollyTalk for iPhone and iPad",
+      "description": "Download PollyTalkie for iPhone and iPad",
       "step1": "Open the App Store on your iOS device",
-      "step2": "Search for 'PollyTalk Language Learning'",
+      "step2": "Search for 'PollyTalkie Language Learning'",
       "step3": "Tap 'Get' to install the app",
       "step4": "Open the app and start learning",
       "buttonText": "Download on App Store",
@@ -237,9 +237,9 @@
     },
     "android": {
       "name": "Android App",
-      "description": "Download PollyTalk for Android devices",
+      "description": "Download PollyTalkie for Android devices",
       "step1": "Open the Google Play Store",
-      "step2": "Search for 'PollyTalk Language Learning'",
+      "step2": "Search for 'PollyTalkie Language Learning'",
       "step3": "Tap 'Install'",
       "step4": "Open the app and start learning",
       "buttonText": "Get it on Google Play",
@@ -251,11 +251,11 @@
     "lastUpdated": "Last updated: February 25, 2025",
     "introduction": {
       "title": "1. Introduction",
-      "content": "Welcome to PollyTalk (\"we\", \"our\", or \"us\"). By accessing or using our language learning platform, you agree to be bound by these Terms of Service (\"Terms\"). Please read these Terms carefully before using our services."
+      "content": "Welcome to PollyTalkie (\"we\", \"our\", or \"us\"). By accessing or using our language learning platform, you agree to be bound by these Terms of Service (\"Terms\"). Please read these Terms carefully before using our services."
     },
     "serviceDescription": {
       "title": "2. Service Description",
-      "content": "PollyTalk provides an AI-powered language learning platform that enables users to practice conversations and improve their language skills. Our services include but are not limited to:",
+      "content": "PollyTalkie provides an AI-powered language learning platform that enables users to practice conversations and improve their language skills. Our services include but are not limited to:",
       "item1": "Interactive language learning sessions",
       "item2": "AI conversation partners",
       "item3": "Progress tracking and assessment",
@@ -287,7 +287,7 @@
     },
     "intellectualProperty": {
       "title": "6. Intellectual Property",
-      "content": "All content and materials available through our services, including but not limited to text, graphics, logos, icons, images, audio clips, and software, are the property of PollyTalk or its licensors and are protected by copyright, trademark, and other intellectual property laws.",
+      "content": "All content and materials available through our services, including but not limited to text, graphics, logos, icons, images, audio clips, and software, are the property of PollyTalkie or its licensors and are protected by copyright, trademark, and other intellectual property laws.",
       "item1": "Copy or reproduce our content without permission",
       "item2": "Modify or create derivative works",
       "item3": "Distribute or publicly display our content",
@@ -325,7 +325,7 @@
     },
     "limitationOfLiability": {
       "title": "11. Limitation of Liability",
-      "content": "To the maximum extent permitted by law, PollyTalk shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses."
+      "content": "To the maximum extent permitted by law, PollyTalkie shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses."
     },
     "changes": {
       "title": "12. Changes to Terms",
@@ -341,7 +341,7 @@
     "contact": {
       "title": "14. Contact Information",
       "content": "For questions about these Terms, please contact us at:",
-      "email": "Email: support@zervice.us",
+      "email": "Email: support@pollytalkie.com",
       "address": "Address: 123 Language Lane, San Francisco, CA 94103, USA"
     }
   },
@@ -349,7 +349,7 @@
     "title": "Privacy Policy",
     "introduction": {
       "title": "1. Introduction",
-      "content": "At PollyTalk, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our language learning platform. Please read this policy carefully to understand our practices."
+      "content": "At PollyTalkie, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our language learning platform. Please read this policy carefully to understand our practices."
     },
     "infoCollect": {
       "title": "2. Information We Collect",
@@ -395,7 +395,7 @@
     "lastUpdated": "Last updated: February 25, 2025"
   },
   "blogContent": {
-    "title": "PollyTalk Blog",
+    "title": "PollyTalkie Blog",
     "subtitle": "Insights and tips for better language learning",
     "readTime": "min read",
     "viewArticle": "View article",
@@ -407,7 +407,7 @@
     "lastUpdated": "Last updated: February 25, 2025",
     "introduction": {
       "title": "1. Introduction",
-      "content": "At PollyTalk, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our language learning platform. Please read this policy carefully to understand our practices."
+      "content": "At PollyTalkie, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our language learning platform. Please read this policy carefully to understand our practices."
     },
     "infoCollect": {
       "title": "2. Information We Collect",
@@ -487,14 +487,14 @@
     "contact": {
       "title": "11. Contact Us",
       "content": "For privacy-related questions or concerns, please contact us at",
-      "email": "Email: privacy@zervice.us",
+      "email": "Email: privacy@pollytalkie.com",
       "address": "Address: [Your Business Address]",
-      "dpo": "Data Protection Officer: dpo@zervice.us"
+      "dpo": "Data Protection Officer: dpo@pollytalkie.com"
     }
   },
   "pricing": {
     "title": "Affordable Language Learning & Practicing",
-    "subtitle": "Practice with PollyTalk at a fraction of human tutor costs",
+    "subtitle": "Practice with PollyTalkie at a fraction of human tutor costs",
     "mostPopular": "Most Popular",
     "earlyAdopter": "for early adopters (30% off)",
     "freeTrialBadge": "7-Day Free Trial",
@@ -582,7 +582,7 @@
       "question1": "How does the 7-day free trial work?",
       "answer1": "You can try the Regular plan for 7 days completely free. No credit card required to start your language learning journey!",
       "question2": "How do your prices compare to human tutors?",
-      "answer2": "Human language tutors typically charge $25-$70 per hour. PollyTalk provides the same practice benefits at just $2-$3 per hour, making language learning more accessible.",
+      "answer2": "Human language tutors typically charge $25-$70 per hour. PollyTalkie provides the same practice benefits at just $2-$3 per hour, making language learning more accessible.",
       "question3": "Can I change plans later?",
       "answer3": "Yes, you can upgrade or downgrade your plan at any time. Changes will take effect at the start of your next billing cycle.",
       "question4": "What payment methods do you accept?",
@@ -598,10 +598,10 @@
     "privacy": "Privacy"
   },
   "aboutPage": {
-    "title": "About PollyTalk",
+    "title": "About PollyTalkie",
     "mission": {
       "title": "Our Mission",
-      "content": "PollyTalk is dedicated to breaking down language barriers through advanced AI technology, making language learning more natural, efficient, and enjoyable. We believe everyone should have the opportunity to learn new languages, explore new cultures, and expand their horizons."
+      "content": "PollyTalkie is dedicated to breaking down language barriers through advanced AI technology, making language learning more natural, efficient, and enjoyable. We believe everyone should have the opportunity to learn new languages, explore new cultures, and expand their horizons."
     },
     "technology": {
       "title": "Our Technology",
@@ -609,7 +609,7 @@
     },
     "team": {
       "title": "Our Team",
-      "content": "PollyTalk is made up of professionals passionate about language learning and artificial intelligence. Our team includes linguists, software engineers, AI researchers, and education specialists working together to create the best language learning solutions."
+      "content": "PollyTalkie is made up of professionals passionate about language learning and artificial intelligence. Our team includes linguists, software engineers, AI researchers, and education specialists working together to create the best language learning solutions."
     },
     "values": {
       "title": "Our Values",
@@ -624,7 +624,7 @@
     },
     "joinUs": {
       "title": "Join Our Journey",
-      "content": "We invite you to join our language learning revolution. Whether you're looking to learn a new language or improve your existing skills, PollyTalk provides the tools and support you need. Start your language learning journey and explore new possibilities today!"
+      "content": "We invite you to join our language learning revolution. Whether you're looking to learn a new language or improve your existing skills, PollyTalkie provides the tools and support you need. Start your language learning journey and explore new possibilities today!"
     }
   },
   "contactPage": {

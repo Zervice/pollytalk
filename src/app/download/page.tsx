@@ -130,7 +130,7 @@ export default function DownloadPage() {
           <div className="flex flex-col md:flex-row items-center justify-center gap-8">
             <div className="p-4 bg-white rounded-lg border border-primary/20">
               <QRCode
-                value="https://downloads.zervice.me/release/app-release.apk"
+                value="https://www.pollytalkie.com/release/app-release.apk"
                 size={200}
                 level="H"
               />
@@ -158,7 +158,7 @@ export default function DownloadPage() {
               </ul>
               
               <Button className="w-full group" asChild>
-                <a href="https://downloads.zervice.me/release/app-release.apk" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.pollytalkie.com/release/app-release.apk" target="_blank" rel="noopener noreferrer">
                   <Download className="mr-2 h-5 w-5" />
                   {t('download.downloadApk')}
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
