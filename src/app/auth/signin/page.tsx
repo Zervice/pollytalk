@@ -7,6 +7,7 @@ import { useAuth } from '@/contexts/auth-context'
 import { useI18n } from '@/i18n/i18n-context'
 import { Button } from '@/components/ui/button'
 import { Logo } from '@/components/ui/logo'
+import { JSEncrypt } from 'jsencrypt'
 
 export default function SignIn() {
   const { t, locale } = useI18n()
@@ -17,13 +18,29 @@ export default function SignIn() {
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
 
+  const publicKey =
+    'MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBANL378k3RiZHWx5AfJqdH9xRNBmD9wGD\n' +
+    '2iRe41HdTNF8RUhNnHit5NpMNtGL0NPTSSpPjjI1kJfVorRvaQerUgkCAwEAAQ==';
+
+  const encrypt = (txt: string) => {
+    const encryptor = new JSEncrypt()
+    encryptor.setPublicKey(publicKey)
+    return encryptor.encrypt(txt)
+  }
+
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
     setIsLoading(true)
 
     try {
-      await signIn(email, password)
+      const encryptedPassword = encrypt(password)
+      if (!encryptedPassword) {
+        setError(t('auth.errors.general'))
+        setIsLoading(false)
+        return
+      }
+      await signIn(email, encryptedPassword)
       router.push('/')
     } catch (err: unknown) {
       const error = err as { error?: string; statusCode?: number; message?: string }

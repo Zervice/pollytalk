@@ -30,6 +30,7 @@
     "orContinueWith": "or continue with",
     "magicLink": "Send Magic Link",
     "checkEmail": "Check your email for the login link",
+    "passwordResetEmailSent": "Password reset email sent. Please check your inbox.",
     "passwordsMustMatch": "Passwords must match",
     "verificationCode": "Verification Code",
     "getCode": "Get Code",
