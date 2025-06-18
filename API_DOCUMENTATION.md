@@ -1,6 +1,6 @@
-# PollyTalk API Documentation
+# PollyTalkie API Documentation
 
-This document outlines the API endpoints and request/response formats for the PollyTalk authentication system.
+This document outlines the API endpoints and request/response formats for the PollyTalkie authentication system.
 
 ## Base URL
 
