@@ -4,6 +4,15 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 
 const GITHUB_API_URL = 'https://api.github.com/repos/Zervice/pollytalk/releases/latest';
 
+interface GitHubAsset {
+  name: string;
+  browser_download_url: string;
+}
+
+interface GitHubRelease {
+  assets: GitHubAsset[];
+}
+
 interface DownloadUrlContextType {
   downloadUrl: string;
   loading: boolean;
@@ -24,16 +33,17 @@ export const DownloadUrlProvider = ({ children }: { children: ReactNode }) => {
         if (!response.ok) {
           throw new Error('Failed to fetch latest release from GitHub');
         }
-        const data = await response.json();
-        const apkAsset = data.assets.find((asset: any) => asset.name.endsWith('.apk'));
+        const data: GitHubRelease = await response.json();
+        const apkAsset = data.assets.find((asset: GitHubAsset) => asset.name.endsWith('.apk'));
         if (apkAsset && apkAsset.browser_download_url) {
           setDownloadUrl(apkAsset.browser_download_url);
         } else {
           throw new Error('No .apk asset found in the latest release');
         }
-      } catch (e: any) {
-        console.error(e);
-        setError(e.message);
+      } catch (e: unknown) {
+        const errorMessage = e instanceof Error ? e.message : 'An unknown error occurred';
+        console.error('Failed to fetch latest release:', e);
+        setError(errorMessage);
       } finally {
         setLoading(false);
       }
