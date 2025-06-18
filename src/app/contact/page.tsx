@@ -75,7 +75,7 @@ export default function ContactPage() {
                   </div>
                   <div className="ml-3">
                     <p className="font-medium">{t('contactPage.contactInfo.phone')}</p>
-                    <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                    <p className="text-muted-foreground">+1 (502) 532-1976 (Voice recording or SMS only)</p>
                   </div>
                 </div>
                 
@@ -101,7 +101,7 @@ export default function ContactPage() {
                   </div>
                   <div className="ml-3">
                     <p className="font-medium">{t('contactPage.contactInfo.address')}</p>
-                    <p className="text-muted-foreground">123 Innovation Way, San Francisco, CA 94107</p>
+                    <p className="text-muted-foreground">Some Garage In The World</p>
                   </div>
                 </div>
               </div>
