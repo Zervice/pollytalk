@@ -7,6 +7,7 @@ import { Logo } from './logo'
 import { Menu, X, QrCode, LogIn, LogOut } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import QRCode from 'react-qr-code'
+import { downloadUrl } from '@/config/download'
 import { useI18n } from '@/i18n/i18n-context'
 import { LanguageSwitcher } from './language-switcher'
 import { useAuth } from '@/contexts/auth-context'
@@ -102,12 +103,12 @@ export function Nav() {
                 <p className="text-sm font-medium mb-2">{t('nav.scanToDownload')}</p>
                 <div className="p-3 bg-white rounded-md border border-primary/20">
                   <QRCode
-                    value="https://www.pollytalkie.com/release/app-release.apk"
+                    value={downloadUrl}
                     size={180}
                     level="H"
                   />
                 </div>
-                <p className="text-xs text-muted-foreground mt-1">https://www.pollytalkie.com/release/app-release.apk</p>
+                <p className="text-xs text-muted-foreground mt-1">{downloadUrl}</p>
               </div>
             </div>
           </div>
@@ -200,7 +201,7 @@ export function Nav() {
                     </div>
                     <div className="p-3 bg-white rounded-md border border-primary/20">
                       <QRCode
-                        value="https://www.pollytalkie.com/release/app-release.apk"
+                        value={downloadUrl}
                         size={120}
                         level="H"
                       />

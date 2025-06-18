@@ -8,6 +8,7 @@ import { LanguageSwitcher } from './language-switcher'
 import { LogOut, QrCode, User, CreditCard, LayoutDashboard } from 'lucide-react'
 import { Button } from './button'
 import QRCode from 'react-qr-code'
+import { downloadUrl } from '@/config/download'
 import { Logo } from './logo'
 
 export function UserNav() {
@@ -71,12 +72,12 @@ export function UserNav() {
                 <p className="text-sm font-medium mb-2">{t('nav.scanToDownload')}</p>
                 <div className="p-3 bg-white rounded-md border border-primary/20">
                   <QRCode
-                    value="https://www.pollytalkie.com/release/app-release.apk"
+                    value={downloadUrl}
                     size={180}
                     level="H"
                   />
                 </div>
-                <p className="text-xs text-muted-foreground mt-1">https://www.pollytalkie.com/release/app-release.apk</p>
+                <p className="text-xs text-muted-foreground mt-1">{downloadUrl}</p>
               </div>
             </div>
           </div>

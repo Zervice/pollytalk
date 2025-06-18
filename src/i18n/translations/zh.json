@@ -243,7 +243,11 @@
       "step3": "点击'安装'",
       "step4": "打开应用并开始学习",
       "buttonText": "在Google Play上获取",
-      "requirements": "需要Android 8.0或更高版本"
+      "requirements": "需要Android 8.0或更高版本",
+      "evilGoogleTitle": "谷歌正在作恶",
+      "evilGoogleDescription": "谷歌滥用权力，无理终止了我们的开发者账户，导致我们无法在Google Play商店上发布PollyTalkie。我们坚信透明和用户的选择权，因此我们现在提供直接下载。",
+      "evilGoogleStep1": "由于谷歌不公正的政策，我们的应用已无法在Google Play商店上架。",
+      "evilGoogleStep2": "请使用下方的直接APK下载部分来安装应用。"
     }
   },
   "termsPage": {

@@ -1,10 +1,11 @@
 'use client'
 
 import { motion } from "framer-motion"
-import { Smartphone, Apple, ArrowRight, QrCode, Download } from "lucide-react"
+import { Smartphone, Apple, ArrowRight, QrCode, Download, Skull } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import QRCode from "react-qr-code"
 import { useI18n } from "@/i18n/i18n-context"
+import { downloadUrl } from "@/config/download"
 
 export default function DownloadPage() {
   const { t } = useI18n()
@@ -26,16 +27,13 @@ export default function DownloadPage() {
     },
     {
       name: t('download.android.name'),
-      icon: Smartphone,
-      description: t('download.android.description'),
+      icon: Skull,
+      evilTitle: t('download.android.evilGoogleTitle'),
+      description: t('download.android.evilGoogleDescription'),
       steps: [
-        t('download.android.step1'),
-        t('download.android.step2'),
-        t('download.android.step3'),
-        t('download.android.step4')
+        t('download.android.evilGoogleStep1'),
+        t('download.android.evilGoogleStep2'),
       ],
-      buttonText: t('download.android.buttonText'),
-      href: "https://play.google.com/store/apps/details?id=com.zervice.polly_talkie",
       systemRequirements: t('download.android.requirements')
     }
   ]
@@ -76,6 +74,9 @@ export default function DownloadPage() {
                   <h2 className="text-2xl font-semibold">{platform.name}</h2>
                 </div>
                 
+                {platform.evilTitle && (
+                  <h3 className="text-lg font-bold text-destructive mb-2">{platform.evilTitle}</h3>
+                )}
                 <p className="text-muted-foreground mb-6">
                   {platform.description}
                 </p>
@@ -95,17 +96,19 @@ export default function DownloadPage() {
                     </ul>
                   </div>
 
-                  <div className="space-y-2">
-                    <Button className="w-full group" asChild>
-                      <a href={platform.href} target="_blank" rel="noopener noreferrer">
-                        {platform.buttonText}
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                      </a>
-                    </Button>
-                    <p className="text-xs text-center text-muted-foreground">
-                      {platform.systemRequirements}
-                    </p>
-                  </div>
+                  {platform.href && platform.buttonText && (
+                    <div className="space-y-2">
+                      <Button className="w-full group" asChild>
+                        <a href={platform.href} target="_blank" rel="noopener noreferrer">
+                          {platform.buttonText}
+                          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                        </a>
+                      </Button>
+                      <p className="text-xs text-center text-muted-foreground">
+                        {platform.systemRequirements}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </motion.div>
             )
@@ -130,7 +133,7 @@ export default function DownloadPage() {
           <div className="flex flex-col md:flex-row items-center justify-center gap-8">
             <div className="p-4 bg-white rounded-lg border border-primary/20">
               <QRCode
-                value="https://www.pollytalkie.com/release/app-release.apk"
+                value={downloadUrl}
                 size={200}
                 level="H"
               />
@@ -158,7 +161,7 @@ export default function DownloadPage() {
               </ul>
               
               <Button className="w-full group" asChild>
-                <a href="https://www.pollytalkie.com/release/app-release.apk" target="_blank" rel="noopener noreferrer">
+                <a href={downloadUrl} target="_blank" rel="noopener noreferrer">
                   <Download className="mr-2 h-5 w-5" />
                   {t('download.downloadApk')}
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />

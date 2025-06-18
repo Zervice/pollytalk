@@ -243,7 +243,11 @@
       "step3": "Tap 'Install'",
       "step4": "Open the app and start learning",
       "buttonText": "Get it on Google Play",
-      "requirements": "Requires Android 8.0 or later"
+      "requirements": "Requires Android 8.0 or later",
+      "evilGoogleTitle": "Google Is Doing Evil",
+      "evilGoogleDescription": "Google has abused its power and terminated our developer account without any valid reason, which prevents us from distributing PollyTalkie on the Google Play Store. We believe in transparency and the user's right to choose, so we are now providing a direct download.",
+      "evilGoogleStep1": "Our app is no longer available on the Google Play Store due to Google's unfair policies.",
+      "evilGoogleStep2": "Please use the direct APK download section below to install the app."
     }
   },
   "termsPage": {
