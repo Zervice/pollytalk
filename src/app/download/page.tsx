@@ -5,10 +5,11 @@ import { Smartphone, Apple, ArrowRight, QrCode, Download, Skull } from "lucide-r
 import { Button } from "@/components/ui/button"
 import QRCode from "react-qr-code"
 import { useI18n } from "@/i18n/i18n-context"
-import { downloadUrl } from "@/config/download"
+import { DownloadUrlProvider, useDownloadUrl } from '@/context/download-url-context'
 
-export default function DownloadPage() {
+const DownloadContent = () => {
   const { t } = useI18n()
+  const { downloadUrl, loading, error } = useDownloadUrl()
 
   const platforms = [
     {
@@ -132,11 +133,15 @@ export default function DownloadPage() {
           
           <div className="flex flex-col md:flex-row items-center justify-center gap-8">
             <div className="p-4 bg-white rounded-lg border border-primary/20">
-              <QRCode
-                value={downloadUrl}
-                size={200}
-                level="H"
-              />
+              {loading && <div className="w-[200px] h-[200px] flex items-center justify-center"><p>Loading QR Code...</p></div>}
+              {error && <div className="w-[200px] h-[200px] flex items-center justify-center"><p className="text-destructive">Error loading QR code.</p></div>}
+              {downloadUrl && (
+                <QRCode
+                  value={downloadUrl}
+                  size={200}
+                  level="H"
+                />
+              )}
             </div>
             
             <div className="space-y-4">
@@ -160,8 +165,8 @@ export default function DownloadPage() {
                 </li>
               </ul>
               
-              <Button className="w-full group" asChild>
-                <a href={downloadUrl} target="_blank" rel="noopener noreferrer">
+              <Button className="w-full group" asChild disabled={loading || !downloadUrl}>
+                <a href={downloadUrl || '#'} target="_blank" rel="noopener noreferrer">
                   <Download className="mr-2 h-5 w-5" />
                   {t('download.downloadApk')}
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -208,5 +213,13 @@ export default function DownloadPage() {
         </div>
       </div>
     </motion.main>
+  )
+}
+
+export default function DownloadPage() {
+  return (
+    <DownloadUrlProvider>
+      <DownloadContent />
+    </DownloadUrlProvider>
   )
 }

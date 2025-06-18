@@ -8,8 +8,31 @@ import { LanguageSwitcher } from './language-switcher'
 import { LogOut, QrCode, User, CreditCard, LayoutDashboard } from 'lucide-react'
 import { Button } from './button'
 import QRCode from 'react-qr-code'
-import { downloadUrl } from '@/config/download'
+import { DownloadUrlProvider, useDownloadUrl } from '@/context/download-url-context'
 import { Logo } from './logo'
+
+const QrCodePopupContent = () => {
+  const { downloadUrl, loading, error } = useDownloadUrl();
+  const { t } = useI18n();
+
+  return (
+    <div className="flex flex-col items-center gap-2">
+      <p className="text-sm font-medium mb-2">{t('nav.scanToDownload')}</p>
+      <div className="p-2 bg-white rounded-lg">
+        {loading && <div className="w-[180px] h-[180px] flex items-center justify-center"><p>Loading...</p></div>}
+        {error && <div className="w-[180px] h-[180px] flex items-center justify-center"><p className="text-destructive">Error</p></div>}
+        {downloadUrl && (
+          <QRCode
+            value={downloadUrl}
+            size={180}
+            level="H"
+          />
+        )}
+      </div>
+      {downloadUrl && <p className="text-xs text-muted-foreground mt-1 max-w-[180px] break-all">{downloadUrl}</p>}
+    </div>
+  );
+};
 
 export function UserNav() {
   const { t, locale } = useI18n()
@@ -68,17 +91,9 @@ export function UserNav() {
               <span className="text-sm font-medium">{t('nav.downloadApp')}</span>
             </button>
             <div className="absolute right-0 top-full mt-2 p-4 bg-background border-2 border-primary/20 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible scale-95 group-hover:scale-100 transition-all duration-300 z-50">
-              <div className="flex flex-col items-center gap-2">
-                <p className="text-sm font-medium mb-2">{t('nav.scanToDownload')}</p>
-                <div className="p-3 bg-white rounded-md border border-primary/20">
-                  <QRCode
-                    value={downloadUrl}
-                    size={180}
-                    level="H"
-                  />
-                </div>
-                <p className="text-xs text-muted-foreground mt-1">{downloadUrl}</p>
-              </div>
+              <DownloadUrlProvider>
+                <QrCodePopupContent />
+              </DownloadUrlProvider>
             </div>
           </div>
           
