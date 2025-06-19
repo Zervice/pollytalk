@@ -21,12 +21,15 @@ interface DownloadUrlContextType {
 
 const DownloadUrlContext = createContext<DownloadUrlContextType | undefined>(undefined);
 
-export const DownloadUrlProvider = ({ children }: { children: ReactNode }) => {
+interface ProviderProps { children: ReactNode; lazy?: boolean }
+export const DownloadUrlProvider = ({ children, lazy = false }: ProviderProps) => {
   const [downloadUrl, setDownloadUrl] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!lazy);
   const [error, setError] = useState<string | null>(null);
 
+  // if lazy, delay the fetch until user explicitly requests (e.g., component becomes visible)
   useEffect(() => {
+    if (lazy) return;
     const fetchLatestRelease = async () => {
       try {
         const response = await fetch(GITHUB_API_URL);
@@ -42,7 +45,10 @@ export const DownloadUrlProvider = ({ children }: { children: ReactNode }) => {
         }
       } catch (e: unknown) {
         const errorMessage = e instanceof Error ? e.message : 'An unknown error occurred';
-        console.error('Failed to fetch latest release:', e);
+        if (process.env.NODE_ENV === 'development') {
+          // Log detail only in dev to avoid noisy errors in production pages like Subscription
+          console.warn('DownloadUrlProvider:', errorMessage)
+        }
         setError(errorMessage);
       } finally {
         setLoading(false);

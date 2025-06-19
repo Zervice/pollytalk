@@ -91,7 +91,7 @@ export function UserNav() {
               <span className="text-sm font-medium">{t('nav.downloadApp')}</span>
             </button>
             <div className="absolute right-0 top-full mt-2 p-4 bg-background border-2 border-primary/20 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible scale-95 group-hover:scale-100 transition-all duration-300 z-50">
-              <DownloadUrlProvider>
+              <DownloadUrlProvider lazy>
                 <QrCodePopupContent />
               </DownloadUrlProvider>
             </div>
