@@ -11,7 +11,7 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_BASE_PATH: process.env.NEXT_PUBLIC_BASE_PATH || '',
     NEXT_PUBLIC_CUSTOM_DOMAIN: process.env.NEXT_PUBLIC_CUSTOM_DOMAIN || 'false',
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'https://core.pollytalkie.com/pollytalk',
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'https://api.pollytalkie.com',
   },
   // Disable React StrictMode for production builds on Cloudflare
   reactStrictMode: process.env.NODE_ENV !== 'production',

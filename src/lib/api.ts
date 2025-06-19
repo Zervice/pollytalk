@@ -1,7 +1,9 @@
 /**
  * API client for PollyTalkie backend services
  */
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.pollytalkie.com';
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.pollytalkie.com';
+
+console.log("API base url: " + API_BASE_URL)
 
 // Types for authentication
 export interface User {
@@ -278,4 +280,66 @@ export const getStoredUser = (): User | null => {
 // Helper function to check if user is authenticated
 export const isAuthenticated = (): boolean => {
   return !!localStorage.getItem('auth_token');
+};
+
+// ---------------- Payment & Subscription APIs ----------------
+export const paymentApi = {
+  /** Get current member info */
+  getMember: async (): Promise<any> => {
+    const token = localStorage.getItem('auth_token');
+    if (!token) throw new Error('Not authenticated');
+    const res = await fetch(`${API_BASE_URL}/web/member`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return handleResponse<any>(res);
+  },
+
+  /** Check if subscription is cancelable */
+  checkCancelable: async (): Promise<{ cancelable: boolean; subscriptionId?: string }> => {
+    const token = localStorage.getItem('auth_token');
+    if (!token) throw new Error('Not authenticated');
+    const res = await fetch(`${API_BASE_URL}/web/payment/cancelable`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return handleResponse<{ cancelable: boolean; subscriptionId?: string }>(res);
+  },
+
+  /** Cancel subscription */
+  cancelSubscription: async (): Promise<void> => {
+    const token = localStorage.getItem('auth_token');
+    if (!token) throw new Error('Not authenticated');
+    const res = await fetch(`${API_BASE_URL}/web/payment/cancel`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return handleResponse<void>(res);
+  },
+
+  /** Get packages list to resolve package name */
+  getPackages: async (type: string, channel = 'web'): Promise<any[]> => {
+    const token = localStorage.getItem('auth_token');
+    if (!token) throw new Error('Not authenticated');
+    const res = await fetch(`${API_BASE_URL}/web/payment?type=${encodeURIComponent(type)}&channel=${encodeURIComponent(channel)}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return handleResponse<any[]>(res);
+  },
+
+  /** Start Stripe checkout session for subscription */
+  createSubscriptionSession: async (packageId: string | number): Promise<{ url: string }> => {
+    const token = localStorage.getItem('auth_token');
+    if (!token) throw new Error('Not authenticated');
+    const body = new URLSearchParams({ id: String(packageId), token });
+    const res = await fetch(`${API_BASE_URL}/web/payment/subscription`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body.toString(),
+    });
+    // backend returns 302 redirect; fetch won't follow cross-origin; try to parse url header or json
+    if (res.status === 302) {
+      const redirect = res.headers.get('Location');
+      if (redirect) return { url: redirect } as any;
+    }
+    return handleResponse<{ url: string }>(res);
+  },
 };

@@ -90,7 +90,9 @@
     "paymentMethod": "支付方式",
     "updatePayment": "更新支付方式",
     "billingHistory": "账单历史",
-    "noHistory": "暂无账单历史"
+    "noHistory": "暂无账单历史",
+      "noPlanAvailable": "当前没有可用的订阅套餐。",
+      "subscribeNow": "立即订阅"
   },
   "profile": {
     "title": "个人资料",

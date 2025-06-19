@@ -90,7 +90,9 @@
     "paymentMethod": "Payment Method",
     "updatePayment": "Update Payment Method",
     "billingHistory": "Billing History",
-    "noHistory": "No billing history available"
+    "noHistory": "No billing history available",
+      "noPlanAvailable": "No subscription plans are currently available.",
+      "subscribeNow": "Subscribe Now"
   },
   "profile": {
     "title": "Profile",
