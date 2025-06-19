@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { paymentApi } from "@/lib/api";
+import { paymentApi, API_BASE_URL } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/i18n/i18n-context";
 
@@ -44,13 +44,30 @@ export default function SubscribePackageList() {
         .sort((a, b) => Number(a.salePrice) - Number(b.salePrice))[Math.floor(pkgs.length / 2)]?.id
     : null;
 
-  const handleSubscribe = async (pkg: Package) => {
-    try {
-      const { url } = await paymentApi.createSubscriptionSession(pkg.id);
-      window.location.href = url;
-    } catch (err: any) {
-      alert(err?.message || "Failed to create checkout session");
+  const handleSubscribe = (pkg: Package) => {
+    const token = localStorage.getItem('auth_token');
+    if (!token) {
+      alert('Please sign in first');
+      return;
     }
+    // Build a form to POST so that browser handles the 302 redirect properly
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = `${API_BASE_URL}/web/payment/subscription`;
+    form.style.display = 'none';
+
+    const idInput = document.createElement('input');
+    idInput.name = 'id';
+    idInput.value = String(pkg.id);
+    form.appendChild(idInput);
+
+    const tokenInput = document.createElement('input');
+    tokenInput.name = 'token';
+    tokenInput.value = token;
+    form.appendChild(tokenInput);
+
+    document.body.appendChild(form);
+    form.submit();
   };
 
   if (loading) return <div className="h-10" />;
