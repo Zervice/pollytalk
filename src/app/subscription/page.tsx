@@ -65,13 +65,16 @@ export default function Subscription() {
         /* ignore lookup errors */
       }
 
-      const nextBillingDate = member.expireAt
-        ? new Date(member.expireAt).toLocaleDateString()
-        : '—';
+      // Ensure expireAt is treated as a numeric timestamp (milliseconds since epoch)
+      const expireAtTimestamp = member.expireAt ? Number(member.expireAt) : null
+      const nextBillingDate =
+        expireAtTimestamp && !isNaN(expireAtTimestamp)
+          ? new Date(expireAtTimestamp).toLocaleDateString()
+          : '—'
 
       setSubscription({
         plan: planName,
-        status: member.expireAt && Date.now() < member.expireAt ? 'active' : 'expired',
+        status: expireAtTimestamp && Date.now() < expireAtTimestamp ? 'active' : 'expired',
         nextBillingDate,
         paymentMethod: 'Stripe',
         billingHistory: [],
