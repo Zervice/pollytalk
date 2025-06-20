@@ -177,7 +177,7 @@ export default function Subscription() {
                     </div>
                     {!subscription.unlimited && (
                       <Button variant="secondary" asChild>
-                        <a href="/subscription/manage?tab=extra-hours">Purchase Extra Hours</a>
+                        <a href="/subscription/extra-hours">Purchase Extra Hours</a>
                       </Button>
                     )}
                   </div>

@@ -92,7 +92,12 @@
     "billingHistory": "账单历史",
     "noHistory": "暂无账单历史",
       "noPlanAvailable": "当前没有可用的订阅套餐。",
-      "subscribeNow": "立即订阅"
+      "subscribeNow": "立即订阅",
+    "purchaseExtraHours": "购买额外时长",
+    "extraHoursDetail": "每个套餐增加 {hours} 小时学习时间。",
+    "totalExtraHours": "额外学习时长总计：{hours} 小时",
+    "checkoutNow": "立即结账",
+    "noExtraPackages": "暂无可用的额外时长套餐"
   },
   "profile": {
     "title": "个人资料",

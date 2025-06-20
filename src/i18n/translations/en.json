@@ -92,7 +92,12 @@
     "billingHistory": "Billing History",
     "noHistory": "No billing history available",
       "noPlanAvailable": "No subscription plans are currently available.",
-      "subscribeNow": "Subscribe Now"
+      "subscribeNow": "Subscribe Now",
+    "purchaseExtraHours": "Purchase Extra Hours",
+    "extraHoursDetail": "Each package adds {hours} hours of study time.",
+    "totalExtraHours": "Total extra hours: {hours}",
+    "checkoutNow": "Checkout Now",
+    "noExtraPackages": "No extra-time packages available"
   },
   "profile": {
     "title": "Profile",
