@@ -285,13 +285,13 @@ export const isAuthenticated = (): boolean => {
 // ---------------- Payment & Subscription APIs ----------------
 export const paymentApi = {
   /** Get current member info */
-  getMember: async (): Promise<any> => {
+  getMember: async (): Promise<unknown> => {
     const token = localStorage.getItem('auth_token');
     if (!token) throw new Error('Not authenticated');
     const res = await fetch(`${API_BASE_URL}/web/member`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    return handleResponse<any>(res);
+    return handleResponse<unknown>(res);
   },
 
   /** Check if subscription is cancelable */
@@ -316,13 +316,13 @@ export const paymentApi = {
   },
 
   /** Get packages list to resolve package name */
-  getPackages: async (type: string, channel = 'web'): Promise<any[]> => {
+  getPackages: async (type: string, channel = 'web'): Promise<unknown[]> => {
     const token = localStorage.getItem('auth_token');
     if (!token) throw new Error('Not authenticated');
     const res = await fetch(`${API_BASE_URL}/web/payment?type=${encodeURIComponent(type)}&channel=${encodeURIComponent(channel)}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    return handleResponse<any[]>(res);
+    return handleResponse<unknown[]>(res);
   },
 
   /** Start Stripe checkout session for subscription */
@@ -338,7 +338,7 @@ export const paymentApi = {
     // backend returns 302 redirect; fetch won't follow cross-origin; try to parse url header or json
     if (res.status === 302) {
       const redirect = res.headers.get('Location');
-      if (redirect) return { url: redirect } as any;
+      if (redirect) return { url: redirect } as { url: string };
     }
     return handleResponse<{ url: string }>(res);
   },

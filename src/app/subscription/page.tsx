@@ -17,7 +17,12 @@ export default function Subscription() {
   const { user, isLoading: isAuthLoading } = useAuth()
   const router = useRouter()
 
-  const [subscription, setSubscription] = useState<any>(null)
+  interface BillingItem { id: string; date: string; amount: string; status: string; receiptUrl?: string }
+  interface SubscriptionInfo {
+    plan: string; status: string; nextBillingDate: string; paymentMethod: string; billingHistory: BillingItem[];
+    unlimited: boolean; totalHours: number | null; usedHours: number | null;
+  }
+  const [subscription, setSubscription] = useState<SubscriptionInfo | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -36,9 +41,13 @@ export default function Subscription() {
       await paymentApi.cancelSubscription()
       // refresh data
       await fetchSubscription()
-    } catch (err: any) {
+    } catch (err) {
       console.error(err)
-      setError(err?.message || 'Could not manage subscription. Please try again later.')
+      if (err instanceof Error) {
+        setError(err.message)
+      } else {
+        setError('Could not manage subscription. Please try again later.')
+      }
     } finally {
       setIsLoading(false)
     }
@@ -49,7 +58,18 @@ export default function Subscription() {
     setError(null)
 
     try {
-      const member = await paymentApi.getMember()
+      interface Member {
+        id?: number | string;
+        freeTrial?: boolean;
+        source?: string;
+        name?: string;
+        packageId?: number | string;
+        expireAt?: number | string;
+        unlimitedStudyTime?: boolean;
+        totalSeconds?: number;
+        usedSeconds?: number;
+      }
+      const member = (await paymentApi.getMember()) as Member
       if (!member?.id || member.freeTrial || member.source !== 'stripe') {
         setSubscription(null)
         return
@@ -59,7 +79,8 @@ export default function Subscription() {
       let planName = member.name || 'Subscription'
       try {
         const packages = await paymentApi.getPackages('subscribe')
-        const pkg = packages.find((p: any) => p.id === member.packageId)
+        interface BasicPackage { id: number | string; name: string }
+        const pkg = (packages as BasicPackage[]).find((p) => p.id === member.packageId)
         if (pkg) planName = pkg.name
       } catch {
         /* ignore lookup errors */
@@ -225,7 +246,7 @@ export default function Subscription() {
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-border">
-                        {subscription.billingHistory.map((item: any) => (
+                        {subscription.billingHistory.map((item: BillingItem) => (
                           <tr key={item.id}>
                             <td className="px-6 py-4 whitespace-nowrap text-sm">{item.date}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm">{item.amount}</td>

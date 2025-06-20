@@ -26,11 +26,15 @@ export default function SubscribePackageList() {
       setLoading(true);
       setError(null);
       try {
-        const list = await paymentApi.getPackages("subscribe", "web");
-        // If onSales flag isn't reliable, just take all subscribe packages
+        const raw = await paymentApi.getPackages("subscribe", "web");
+        const list = raw as Package[];
         setPkgs(list);
-      } catch (err: any) {
-        setError(err?.message || "Failed to load packages");
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("Failed to load packages");
+        }
       } finally {
         setLoading(false);
       }
