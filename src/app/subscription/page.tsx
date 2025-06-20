@@ -55,18 +55,24 @@ export default function Subscription() {
         return
       }
 
-      // try to resolve package name
-      let planName = 'Subscription';
+      // Resolve package / plan name
+      let planName = member.name || 'Subscription'
       try {
-        const packages = await paymentApi.getPackages('subscribe');
-        const pkg = packages.find((p: any) => p.id === member.packageId);
-        if (pkg) planName = pkg.name;
+        const packages = await paymentApi.getPackages('subscribe')
+        const pkg = packages.find((p: any) => p.id === member.packageId)
+        if (pkg) planName = pkg.name
       } catch {
         /* ignore lookup errors */
       }
 
       // Ensure expireAt is treated as a numeric timestamp (milliseconds since epoch)
       const expireAtTimestamp = member.expireAt ? Number(member.expireAt) : null
+
+      // Study time information
+      const unlimited = !!member.unlimitedStudyTime || (member.totalSeconds !== undefined && Number(member.totalSeconds) <= 0)
+      const totalHours = unlimited ? null : Number(member.totalSeconds || 0) / 3600
+      const usedHours = unlimited ? null : Number(member.usedSeconds || 0) / 3600
+
       const nextBillingDate =
         expireAtTimestamp && !isNaN(expireAtTimestamp)
           ? new Date(expireAtTimestamp).toLocaleDateString()
@@ -78,6 +84,9 @@ export default function Subscription() {
         nextBillingDate,
         paymentMethod: 'Stripe',
         billingHistory: [],
+        unlimited,
+        totalHours,
+        usedHours,
       });
     } catch (err) {
       console.error(err);
@@ -147,6 +156,30 @@ export default function Subscription() {
                       <Button variant="outline" onClick={handleManageSubscription}>{t('subscription.managePlan')}</Button>
                       <Button asChild><a href="/pricing">{t('subscription.upgradePlan')}</a></Button>
                     </div>
+                  </div>
+
+                  <div className="border-t border-border my-4"></div>
+
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <div className="space-y-1 text-sm text-muted-foreground">
+                      <p>
+                        Total hours purchased:{' '}
+                        {subscription.unlimited
+                          ? 'Unlimited'
+                          : subscription.totalHours?.toFixed(1)}
+                      </p>
+                      <p>
+                        Used hours:{' '}
+                        {subscription.unlimited
+                          ? '—'
+                          : subscription.usedHours?.toFixed(1)}
+                      </p>
+                    </div>
+                    {!subscription.unlimited && (
+                      <Button variant="secondary" asChild>
+                        <a href="/subscription/manage?tab=extra-hours">Purchase Extra Hours</a>
+                      </Button>
+                    )}
                   </div>
                 </div>
               </div>
