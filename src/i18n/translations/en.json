@@ -110,7 +110,14 @@
     "nativeLanguage": "Native Language",
     "learningLanguage": "Learning Language",
     "deleteAccount": "Delete Account",
-    "deleteWarning": "This action cannot be undone. This will permanently delete your account and remove your data from our servers."
+    "deleteWarning": "This action cannot be undone. This will permanently delete your account and remove your data from our servers.",
+    "updateSuccess": "Profile updated successfully!",
+    "updating": "Updating...",
+    "cancel": "Cancel",
+    "save": "Save",
+    "emailCannotBeChanged": "Email cannot be changed",
+    "saveChanges": "Save Changes",
+    "updatePasswordDescription": "Update your password to keep your account secure."
   },
   "userNav": {
     "dashboard": "Dashboard",

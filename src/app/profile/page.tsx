@@ -7,6 +7,7 @@ import { useAuth } from '@/contexts/auth-context'
 import { UserNav } from '@/components/ui/user-nav'
 import { Button } from '@/components/ui/button'
 import { User, Lock, Globe, AlertTriangle } from 'lucide-react'
+import {ErrorResponse, userApi} from '@/lib/api'
 
 // Mock user profile data
 const mockUserProfile = {
@@ -23,6 +24,9 @@ export default function Profile() {
   const [profile, setProfile] = useState(mockUserProfile)
   const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState(mockUserProfile)
+  const [isUpdating, setIsUpdating] = useState(false)
+  const [updateError, setUpdateError] = useState<string | null>(null)
+  const [updateSuccess, setUpdateSuccess] = useState(false)
 
   useEffect(() => {
     // Redirect to sign in if not authenticated
@@ -35,10 +39,12 @@ export default function Profile() {
       setProfile({
         ...mockUserProfile,
         email: user.loginName || mockUserProfile.email,
+        name: user.name || mockUserProfile.name,
       })
       setFormData({
         ...mockUserProfile,
         email: user.loginName || mockUserProfile.email,
+        name: user.name || mockUserProfile.name,
       })
     }
   }, [user, isLoading, router])
@@ -46,13 +52,52 @@ export default function Profile() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
+    // Clear previous errors when user starts typing
+    if (updateError) {
+      setUpdateError(null)
+    }
+    if (updateSuccess) {
+      setUpdateSuccess(false)
+    }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // In a real app, you would update the user profile in Firebase here
-    setProfile(formData)
-    setIsEditing(false)
+    
+    // Only update if name has changed
+    if (formData.name === profile.name) {
+      setIsEditing(false)
+      return
+    }
+    
+    setIsUpdating(true)
+    setUpdateError(null)
+    setUpdateSuccess(false)
+    
+    try {
+      await userApi.updateUserName(formData.name)
+      
+      // Update local state on success
+      setProfile(formData)
+      setIsEditing(false)
+      setUpdateSuccess(true)
+      
+      // Clear success message after 3 seconds
+      setTimeout(() => {
+        setUpdateSuccess(false)
+      }, 3000)
+      
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error 
+        ? error.message 
+        : (error as ErrorResponse)?.message || 'An unknown error occurred'
+      setUpdateError(errorMessage)
+      // 移除这两行，保持编辑状态和用户输入的数据
+      // setFormData(profile)
+      // setIsEditing(false) - 这行本来就没有，但确保不要添加
+    } finally {
+      setIsUpdating(false)
+    }
   }
 
   if (isLoading) {
@@ -90,11 +135,26 @@ export default function Profile() {
                       <Button 
                         variant="outline" 
                         onClick={() => setIsEditing(true)}
+                        disabled={isUpdating}
                       >
                         {t('profile.updateProfile')}
                       </Button>
                     )}
                   </div>
+                  
+                  {/* Success Message */}
+                  {updateSuccess && (
+                    <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-md">
+                      <p className="text-sm text-green-800">{t('profile.updateSuccess')}</p>
+                    </div>
+                  )}
+                  
+                  {/* Error Message */}
+                  {updateError && (
+                    <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
+                      <p className="text-sm text-red-800">{updateError}</p>
+                    </div>
+                  )}
                   
                   {isEditing ? (
                     <form onSubmit={handleSubmit} className="space-y-4">
@@ -108,7 +168,11 @@ export default function Profile() {
                           name="name"
                           value={formData.name}
                           onChange={handleInputChange}
-                          className="block w-full rounded-md border border-border bg-background px-3 py-2 shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                          disabled={isUpdating}
+                          className="block w-full rounded-md border border-border bg-background px-3 py-2 shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                          required
+                          minLength={2}
+                          maxLength={50}
                         />
                       </div>
                       <div>
@@ -124,7 +188,7 @@ export default function Profile() {
                           disabled
                           className="block w-full rounded-md border border-border bg-background/50 px-3 py-2 shadow-sm text-muted-foreground cursor-not-allowed"
                         />
-                        <p className="mt-1 text-xs text-muted-foreground">Email cannot be changed</p>
+                        <p className="mt-1 text-xs text-muted-foreground">{t('profile.emailCannotBeChanged')}</p>
                       </div>
                       <div className="flex gap-2 justify-end pt-2">
                         <Button 
@@ -133,11 +197,26 @@ export default function Profile() {
                           onClick={() => {
                             setIsEditing(false)
                             setFormData(profile)
+                            setUpdateError(null)
+                            setUpdateSuccess(false)
                           }}
+                          disabled={isUpdating}
                         >
-                          Cancel
+                          {t('profile.cancel')}
                         </Button>
-                        <Button type="submit">Save</Button>
+                        <Button 
+                          type="submit" 
+                          disabled={isUpdating || formData.name.trim().length < 2}
+                        >
+                          {isUpdating ? (
+                            <>
+                              <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-white mr-2"></div>
+                              {t('profile.updating')}
+                            </>
+                          ) : (
+                            t('profile.save')
+                          )}
+                        </Button>
                       </div>
                     </form>
                   ) : (
@@ -196,7 +275,7 @@ export default function Profile() {
                     </div>
                   </div>
                   <div className="mt-4 flex justify-end">
-                    <Button>Save Changes</Button>
+                    <Button>{t('profile.saveChanges')}</Button>
                   </div>
                 </div>
               </div>
@@ -211,7 +290,7 @@ export default function Profile() {
                     <h2 className="text-xl font-semibold">{t('profile.changePassword')}</h2>
                   </div>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Update your password to keep your account secure.
+                    {t('profile.updatePasswordDescription')}
                   </p>
                   <Button variant="outline" className="w-full" onClick={() => router.push('/auth/reset-password')}>
                     {t('profile.changePassword')}

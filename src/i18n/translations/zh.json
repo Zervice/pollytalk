@@ -110,7 +110,14 @@
     "nativeLanguage": "母语",
     "learningLanguage": "学习语言",
     "deleteAccount": "删除账号",
-    "deleteWarning": "此操作无法撤销。这将永久删除您的账号并从我们的服务器中移除您的数据。"
+    "deleteWarning": "此操作无法撤销。这将永久删除您的账号并从我们的服务器中移除您的数据。",
+    "updateSuccess": "用户名更新成功！",
+    "updating": "更新中...",
+    "cancel": "取消",
+    "save": "保存",
+    "emailCannotBeChanged": "邮箱无法修改",
+    "saveChanges": "保存更改",
+    "updatePasswordDescription": "更新您的密码以保护账号安全。"
   },
   "userNav": {
     "dashboard": "控制面板",

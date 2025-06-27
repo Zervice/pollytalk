@@ -40,6 +40,17 @@ const handleResponse = async <T>(response: Response): Promise<T> => {
   const data = await response.json();
   
   if (!response.ok) {
+    // Handle the specific error format from your API
+    if (data.message && data.status) {
+      throw {
+        message: data.message,
+        status: data.status,
+        statusCode: data.status,
+        error: data.message
+      } as ErrorResponse;
+    }
+    
+    // Fallback to original error handling
     throw {
       error: data.error || 'Unknown error',
       message: data.message || 'An unexpected error occurred',
@@ -407,5 +418,33 @@ export const dashboardApi = {
     });
     
     return handleResponse<RecentActivity[]>(response);
+  }
+};
+
+// User profile API
+export const userApi = {
+  /**
+   * Update user name
+   */
+  updateUserName: async (name: string): Promise<void> => {
+    const token = localStorage.getItem('auth_token');
+    if (!token) {
+      throw {
+        error: 'unauthorized',
+        message: 'User is not authenticated',
+        statusCode: 401
+      } as ErrorResponse;
+    }
+    
+    const response = await fetch(`${API_BASE_URL}/web/user`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify({ name }),
+    });
+    
+    return handleResponse<void>(response);
   }
 };
