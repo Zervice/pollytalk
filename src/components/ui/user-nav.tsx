@@ -50,7 +50,7 @@ export function UserNav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 backdrop-blur-sm bg-background/80 border-b border-border">
       <nav className="flex items-center justify-between p-6 lg:px-8 mx-auto max-w-7xl" aria-label="Global">
-        <div className="flex lg:flex-1">
+        <div className="flex items-center justify-between">
           <Link href="/dashboard" className="-m-1.5 p-1.5 flex items-center gap-2">
             <Logo size={32} />
             <span className="font-semibold text-xl">
