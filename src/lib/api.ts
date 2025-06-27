@@ -464,7 +464,7 @@ export const userApi = {
         });
 
         return handleResponse<void>(response);
-    },  // 添加逗号
+    },
 
     /**
      * Update user language settings
@@ -489,6 +489,31 @@ export const userApi = {
                 learningLang: settings.learningLang,
                 nativeLang: settings.nativeLang
             }),
+        });
+
+        return handleResponse<void>(response);
+    },
+
+    /**
+     * Delete user account
+     */
+    deleteUser: async (data: { name: string }): Promise<void> => {
+        const token = localStorage.getItem('auth_token');
+        if (!token) {
+            throw {
+                error: 'unauthorized',
+                message: 'User is not authenticated',
+                statusCode: 401
+            } as ErrorResponse;
+        }
+
+        const response = await fetch(`${API_BASE_URL}/web/user`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify(data),
         });
 
         return handleResponse<void>(response);

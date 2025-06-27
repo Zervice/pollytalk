@@ -118,7 +118,14 @@
     "emailCannotBeChanged": "Email cannot be changed",
     "saveChanges": "Save Changes",
     "updatePasswordDescription": "Update your password to keep your account secure.",
-    "languageUpdateSuccess": "Language settings updated successfully!"
+    "languageUpdateSuccess": "Language settings updated successfully!",
+    "deleteConfirmTitle": "Confirm Account Deletion",
+    "deleteConfirmMessage": "This action cannot be undone. Please enter your login email {email} to confirm deletion.",
+    "confirmEmail": "Confirm Email",
+    "confirmEmailPlaceholder": "Please enter your login email",
+    "confirmDelete": "Confirm Delete",
+    "deleting": "Deleting...",
+    "emailMismatch": "Email address does not match. Please enter the correct login email."
   },
   "userNav": {
     "dashboard": "Dashboard",

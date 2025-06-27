@@ -98,7 +98,7 @@
     "extraHoursDetail": "每个套餐增加 {hours} 小时学习时间。",
     "totalExtraHours": "额外学习时长总计：{hours} 小时",
     "checkoutNow": "立即结账",
-    "noExtraPackages": "暂无可用的额外时长套餐"
+    "noExtraPackages": "暂可用外的额外时长套餐"
   },
   "profile": {
     "title": "个人资料",
@@ -118,7 +118,14 @@
     "emailCannotBeChanged": "邮箱无法修改",
     "saveChanges": "保存更改",
     "updatePasswordDescription": "更新您的密码以保护账号安全。",
-    "languageUpdateSuccess": "语言设置更新成功！"
+    "languageUpdateSuccess": "语言设置更新成功！",
+    "deleteConfirmTitle": "确认删除账户",
+    "deleteConfirmMessage": "此操作无法撤销。请输入您的登录邮箱 {email} 以确认删除。",
+    "confirmEmail": "确认邮箱",
+    "confirmEmailPlaceholder": "请输入您的登录邮箱",
+    "confirmDelete": "确认删除",
+    "deleting": "删除中...",
+    "emailMismatch": "邮箱地址不匹配，请输入正确的登录邮箱"
   },
   "userNav": {
     "dashboard": "控制面板",

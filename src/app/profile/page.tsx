@@ -22,7 +22,7 @@ const languageOptions: { value: SupportedLanguage; label: string }[] = [
 
 export default function Profile() {
   const { t } = useI18n()
-  const { user, isLoading } = useAuth()
+  const { user, isLoading, signOut } = useAuth()
   const router = useRouter()
   
   // 个人信息状态
@@ -42,6 +42,12 @@ export default function Profile() {
   const [isUpdatingLanguage, setIsUpdatingLanguage] = useState(false)
   const [languageUpdateError, setLanguageUpdateError] = useState<string | null>(null)
   const [languageUpdateSuccess, setLanguageUpdateSuccess] = useState(false)
+
+  // 删除账户状态
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false)
+  const [deleteConfirmEmail, setDeleteConfirmEmail] = useState('')
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [deleteError, setDeleteError] = useState<string | null>(null)
 
   useEffect(() => {
     // Redirect to sign in if not authenticated
@@ -148,6 +154,47 @@ export default function Profile() {
   }
 
   if (!user) return null
+
+  const handleDeleteAccount = async () => {
+    if (deleteConfirmEmail !== profile.email) {
+      setDeleteError('Invalid addree!')
+      return
+    }
+
+    setIsDeleting(true)
+    setDeleteError(null)
+    
+    try {
+      // 调用删除API
+      await userApi.deleteUser({ name: deleteConfirmEmail })
+      
+      // 删除成功后清除本地认证状态
+      await signOut()
+      
+      // 跳转到登录页并显示删除成功消息
+      router.push('/auth/signin?message=account-deleted')
+      
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error 
+        ? error.message 
+        : (error as ErrorResponse)?.message || 'Unknown errro'
+      setDeleteError(errorMessage)
+    } finally {
+      setIsDeleting(false)
+    }
+  }
+
+  const openDeleteDialog = () => {
+    setShowDeleteDialog(true)
+    setDeleteConfirmEmail('')
+    setDeleteError(null)
+  }
+
+  const closeDeleteDialog = () => {
+    setShowDeleteDialog(false)
+    setDeleteConfirmEmail('')
+    setDeleteError(null)
+  }
 
   return (
     <>
@@ -377,7 +424,7 @@ export default function Profile() {
                   <p className="text-sm text-muted-foreground mb-4">
                     {t('profile.deleteWarning')}
                   </p>
-                  <Button variant="destructive" className="w-full">
+                  <Button variant="destructive" className="w-full" onClick={openDeleteDialog}>
                     {t('profile.deleteAccount')}
                   </Button>
                 </div>
@@ -386,6 +433,70 @@ export default function Profile() {
           </div>
         </div>
       </main>
+      
+      {/* Delete Account Confirmation Dialog */}
+      {showDeleteDialog && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+            <h3 className="text-lg font-semibold text-destructive mb-4">
+              {t('profile.deleteConfirmTitle')}
+            </h3>
+            <p className="text-sm text-muted-foreground mb-4">
+              {t('profile.deleteConfirmMessage').split('{email}')[0]}
+              <span className="text-red-600 font-semibold">{profile.email}</span>
+              {t('profile.deleteConfirmMessage').split('{email}')[1]}
+            </p>
+            
+            {deleteError && (
+              <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
+                <p className="text-sm text-red-800">{deleteError}</p>
+              </div>
+            )}
+            
+            <div className="mb-4">
+              <label htmlFor="confirmEmail" className="block text-sm font-medium text-foreground mb-1">
+                {t('profile.confirmEmail')}
+              </label>
+              <input
+                type="email"
+                id="confirmEmail"
+                value={deleteConfirmEmail}
+                onChange={(e) => {
+                  setDeleteConfirmEmail(e.target.value)
+                  setDeleteError(null)
+                }}
+                placeholder={t('profile.confirmEmailPlaceholder')}
+                disabled={isDeleting}
+                className="block w-full rounded-md border border-border bg-background px-3 py-2 shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary disabled:opacity-50"
+              />
+            </div>
+            
+            <div className="flex gap-2 justify-end">
+              <Button 
+                variant="outline" 
+                onClick={closeDeleteDialog}
+                disabled={isDeleting}
+              >
+                {t('profile.cancel')}
+              </Button>
+              <Button 
+                variant="destructive" 
+                onClick={handleDeleteAccount}
+                disabled={isDeleting || deleteConfirmEmail !== profile.email}
+              >
+                {isDeleting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-white mr-2"></div>
+                    {t('profile.deleting')}
+                  </>
+                ) : (
+                  t('profile.confirmDelete')
+                )}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   )
 }
