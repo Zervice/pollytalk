@@ -117,7 +117,8 @@
     "save": "Save",
     "emailCannotBeChanged": "Email cannot be changed",
     "saveChanges": "Save Changes",
-    "updatePasswordDescription": "Update your password to keep your account secure."
+    "updatePasswordDescription": "Update your password to keep your account secure.",
+    "languageUpdateSuccess": "Language settings updated successfully!"
   },
   "userNav": {
     "dashboard": "Dashboard",

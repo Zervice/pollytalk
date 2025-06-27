@@ -7,26 +7,41 @@ import { useAuth } from '@/contexts/auth-context'
 import { UserNav } from '@/components/ui/user-nav'
 import { Button } from '@/components/ui/button'
 import { User, Lock, Globe, AlertTriangle } from 'lucide-react'
-import {ErrorResponse, userApi} from '@/lib/api'
+import {ErrorResponse, userApi, LanguageSettings, SupportedLanguage} from '@/lib/api'
 
-// Mock user profile data
-const mockUserProfile = {
-  name: 'John Doe',
-  email: 'john.doe@example.com',
-  nativeLanguage: 'English',
-  learningLanguage: 'Spanish',
-}
+// 语言选项配置
+const languageOptions: { value: SupportedLanguage; label: string }[] = [
+  { value: 'zh-CN', label: '中文 (简体)' },
+  { value: 'en-US', label: 'English (US)' },
+  { value: 'fr-FR', label: 'Français' },
+  { value: 'es-ES', label: 'Español' },
+  { value: 'de-DE', label: 'Deutsch' },
+  { value: 'ja-JP', label: '日本語' },
+  { value: 'ko-KR', label: '한국어' }
+];
 
 export default function Profile() {
   const { t } = useI18n()
   const { user, isLoading } = useAuth()
   const router = useRouter()
-  const [profile, setProfile] = useState(mockUserProfile)
+  
+  // 个人信息状态
+  const [profile, setProfile] = useState({
+    name: '',
+    email: '',
+    nativeLanguage: 'en-US' as SupportedLanguage,
+    learningLanguage: 'zh-CN' as SupportedLanguage,
+  })
   const [isEditing, setIsEditing] = useState(false)
-  const [formData, setFormData] = useState(mockUserProfile)
+  const [formData, setFormData] = useState(profile)
   const [isUpdating, setIsUpdating] = useState(false)
   const [updateError, setUpdateError] = useState<string | null>(null)
   const [updateSuccess, setUpdateSuccess] = useState(false)
+  
+  // 语言设置状态
+  const [isUpdatingLanguage, setIsUpdatingLanguage] = useState(false)
+  const [languageUpdateError, setLanguageUpdateError] = useState<string | null>(null)
+  const [languageUpdateSuccess, setLanguageUpdateSuccess] = useState(false)
 
   useEffect(() => {
     // Redirect to sign in if not authenticated
@@ -34,18 +49,17 @@ export default function Profile() {
       router.push('/auth/signin')
     }
     
-    // In a real app, you would fetch user profile from Firebase here
     if (user) {
-      setProfile({
-        ...mockUserProfile,
-        email: user.loginName || mockUserProfile.email,
-        name: user.name || mockUserProfile.name,
-      })
-      setFormData({
-        ...mockUserProfile,
-        email: user.loginName || mockUserProfile.email,
-        name: user.name || mockUserProfile.name,
-      })
+     console.log(user.setting?.nativeLang)
+     console.log(user.setting?.learningLang)
+      const userProfile = {
+        name: user.name || '',
+        email: user.loginName || '',
+        nativeLanguage: (user.setting?.nativeLang ) as SupportedLanguage,
+        learningLanguage: (user.setting?.learningLang ) as SupportedLanguage,
+      }
+      setProfile(userProfile)
+      setFormData(userProfile)
     }
   }, [user, isLoading, router])
 
@@ -92,11 +106,36 @@ export default function Profile() {
         ? error.message 
         : (error as ErrorResponse)?.message || 'An unknown error occurred'
       setUpdateError(errorMessage)
-      // 移除这两行，保持编辑状态和用户输入的数据
-      // setFormData(profile)
-      // setIsEditing(false) - 这行本来就没有，但确保不要添加
     } finally {
       setIsUpdating(false)
+    }
+  }
+
+  const handleLanguageUpdate = async () => {
+    setIsUpdatingLanguage(true)
+    setLanguageUpdateError(null)
+    setLanguageUpdateSuccess(false)
+    
+    try {
+      await userApi.updateLanguageSettings({
+        learningLang: profile.learningLanguage,
+        nativeLang: profile.nativeLanguage
+      })
+      
+      setLanguageUpdateSuccess(true)
+      
+      // Clear success message after 3 seconds
+      setTimeout(() => {
+        setLanguageUpdateSuccess(false)
+      }, 3000)
+      
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error 
+        ? error.message 
+        : (error as ErrorResponse)?.message || 'An unknown error occurred'
+      setLanguageUpdateError(errorMessage)
+    } finally {
+      setIsUpdatingLanguage(false)
     }
   }
 
@@ -242,20 +281,36 @@ export default function Profile() {
                     <h2 className="text-xl font-semibold">{t('profile.language')}</h2>
                   </div>
                   
+                  {/* Language Success Message */}
+                  {languageUpdateSuccess && (
+                    <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-md">
+                      <p className="text-sm text-green-800">{t('profile.languageUpdateSuccess')}</p>
+                    </div>
+                  )}
+                  
+                  {/* Language Error Message */}
+                  {languageUpdateError && (
+                    <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
+                      <p className="text-sm text-red-800">{languageUpdateError}</p>
+                    </div>
+                  )}
+                  
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <h3 className="text-sm font-medium text-muted-foreground mb-1">{t('profile.nativeLanguage')}</h3>
                       <select
                         className="block w-full rounded-md border border-border bg-background px-3 py-2 shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                         value={profile.nativeLanguage}
-                        onChange={(e) => setProfile({...profile, nativeLanguage: e.target.value})}
+                        onChange={(e) => {
+                          setProfile({...profile, nativeLanguage: e.target.value as SupportedLanguage})
+                          setLanguageUpdateError(null)
+                          setLanguageUpdateSuccess(false)
+                        }}
+                        disabled={isUpdatingLanguage}
                       >
-                        <option value="English">English</option>
-                        <option value="Spanish">Spanish</option>
-                        <option value="French">French</option>
-                        <option value="German">German</option>
-                        <option value="Chinese">Chinese</option>
-                        <option value="Japanese">Japanese</option>
+                        {languageOptions.map(option => (
+                          <option key={option.value} value={option.value}>{option.label}</option>
+                        ))}
                       </select>
                     </div>
                     <div>
@@ -263,19 +318,33 @@ export default function Profile() {
                       <select
                         className="block w-full rounded-md border border-border bg-background px-3 py-2 shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                         value={profile.learningLanguage}
-                        onChange={(e) => setProfile({...profile, learningLanguage: e.target.value})}
+                        onChange={(e) => {
+                          setProfile({...profile, learningLanguage: e.target.value as SupportedLanguage})
+                          setLanguageUpdateError(null)
+                          setLanguageUpdateSuccess(false)
+                        }}
+                        disabled={isUpdatingLanguage}
                       >
-                        <option value="English">English</option>
-                        <option value="Spanish">Spanish</option>
-                        <option value="French">French</option>
-                        <option value="German">German</option>
-                        <option value="Chinese">Chinese</option>
-                        <option value="Japanese">Japanese</option>
+                        {languageOptions.map(option => (
+                          <option key={option.value} value={option.value}>{option.label}</option>
+                        ))}
                       </select>
                     </div>
                   </div>
                   <div className="mt-4 flex justify-end">
-                    <Button>{t('profile.saveChanges')}</Button>
+                    <Button 
+                      onClick={handleLanguageUpdate}
+                      disabled={isUpdatingLanguage}
+                    >
+                      {isUpdatingLanguage ? (
+                        <>
+                          <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-white mr-2"></div>
+                          {t('profile.updating')}
+                        </>
+                      ) : (
+                        t('profile.saveChanges')
+                      )}
+                    </Button>
                   </div>
                 </div>
               </div>

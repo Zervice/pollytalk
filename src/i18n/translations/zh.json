@@ -117,7 +117,8 @@
     "save": "保存",
     "emailCannotBeChanged": "邮箱无法修改",
     "saveChanges": "保存更改",
-    "updatePasswordDescription": "更新您的密码以保护账号安全。"
+    "updatePasswordDescription": "更新您的密码以保护账号安全。",
+    "languageUpdateSuccess": "语言设置更新成功！"
   },
   "userNav": {
     "dashboard": "控制面板",
