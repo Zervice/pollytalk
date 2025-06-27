@@ -495,6 +495,34 @@ export const userApi = {
     },
 
     /**
+     * Change user password
+     */
+    changePassword: async (currentPassword: string, newPassword: string): Promise<void> => {
+        const token = localStorage.getItem('auth_token');
+        if (!token) {
+            throw {
+                error: 'unauthorized',
+                message: 'User is not authenticated',
+                statusCode: 401
+            } as ErrorResponse;
+        }
+
+        const response = await fetch(`${API_BASE_URL}/web/auth/change-password`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                currentPassword,
+                newPassword
+            }),
+        });
+
+        return handleResponse<void>(response);
+    },
+
+    /**
      * Delete user account
      */
     deleteUser: async (data: { name: string }): Promise<void> => {

@@ -44,6 +44,25 @@
       "instructions": "Enter your email address and we'll send you a link to reset your password.",
       "success": "Check your email for the password reset link"
     },
+    "changePassword": {
+      "title": "Change Password",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmNewPassword": "Confirm New Password",
+      "backToProfile": "Back to Profile",
+      "updating": "Updating...",
+      "updatePassword": "Update Password",
+      "passwordLengthHint": "Password must be at least 8 characters",
+      "success": "Password updated successfully! Redirecting to profile...",
+      "errors": {
+        "passwordMismatch": "New password and confirmation do not match",
+        "passwordTooShort": "Password must be at least 8 characters",
+        "samePassword": "New password cannot be the same as current password",
+        "invalidCurrentPassword": "Current password is incorrect",
+        "weakPassword": "New password is too weak, please use a more complex password",
+        "updateFailed": "Failed to update password, please try again later"
+      }
+    },
     "errors": {
       "invalidEmail": "Invalid email address",
       "passwordTooShort": "Password must be at least 6 characters",

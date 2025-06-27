@@ -44,6 +44,25 @@
       "instructions": "输入您的邮箱地址，我们将发送一个链接来重置您的密码。",
       "success": "请查看您的邮箱获取密码重置链接"
     },
+    "changePassword": {
+      "title": "修改密码",
+      "currentPassword": "当前密码",
+      "newPassword": "新密码",
+      "confirmNewPassword": "确认新密码",
+      "backToProfile": "返回个人资料",
+      "updating": "修改中...",
+      "updatePassword": "修改密码",
+      "passwordLengthHint": "密码长度至少为8位",
+      "success": "密码修改成功！即将返回个人资料页面...",
+      "errors": {
+        "passwordMismatch": "新密码和确认密码不匹配",
+        "passwordTooShort": "密码长度至少为8位",
+        "samePassword": "新密码不能与当前密码相同",
+        "invalidCurrentPassword": "当前密码不正确",
+        "weakPassword": "新密码强度太弱，请使用更复杂的密码",
+        "updateFailed": "修改密码失败，请稍后重试"
+      }
+    },
     "errors": {
       "invalidEmail": "无效的邮箱地址",
       "passwordTooShort": "密码至少需要6个字符",

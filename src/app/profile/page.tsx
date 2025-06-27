@@ -408,7 +408,7 @@ export default function Profile() {
                   <p className="text-sm text-muted-foreground mb-4">
                     {t('profile.updatePasswordDescription')}
                   </p>
-                  <Button variant="outline" className="w-full" onClick={() => router.push('/auth/reset-password')}>
+                  <Button variant="outline" className="w-full" onClick={() => router.push('/auth/change-password')}>
                     {t('profile.changePassword')}
                   </Button>
                 </div>
