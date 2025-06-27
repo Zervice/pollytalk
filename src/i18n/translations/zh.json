@@ -77,7 +77,8 @@
     "recentActivity": "最近活动",
     "noActivity": "暂无最近活动",
     "startConversation": "开始对话",
-    "continueConversation": "继续学习"
+    "continueConversation": "继续学习",
+    "retry": "重试"
   },
   "subscription": {
     "title": "订阅",

@@ -343,3 +343,69 @@ export const paymentApi = {
     return handleResponse<{ url: string }>(res);
   },
 };
+
+// Dashboard API types
+export interface DashboardStats {
+  streak: string;
+  conversations: string;
+  wordsLearned: string;
+  learningTime: string;
+}
+
+export interface RecentActivity {
+  name: string;
+  id: string;
+  time: string;
+  studyTime: string;
+}
+
+// Dashboard APIs
+export const dashboardApi = {
+  /**
+   * Get dashboard statistics
+   */
+  getStats: async (): Promise<DashboardStats> => {
+    const token = localStorage.getItem('auth_token');
+    if (!token) {
+      throw {
+        error: 'unauthorized',
+        message: 'User is not authenticated',
+        statusCode: 401
+      } as ErrorResponse;
+    }
+    
+    const response = await fetch(`${API_BASE_URL}/web/dashboard`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+    
+    return handleResponse<DashboardStats>(response);
+  },
+  
+  /**
+   * Get recent chat activities
+   */
+  getRecentChats: async (): Promise<RecentActivity[]> => {
+    const token = localStorage.getItem('auth_token');
+    if (!token) {
+      throw {
+        error: 'unauthorized',
+        message: 'User is not authenticated',
+        statusCode: 401
+      } as ErrorResponse;
+    }
+    
+    const response = await fetch(`${API_BASE_URL}/web/dashboard/recent/chats`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+    
+    return handleResponse<RecentActivity[]>(response);
+  }
+};

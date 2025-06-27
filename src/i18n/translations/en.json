@@ -77,7 +77,8 @@
     "recentActivity": "Recent Activity",
     "noActivity": "No recent activity",
     "startConversation": "Start a Conversation",
-    "continueConversation": "Continue Learning"
+    "continueConversation": "Continue Learning",
+    "retry": "Retry"
   },
   "subscription": {
     "title": "Subscription",
