@@ -50,7 +50,7 @@ export function UserNav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 backdrop-blur-sm bg-background/80 border-b border-border">
       <nav className="flex items-center justify-between p-6 lg:px-8 mx-auto max-w-7xl" aria-label="Global">
-        <div className="flex items-center justify-between">
+        <div className="flex lg:w-1/5">
           <Link href="/dashboard" className="-m-1.5 p-1.5 flex items-center gap-2">
             <Logo size={32} />
             <span className="font-semibold text-xl">
@@ -62,16 +62,14 @@ export function UserNav() {
         
         <div className="hidden lg:flex lg:gap-x-8">
           {navigation.map((item) => {
-            const Icon = item.icon
             return (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`text-sm font-semibold leading-6 transition-colors hover:text-primary flex items-center gap-2 ${
+                className={`text-sm font-semibold leading-6 transition-colors hover:text-primary ${
                   pathname === item.href ? 'text-primary' : 'text-muted-foreground'
                 }`}
               >
-                <Icon className="h-4 w-4" />
                 {item.name}
               </Link>
             )
