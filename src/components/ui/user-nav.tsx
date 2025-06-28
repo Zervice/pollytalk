@@ -42,6 +42,7 @@ export function UserNav() {
   const navigation = [
     { name: t('userNav.dashboard'), href: '/dashboard', icon: LayoutDashboard },
     { name: t('userNav.subscription'), href: '/subscription', icon: CreditCard },
+    { name: t('nav.download'), href: '/download' },
     { name: t('userNav.profile'), href: '/profile', icon: User },
   ]
 
@@ -78,23 +79,6 @@ export function UserNav() {
         
         <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-4 items-center">
           <LanguageSwitcher />
-          
-          <div className="relative group">
-            <button
-              type="button"
-              className="flex items-center justify-center gap-2 px-3 py-1.5 rounded-md border border-border bg-accent/30 text-foreground hover:bg-accent hover:text-primary transition-all"
-              aria-label="Show QR code for app download"
-            >
-              <QrCode className="h-6 w-6" />
-              <span className="text-sm font-medium">{t('nav.downloadApp')}</span>
-            </button>
-            <div className="absolute right-0 top-full mt-2 p-4 bg-background border-2 border-primary/20 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible scale-95 group-hover:scale-100 transition-all duration-300 z-50">
-              <DownloadUrlProvider lazy>
-                <QrCodePopupContent />
-              </DownloadUrlProvider>
-            </div>
-          </div>
-          
           <Button 
             variant="outline" 
             onClick={() => signOut()}
