@@ -23,7 +23,7 @@ const DownloadContent = () => {
         t('download.ios.step4')
       ],
       buttonText: t('download.ios.buttonText'),
-      href: "https://apps.apple.com/app/pollytalkie",
+      href: "https://apps.apple.com/us/app/pollytalkie/id6746112550",
       systemRequirements: t('download.ios.requirements')
     },
     {
