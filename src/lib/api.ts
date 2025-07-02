@@ -278,6 +278,21 @@ export const authApi = {
     }
 };
 
+// Contact form API
+export const contactApi = {
+    sendContactForm: async (data: { name: string; email: string; subject: string; message: string }): Promise<void> => {
+        const response = await fetch(`${API_BASE_URL}/web/contact`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        return handleResponse<void>(response);
+    }
+};
+
 // Helper function to set authentication data
 export const setAuthData = (data: AuthResponse): void => {
     localStorage.setItem('auth_token', data.token);

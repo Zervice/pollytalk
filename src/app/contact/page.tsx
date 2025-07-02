@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useI18n } from '@/i18n/i18n-context'
 import { UserNav } from '@/components/ui/user-nav'
 import { Button } from '@/components/ui/button'
+import { contactApi } from '@/lib/api';
 
 export default function ContactPage() {
   const { t, locale } = useI18n()
@@ -27,9 +28,7 @@ export default function ContactPage() {
     setSubmitStatus(null)
 
     try {
-      // In a real implementation, you would send this data to your backend
-      // For now, we'll just simulate a successful submission
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      await contactApi.sendContactForm(formState);
       
       // Clear the form
       setFormState({
