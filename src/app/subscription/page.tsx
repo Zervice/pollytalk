@@ -294,7 +294,7 @@ export default function Subscription() {
                         {billingHistory.map((item: BillingItem) => (
                           <tr key={item.id}>
                             <td className="px-6 py-4 whitespace-nowrap text-sm">
-                              {new Date(parseInt(item.paidAt) * 1000).toLocaleDateString()}
+                              {new Date(parseInt(item.created) * 1000).toLocaleDateString()}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm">
                               ${(parseInt(item.amountPaid) / 100).toFixed(2)}
