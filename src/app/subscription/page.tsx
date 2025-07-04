@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { paymentApi } from '@/lib/api'
+import { paymentApi, BillingItem, SubscriptionInfo, BillingHistoryResponse } from '@/lib/api'
 import { useRouter } from 'next/navigation'
 import { useI18n } from '@/i18n/i18n-context'
 import { useAuth } from '@/contexts/auth-context'
@@ -17,12 +17,12 @@ export default function Subscription() {
   const { user, isLoading: isAuthLoading } = useAuth()
   const router = useRouter()
 
-  interface BillingItem { id: string; date: string; amount: string; status: string; receiptUrl?: string }
-  interface SubscriptionInfo {
-    plan: string; status: string; nextBillingDate: string; paymentMethod: string; billingHistory: BillingItem[];
-    unlimited: boolean; totalHours: number | null; usedHours: number | null;
-  }
   const [subscription, setSubscription] = useState<SubscriptionInfo | null>(null)
+  const [billingHistory, setBillingHistory] = useState<BillingItem[]>([])
+  const [billingLoading, setBillingLoading] = useState(false)
+  const [billingError, setBillingError] = useState<string | null>(null)
+  const [hasMoreBilling, setHasMoreBilling] = useState(false)
+  const [nextBillingPage, setNextBillingPage] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -70,7 +70,7 @@ export default function Subscription() {
         usedSeconds?: number;
       }
       const member = (await paymentApi.getMember()) as Member
-      if (!member?.id || member.freeTrial || member.source !== 'stripe') {
+      if (!member?.id ) {
         setSubscription(null)
         return
       }
@@ -103,9 +103,10 @@ export default function Subscription() {
         plan: planName,
         status: expireAtTimestamp && Date.now() < expireAtTimestamp ? 'active' : 'expired',
         nextBillingDate,
-        paymentMethod: 'Stripe',
-        billingHistory: [],
+        // 如果为null，此时可以重置为stripe，表示可以用stripe进行订阅
+        paymentMethod: member?.source ? member.source : "stripe" ,
         unlimited,
+        freeTrial: !!member.freeTrial,
         totalHours,
         usedHours,
       });
@@ -116,6 +117,44 @@ export default function Subscription() {
       setIsLoading(false);
     }
   }
+
+  // 仅限stripe的账单
+  const fetchBillingHistory = async (page: string | null = null, append = false) => {
+    setBillingLoading(true)
+    setBillingError(null)
+    
+    try {
+      const response = await paymentApi.getBillingHistory(page)
+      
+      if (append) {
+        setBillingHistory(prev => [...prev, ...response.data])
+      } else {
+        setBillingHistory(response.data)
+      }
+      
+      setHasMoreBilling(response.hasMore)
+      setNextBillingPage(response.nextPage)
+    } catch (err) {
+      console.error('Failed to fetch billing history:', err)
+      setBillingError(err instanceof Error ? err.message : 'Failed to load billing history')
+    } finally {
+      setBillingLoading(false)
+    }
+  }
+
+  // 加载更多账单
+  const loadMoreBilling = () => {
+    if (hasMoreBilling && nextBillingPage && !billingLoading) {
+      fetchBillingHistory(nextBillingPage, true)
+    }
+  }
+
+  useEffect(() => {
+    if (user) {
+      fetchSubscription()
+      fetchBillingHistory() // 初始加载历史账单
+    }
+  }, [user])
 
   useEffect(() => {
     if (isAuthLoading) return
@@ -174,8 +213,13 @@ export default function Subscription() {
                       </div>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      <Button variant="outline" onClick={handleManageSubscription}>{t('subscription.managePlan')}</Button>
-                      <Button asChild><a href="/pricing">{t('subscription.upgradePlan')}</a></Button>
+                      {/*试用会员不能管理，仅能升级*/}
+                      {!subscription.freeTrial  && (
+                          <Button variant="outline" onClick={handleManageSubscription}>{t('subscription.managePlan')}</Button>
+                      )}
+                      {  subscription.paymentMethod === 'stripe' && (
+                          <Button asChild><a href="/pricing">{t('subscription.upgradePlan')}</a></Button>
+                      )}
                     </div>
                   </div>
 
@@ -196,7 +240,8 @@ export default function Subscription() {
                           : subscription.usedHours?.toFixed(1)}
                       </p>
                     </div>
-                    {!subscription.unlimited && (
+                    {/*无限时长和试用会员不可购买时间包*/}
+                    {!subscription.unlimited && !subscription.freeTrial  && (
                       <Button variant="secondary" asChild>
                         <a href="/subscription/extra-hours">Purchase Extra Hours</a>
                       </Button>
@@ -234,7 +279,7 @@ export default function Subscription() {
               {/* Billing History */}
               <div>
                 <h2 className="text-xl font-semibold mb-4">{t('subscription.billingHistory')}</h2>
-                {subscription.billingHistory.length > 0 ? (
+                {billingHistory.length > 0 ? (
                   <div className="bg-card rounded-lg border border-border overflow-hidden">
                     <table className="w-full">
                       <thead>
@@ -246,28 +291,58 @@ export default function Subscription() {
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-border">
-                        {subscription.billingHistory.map((item: BillingItem) => (
+                        {billingHistory.map((item: BillingItem) => (
                           <tr key={item.id}>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm">{item.date}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm">{item.amount}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm">
+                              {new Date(parseInt(item.paidAt) * 1000).toLocaleDateString()}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm">
+                              ${(parseInt(item.amountPaid) / 100).toFixed(2)}
+                            </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm">
                               <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400 capitalize">
                                 {item.status}
                               </span>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-right">
-                              <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                                <Receipt className="h-4 w-4" />
-                              </Button>
+                              {item.invoicePdf ? (
+                                <a href={item.invoicePdf} target="_blank" rel="noopener noreferrer">
+                                  <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                    <Receipt className="h-4 w-4" />
+                                  </Button>
+                                </a>
+                              ) : (
+                                <Button variant="ghost" size="sm" className="h-8 w-8 p-0" disabled>
+                                  <Receipt className="h-4 w-4" />
+                                </Button>
+                              )}
                             </td>
                           </tr>
                         ))}
                       </tbody>
                     </table>
+                    {hasMoreBilling && (
+                      <div className="p-4 border-t border-border text-center">
+                        <Button
+                          onClick={loadMoreBilling}
+                          disabled={billingLoading}
+                          variant="outline"
+                        >
+                          {billingLoading ? t('common.loading') : t('billing.loadMore')}
+                        </Button>
+                      </div>
+                    )}
                   </div>
                 ) : (
                   <div className="bg-card rounded-lg border border-border p-8 text-center">
-                    <p className="text-muted-foreground">{t('subscription.noHistory')}</p>
+                    <p className="text-muted-foreground">{billingLoading ? t('common.loading') : t('subscription.noHistory')}</p>
+                  </div>
+                )}
+
+                {billingError && (
+                  <div className="mt-4 bg-destructive/10 border border-destructive/20 text-destructive p-4 rounded-lg flex items-center gap-3">
+                    <AlertCircle className="h-5 w-5" />
+                    <p>{billingError}</p>
                   </div>
                 )}
               </div>

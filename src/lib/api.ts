@@ -28,6 +28,7 @@ export interface MemberInfo {
     name: string;
     expireAt: number;
     studySeconds: number;
+    source?: string;
 }
 
 export interface AuthResponse {
@@ -379,6 +380,25 @@ export const paymentApi = {
         }
         return handleResponse<{ url: string }>(res);
     },
+
+    /** Get billing history with pagination support */
+    getBillingHistory: async (page: string | null = null): Promise<BillingHistoryResponse> => {
+        const token = localStorage.getItem('auth_token');
+        if (!token) throw new Error('Not authenticated');
+        
+        const url = new URL(`${API_BASE_URL}/web/payment/stripe/billing`);
+        if (page) {
+            url.searchParams.append('page', page);
+        }
+        
+        const res = await fetch(url.toString(), {
+            headers: {Authorization: `Bearer ${token}`},
+        });
+        
+        const response = await handleResponse<BillingHistoryResponse>(res);
+        
+        return response;
+    },
 };
 
 // Dashboard API types
@@ -453,6 +473,42 @@ export interface LanguageSettings {
 }
 
 export type SupportedLanguage = 'zh-CN' | 'en-US' | 'fr-FR' | 'es-ES' | 'de-DE' | 'ja-JP' | 'ko-KR';
+
+// Billing and Subscription types
+export interface BillingItem {
+    id: string;
+    currency: string;
+    paidAt: string;
+    status: string;
+    amountDue: string;
+    amountPaid: string;
+    dueDate: string | null;
+    periodEnd: string;
+    periodStart: string;
+    invoicePdf: string;
+    created: string;
+    description: string | null;
+    customerEmail: string | null;
+    billingReason: string;
+}
+
+export interface BillingHistoryResponse {
+    data: BillingItem[];
+    nextPage: string | null;
+    hasMore: boolean;
+}
+
+export interface SubscriptionInfo {
+    plan: string;
+    status: string;
+    nextBillingDate: string;
+    paymentMethod: string;
+    // billingHistory: BillingItem[];
+    unlimited: boolean;
+    freeTrial: boolean;
+    totalHours: number | null;
+    usedHours: number | null;
+}
 
 // User profile API
 export const userApi = {
