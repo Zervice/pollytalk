@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning>
       <head>
-        <script async src="https://dev.zervice.us/ava/chatbot.js" data-config="eyJpZCI6ImNiX2RmYmFlMTM5YTZhMDRmYTc5MWQ2ZjE5ZGJmYjcwMWRlIiwidG9rZW4iOiJhY19jYTQyZjg3Njc3OGE0ZWNkYWI1OTc0OGUxMmI3NGFjMCIsIm5hbWUiOiJQb2xseVRhbGtpZSIsInRoZW1lIjoiIzliZDczMSJ9" data-id="6f7e685f-a115-4f97-9b7f-f19631d84646" data-js="https://uma.zervice.us/script.js"></script>
+        <script async src="http://local.zervice.us/ava/chatbot.js" data-config="eyJpZCI6ImNiX2IyZGM1YmI3OWQyZjQ3OWQ5ZTM4Y2JiMGU0YmM3Y2IzIiwidG9rZW4iOiJhY19jYzJiNTI4YjhkZDA0YTVkYThjZTRmOWExZjBhMjk5MSIsIm5hbWUiOiJQb2xseXRhbGtpZSIsInRoZW1lIjoiIzM4YmYzYyJ9" data-id="f2872ae2-f0cd-4a31-8d48-2e13d90a7e33" data-js="https://uma.zervice.us/script.js"></script>
         <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4bcf3f093bd540b1abf323957828f8b2"}'></script>
         <script defer src="https://cloud.umami.is/script.js" data-website-id="0224687c-8896-4c82-8b39-8356fcfc150b"></script>
       </head>
