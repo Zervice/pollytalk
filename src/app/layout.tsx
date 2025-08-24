@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning>
       <head>
-        <script async src="http://local.zervice.us/ava/chatbot.js" data-config="eyJpZCI6ImNiXzBjYzgxMWRlNzcwODQ4NDk4MzFjZWNmNWYxNDNmNmYwIiwidG9rZW4iOiJhY185OTUxMDdkOTgzYjI0NTFhYmRlNGIzOGY1OWNhNjczMCIsIm5hbWUiOiJDaGF0Ym90In0=" data-id="549bdf21-533b-42a1-a2cd-7587ee7d3863" data-js="https://uma.zervice.us/script.js"></script>
+        <script async src="http://dev.zervice.us/ava/chatbot.js" data-config="eyJpZCI6ImNiXzBjYzgxMWRlNzcwODQ4NDk4MzFjZWNmNWYxNDNmNmYwIiwidG9rZW4iOiJhY185OTUxMDdkOTgzYjI0NTFhYmRlNGIzOGY1OWNhNjczMCIsIm5hbWUiOiJDaGF0Ym90In0=" data-id="549bdf21-533b-42a1-a2cd-7587ee7d3863" data-js="https://uma.zervice.us/script.js"></script>
         <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4bcf3f093bd540b1abf323957828f8b2"}'></script>
         <script defer src="https://cloud.umami.is/script.js" data-website-id="0224687c-8896-4c82-8b39-8356fcfc150b"></script>
       </head>
